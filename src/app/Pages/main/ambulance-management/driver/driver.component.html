@@ -1,0 +1,222 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Bed Management</h3>
+      <p>Add, Edit And View Beds</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-16">
+      <form #f="ngForm" > 
+        <div class="card" #target>
+          <div class="card-header">
+            <h5 class="card-title">Add New Bed</h5>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-10 ">
+                <div class="row">
+                
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(DriverName.valid || (DriverName.pristine && !f.submitted)) || (DriverName.errors && (DriverName.dirty || DriverName.touched ))">
+                        <label>Driver Name</label> 
+                      <input class="form-control" type="text" placeholder="Enter Quantity of Bed" #DriverNames  id="brandName" name="driverName" required #DriverName="ngModel"
+                        [(ngModel)]="Driver.driverName">
+                      <div [hidden]="DriverName.valid || (DriverName.pristine && !f.submitted) && (DriverName.errors && (DriverName.dirty || DriverName.touched )) == false"
+                        class="form-control-feedback">
+                        Error: Please Enter Driver Name
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(cellNo.valid || (cellNo.pristine && !f.submitted)) || (cellNo.errors && (cellNo.dirty || cellNo.touched ))">
+                        <label>Cell Number</label> 
+                      <input class="form-control" type="text" placeholder="Enter Quantity of Bed"  id="cellNo" name="cellNo" required #cellNo="ngModel"
+                        [(ngModel)]="Driver.cellNo">
+                      <div [hidden]="cellNo.valid || (cellNo.pristine && !f.submitted) && (cellNo.errors && (cellNo.dirty || cellNo.touched )) == false"
+                        class="form-control-feedback">
+                        Error: Please Enter Cell Number
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(CNICNumbers.valid || (CNICNumbers.pristine && !f.submitted)) || (CNICNumbers.errors && (CNICNumbers.dirty || CNICNumbers.touched ))">
+                     <label>CNIC Numbers</label>
+                     <input class="form-control" type="text" pattern="[0-9]*" minlength="14" maxlength="14" placeholder="4210XXXXXXXXXX" name="CNICNumbers" #CNICNumbers="ngModel"
+                       [(ngModel)]="Driver.cnic" required>
+                     <div [hidden]="CNICNumbers.valid || (CNICNumbers.pristine && !f.submitted) && ((CNICNumbers.errors && (CNICNumbers.dirty || CNICNumbers.touched )) == false)"
+                       class="form-control-feedback">
+                       <div [hidden]="!CNICNumbers.errors?.pattern" class="form-control-feedback">
+                           Error: Only Digits Without '-'
+                         </div>
+                       <div [hidden]="!CNICNumbers.errors?.required" class="form-control-feedback">
+                         Error: Please Enter CNIC number
+                       </div> 
+                       <div [hidden]="!CNICNumbers.errors?.minlength" class="form-control-feedback">
+                           Error: Not less than 14 digits
+                         </div>
+                     </div>
+                   </div>
+                 </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(licenseNo.valid || (licenseNo.pristine && !f.submitted)) || (licenseNo.errors && (licenseNo.dirty || licenseNo.touched ))">
+                        <label>License No</label> 
+                      <input class="form-control" type="text" placeholder="Enter Quantity Center Name" id="licenseNo" name="licenseNo" required #licenseNo="ngModel"
+                        [(ngModel)]="Driver.licenseNo">
+                      <div [hidden]="licenseNo.valid || (licenseNo.pristine && !f.submitted) && (licenseNo.errors && (licenseNo.dirty || licenseNo.touched )) == false"
+                        class="form-control-feedback">
+                        Error: Please Enter licenseNo
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(address.valid || (address.pristine && !f.submitted)) || (address.errors && (address.dirty || address.touched ))">
+                        <label>Address</label> 
+                      <!-- <input class="form-control" type="text" placeholder="Enter Quantity address"  id="address" name="address" required #address="ngModel"
+                        [(ngModel)]="Ambulance.address"> -->
+                        <textarea class="form-control" type="text" placeholder="Enter Quantity address"  id="address" name="address" required #address="ngModel"
+                        [(ngModel)]="Driver.address"  rows="1"></textarea>
+                      <div [hidden]="address.valid || (address.pristine && !f.submitted) && (address.errors && (address.dirty || address.touched )) == false"
+                        class="form-control-feedback">
+                        Error: Please Enter Address
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="col-lg-8 col-md-8">
+                    <div class="dropzone text-center dz-clickable">
+                      <div class="dz-default dz-message">
+                        <input type="file" accept="image/*" #coverFilesInput (change)="handleFrontImage($event)">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="col image-adjustment">
+                      <img type="image" id="front-image" [src]="frontUrl" height="204" width="323.52" class="responsive-img" />
+                      <label></label>
+                    </div>
+                  </div>
+
+                </div>
+            
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="col text-right">
+                <div class="btn-group pull-right">
+                  <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                    <span class="text">Save</span>
+                    <i class="fa fa-save"></i>
+                  </button>
+                </div>
+                <div class="btn-group pull-right">
+                  <pre> </pre>
+                </div>
+                <div class="btn-group pull-right">
+
+                  <button class="btn btn-secondary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                    <span class="text">Reset</span>
+                    <i class="fa fa-refresh"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <h5 class="pull-left mr-2">Manage Beds</h5>
+            </div>  
+            <div class="col-lg-13 col-md-13">
+              <div class="row">  
+                <div class="col-lg-16">
+                  <div class="input-daterange form-inline pull-right" id="destination">
+                    <div class="form-group row">
+                    <label style="color: black;">
+                      Choose Range &nbsp;
+                      <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                    <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue"  (ngModelChange)="selectRange()">
+                  </div>&nbsp;&nbsp;
+                    <button class="btn btn-outline-primary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                        <span class="text">Reset</span>
+                        <i class="fa fa-refresh"></i>
+                      </button>  
+
+                  </div>
+
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- Table Start -->
+          <!-- <div class="table-responsive" style="overflow: auto; padding-top: 2px;">
+            <table id="example" class="table table-hover dataTable no-footer dtr-inline" *ngIf="Drivers !== undifined">
+              <thead>
+                <tr>
+                  <th>SNo.</th>
+                  <th>Brand Name</th>
+                  <th>Category </th>
+                  <th>Center Name</th>
+                  <th>Status</th>
+                  <th class="not-export-col">Action</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="MousePointer" *ngFor="let item of Drivers | reverse;let i = index">
+                  <td (click)="EditRecord(item.id,target)" >{{i+1}}</td>
+                  <td (click)="EditRecord(item.id,target)" >{{ item.brandName }}</td>
+                  <td (click)="EditRecord(item.id,target)" >{{item.category}}</td>
+                  <td (click)="EditRecord(item.id,target)" >
+                    {{item.centerName}}
+                  </td>
+
+                  <td (click)="EditRecord(item.id,target)" >
+                    <span [class]="item.status == 1? 'status success':'status danger'" style="width:60px !important">{{item.status == 1? "Active":"In-Active" }}</span>
+                  </td>
+                  <td>
+
+                    <span style="display: inline">
+                      <a class=" btn btn-link btn-sm " title="Delete" [id]="item.id" (click)="$event.stopPropagation();modal.ShowModal(item.id)">
+                        <i class="fa fa-trash-o ">
+                        </i>
+                      </a>
+                      <a class="btn btn-link btn-sm" title="Edit" (click)="$event.stopPropagation();EditRecord(item.id,target)">
+                        <i class="fa fa-pencil-square-o "></i>
+                      </a>
+                    </span>
+                  </td> 
+                </tr>  
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  
+
+                </tr>
+              </tfoot>
+            </table>
+          </div> -->
+          <!-- /.table-end -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-delete-modal #modal (IsDelete)="DeleteData($event,true)"></app-delete-modal>

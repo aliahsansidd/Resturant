@@ -1,0 +1,15 @@
+<!-- <div>
+  <input [owlDateTimeFilter]="myFilter" [owlDateTimeTrigger]="dt3" [(ngModel)]="selectedMoment" [owlDateTime]="dt3">
+  <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+  <span [(ngModel)]="doctor.date">{{selectedMoment}}</span>
+</div> -->
+<div class="row">
+  <div class="col-sm-16">
+      <dp-date-picker [(ngModel)]="selectedDates" (click)="onSelect($event)" theme="dp-material" attachTo=".mat-input-wrapper" style="width:250px"  [config]="datePickerConfig"  (ngModelChange)="validatorsChanged($event)"></dp-date-picker>  
+  </div>
+</div>
+
+{{selectedDates}}
+
+<!-- <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+<owl-date-time #dt1></owl-date-time> -->

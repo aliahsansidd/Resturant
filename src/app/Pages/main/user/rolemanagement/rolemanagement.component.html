@@ -1,0 +1,160 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Role Management</h3>
+      <!-- <p>Register New Patient</p> -->
+    </div>
+
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+      <script type="text/javascript">
+        window.onload = date_time('date_time');
+      </script>
+    </div>
+  </div>
+  <div class="alert-message">
+    <div *ngIf="deleteSuccess" class="alert alert-success" role="alert"> <strong>Success!</strong> Patient Deleted
+      Successfully. </div>
+  </div>
+  <div class="card" id="b2">
+    <!-- <div class="card-header">
+            <h5 class="card-title">Patient List</h5>
+          </div> -->
+    <div class="card-header">
+      <div class="row">
+        <div class="col-lg-3 col-md-3">
+          <h5 class="pull-left mr-2">Manage Records</h5>
+        </div>
+        <div class="col-lg-13 col-md-13">
+          <div class="row">
+            <div class="col-lg-16">
+              <div class="input-daterange form-inline pull-right" id="destination">
+                <div class="form-group row">
+                  <label style="color: black;">
+                    Choose Range &nbsp;
+                    <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                  <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue" type="text">
+                </div>&nbsp;&nbsp;
+                <button class="btn btn-outline-primary" type="reset" value="" name="brnReset">
+                  <span class="text">Reset</span>
+                  <i class="fa fa-refresh"></i>
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <!-- Table Start -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"> <button class="nav-link active" data-toggle="tab" href="#home" role="tab" (click)="ShowButton()">Grid
+            View</button> </li>
+        <li class="nav-item"> <button class="nav-link" data-toggle="tab" href="#profile" role="tab" (click)="hideButton()">Tree
+            View</button> </li>
+      </ul>
+      <div class="tab-content">
+        <div class="table-responsive tab-pane active" role="tabpanel" id="home" style="overflow: auto; padding-top: 2px;">
+          <table id="example" class="table dataTable no-footer dtr-inline">
+            <thead>
+              <tr>
+                <th>S.No# </th>
+                <th>Role Name</th>
+                <th>Permissions</th>
+                <th class="not-export-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="FontSizeTable">
+              <tr class="odd" role="row" *ngFor="let role of allRoles; let i = index;">
+                <td>{{i + 1}}</td>
+                <td>{{role.name}}</td>
+                <td><span *ngFor="let permission of role.permissions;">{{permission.name}}</span></td>
+                <td>
+                  <!-- <a class=" btn btn-link btn-sm" data-toggle="modal" data-target="#exampleModal"
+                         title="View">
+                            <i data-toggle="modal" data-target="#exampleModal" class="fa fa-eye">
+                            </i>
+                          </a> -->
+
+                  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Inputs Modal </button> -->
+                  <!-- <a class=" btn btn-link btn-sm" (click)="deleteRole(role.id, i)" title="Delete"> -->
+                  <a class=" btn btn-link btn-sm " title="Delete" [id]="role.id" (click)="$event.stopPropagation();modal.ShowModal(role.id)">
+                    <i class="fa fa-trash-o">
+                    </i>
+                  </a>
+                  <a class="btn btn-link btn-sm" title="Edit" (click)="editRole(i, role.id)">
+                    <i class="fa fa-pencil-square-o "></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>SR# </th>
+                <th>Role Name</th>
+                <th>Permissions</th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+          <!-- <nz-tree
+      [nzData]="nodes"
+      nzShowLine="true"
+      (nzClick)="nzEvent($event)">
+    </nz-tree> -->
+          <!-- <ul *ngFor="let node of nodes">
+      {{node.title}}
+      <li *ngFor="let child of nodes[0].children">{{child.title}}
+      </li>
+    </ul> -->
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+          <ul id="myUL" *ngIf="allUsers?.length > 0">
+            <li>
+              <span class="caret">Roles</span>
+              <ul class="nested">
+                <li *ngFor="let item of allRoles">
+                  <span class="caret ">{{item.name}}</span>
+                  <ul class="nested">
+                    <li  *ngFor="let user of allUsers | RolePipe:item.name ">{{user.fullName}}</li>
+
+                  </ul>
+
+
+                </li>
+              </ul>
+
+              <!-- <ul class="nested" *ngFor="let user of allUsers | RolePipe ">
+           <li>{{user.name}}</li>
+
+         </ul> -->
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- /.table-end -->
+    </div>
+
+
+  </div>
+</div>
+
+<app-delete-modal #modal (IsDelete)="DeleteSingleRole($event)"></app-delete-modal>

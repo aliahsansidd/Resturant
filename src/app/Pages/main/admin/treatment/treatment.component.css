@@ -1,0 +1,7 @@
+.content {
+    height: 100vh;
+    display: flex;
+    margin: 35vh;
+    position: relative;
+    bottom: 27vh;
+}

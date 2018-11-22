@@ -1,0 +1,176 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Add Doctor</h3>
+      <p>Register Doctor</p>
+    </div>
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+    </div>
+  </div>
+  <div class="row align-items-center justify-content-between">
+    <div class="col-xl-16">
+        <form #f="ngForm">
+      <div class="card"> 
+          <div class="card-header">
+            <h5 class="card-title">Register Doctor</h5>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(CategoryControl.valid || (CategoryControl.pristine && !f.submitted)) || (CategoryControl.errors && (CategoryControl.dirty || CategoryControl.touched ))">
+                      <label>Designation</label>
+                      <select class="form-control form-control-danger" name="CategoryControl" data-live-search="true" required [(ngModel)]="AddDoctor.doctorCategoryId"
+                        #CategoryControl="ngModel" tabindex="-1" aria-hidden="true">
+                        <option selected="selected" *ngFor="let c of OPDType" [value]="c.id">{{c.name}}</option>
+                      </select>
+                      <div [hidden]="CategoryControl.valid || (CategoryControl.pristine && !f.submitted) && ((CategoryControl.errors && (CategoryControl.dirty || CategoryControl.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!CategoryControl.errors?.required" class="form-control-feedback">
+                          Error: Please Select Doctor's Designation
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(DoctorName.valid || (DoctorName.pristine && !f.submitted)) || (DoctorName.errors && (DoctorName.dirty || DoctorName.touched ))">
+                      <label>Doctor</label>
+                      <select class="form-control" name="DoctorName" [(ngModel)]="AddDoctor.applicationUserDoctorId" required #DoctorName="ngModel">
+                        <option *ngFor="let d of filteredDoctors" [value]="d.id" >{{d.fullName}}</option>
+                      </select>
+                      <div [hidden]="DoctorName.valid || (DoctorName.pristine && !f.submitted) && ((DoctorName.errors && (DoctorName.dirty || DoctorName.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!DoctorName.errors?.required" class="form-control-feedback">
+                          Error: Please Select Doctor
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group">
+                      <label>Status</label>
+                      <div class="can-toggle can-toggle--size-small"> 
+                        <input id="b" type="checkbox" name="status" [(ngModel)]="AddDoctor.status">
+                        <label for="b">
+                          <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                          <div class="can-toggle__label-text">{{AddDoctor.status? "Active": "In-Active"}}</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+                <div class="col text-right">
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                      <span class="text">Save</span>
+                      <i class="fa fa-save"></i>
+                    </button>
+                  </div>
+                  <div class="btn-group pull-right">
+                    <pre> </pre>
+                  </div>
+                  <div class="btn-group pull-right">
+  
+                    <button class="btn btn-secondary" type="reset" value="Reset" (click)="Reset()" name="brnReset">
+                      <span class="text">Reset</span>
+                      <i class="fa fa-refresh"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div> 
+        
+      </div>
+    </form>
+      <div class="card"> 
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-3 col-md-3">
+              <h5 class="pull-left mr-2">Manage Records</h5>
+            </div>  
+            <div class="col-lg-13 col-md-13">
+              <div class="row">  
+                <div class="col-lg-16">
+                  <div class="input-daterange form-inline pull-right" id="destination">
+                    <div class="form-group row">
+                    <label style="color: black;">
+                      Choose Range &nbsp;
+                      <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                    <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue" type="text">
+                  </div>&nbsp;&nbsp;
+                    <button class="btn btn-outline-primary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                        <span class="text">Reset</span>
+                        <i class="fa fa-refresh"></i>
+                      </button>  
+
+                  </div>
+
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- Table Start -->
+          <div class="table-responsive" style="overflow: auto; padding-top: 2px;">
+            <table id="example" class="table table-hover dataTable no-footer dtr-inline">
+              <thead>
+                <tr>
+                  <th>SNo.</th>
+                  <th>Category</th>
+                  <th>Doctor</th>
+                  <th>Status</th>
+                  <th class="not-export-col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of AddDoctor1;let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.doctorCategoryName}}</td>
+                  <td>{{item.applicationUserDoctorName}}</td>
+                  <td>
+                    <span [class]="item.status == 1? 'status success':'status danger'" style="width:60px !important">{{item.status == 1? "Active":"In-Active" }}</span>
+                  </td>
+                  <td>
+                    <span style="display: inline">
+                      <a class=" btn btn-link btn-sm " title="Delete" [id]="item.id" (click)="modal.ShowModal(item.id)">
+                        <i class="fa fa-trash-o ">
+                        </i>
+                      </a>
+                      <a class="btn btn-link btn-sm" title="Edit" (click)="EditRecord(item.id)">
+                        <i class="fa fa-pencil-square-o "></i>
+                      </a>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>SNo</th>
+                  <th>Category</th>
+                  <th>Doctor</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.table-end -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-delete-modal #modal (IsDelete)="DeleteData($event)"></app-delete-modal>

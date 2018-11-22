@@ -1,0 +1,232 @@
+<div class="container content-width-100">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>User Management</h3>
+      <p>Add User</p>
+    </div>
+    <div style="display: flex;
+    justify-content: center; cursor: pointer;" class="col-5 col-sm-4">
+      <button class="btn btn-success" (click)="goToList()">
+        Go To User List
+      </button>
+    </div>
+
+
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+      <script type="text/javascript">
+        window.onload = date_time('date_time');
+      </script>
+    </div>
+
+  </div>
+  <div class="row align-items-center justify-content-between">
+
+    <div class="col-xl-16">
+
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Register New User</h5>
+        </div>
+        <div class="card-body">
+
+
+          <div class="row justify-content-center">
+            <div class="col-md-10 ">
+              <form #f="ngForm">
+              <div class="row ">
+                <div class="col-lg-8 col-md-8">
+                  <div class="form-group ">
+                    <label>Employee ID</label>
+                    <input type="text" class="form-control" name="employee" placeholder="Enter ID" id="Id">
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(firstName.valid || (firstName.pristine && !f.submitted)) || (firstName.errors && (firstName.dirty || firstName.touched ))">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" pattern="[a-zA-Z ]*" placeholder="First Name" [(ngModel)]="adduser.firstName"  #firstName="ngModel" name="firstName" required>
+                        <div [hidden]="firstName.valid || (firstName.pristine && !f.submitted) && ((firstName.errors && (firstName.dirty || firstName.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!firstName.errors?.required" class="form-control-feedback">
+                            Please Enter First Name
+                          </div>
+                          <div [hidden]="!firstName.invalid && firstName.errors?.required" class="form-control-feedback">
+                             Name cannot contain number
+                            </div>
+                        </div>
+                
+                      </div>
+                  <!-- <div class="form-group ">
+                    <label>First Name</label>
+                    <input pattern="[a-zA-Z ]*" type="text" class="form-control" placeholder="First Name" name="firstName" [(ngModel)]="adduser.firstname" id="firstname">
+                  </div> -->
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(lastName.valid || (lastName.pristine && !f.submitted)) || (lastName.errors && (lastName.dirty || lastName.touched ))">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" pattern="[a-zA-Z ]*" placeholder="First Name" [(ngModel)]="adduser.lastName"  #lastName="ngModel" name="lastName" required>
+                        <div [hidden]="lastName.valid || (lastName.pristine && !f.submitted) && ((lastName.errors && (lastName.dirty || lastName.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!lastName.errors?.required" class="form-control-feedback">
+                            Please Enter First Name
+                          </div>
+                          <div [hidden]="!lastName.invalid && lastName.errors?.required" class="form-control-feedback">
+                             Name cannot contain number
+                            </div>
+                        </div>
+                
+                      </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                  <div class="form-group upload-photo">
+                    <label>Upload Photo</label>
+                    <!-- <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp"
+                      [(ngModel)]="adduser.photo" id="photo"> -->
+                    <input type="file" accept="image/*" #coverFilesInput (change)="handleBackImage($event)">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row ">
+                <div class="col-lg-8 col-md-8">
+                  <!-- <input type="checkbox" id="customRadio1" name="customRadio" (click)="PanelVisible= !PanelVisible" style="background-color: #6c8bef;"> -->
+                  <label nz-checkbox [(ngModel)]="checked" name="createLogin" (click)="PanelVisible = !PanelVisible"></label>
+                  <label class="custom-control-label" for="customRadio1"> &nbsp; &nbsp;
+                    <strong> Create User Login</strong>
+                  </label>
+                </div>
+
+              </div>
+              <hr>
+
+              <div *ngIf="PanelVisible">
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Assign Role</label>
+                      <ng-select [items]="AllRoles" [multiple]="true" [closeOnSelect]="false" [searchable]="true" bindLabel="name" placeholder="Select Roles"
+                        [(ngModel)]="SelectedRoles" name="RoleControl" required #RoleControl="ngModel">
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(email.valid || (email.pristine && !f.submitted)) || (email.errors && (email.dirty || email.touched ))">
+                          <label>Email</label>
+                          <input type="text"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control" placeholder="email address" [(ngModel)]="adduser.email"  #email="ngModel" name="email" required>
+                          <div [hidden]="email.valid || (email.pristine && !f.submitted) && ((email.errors && (email.dirty || email.touched )) == false)"
+                            class="form-control-feedback">
+                            <div [hidden]="!email.errors?.required" class="form-control-feedback">
+                              Please Enter a valid Email
+                            </div>
+                            <div [hidden]="!email.errors?.pattern" class="form-control-feedback">
+                              Not a valid Email
+                            </div>
+                          </div>
+                  
+                        </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(Password.valid || (Password.pristine && !f.submitted)) || (Password.errors && (Password.dirty || Password.touched ))">
+                          <label>Password</label>
+                          <input type="password" class="form-control" placeholder="Password"  minlength="6"  [(ngModel)]="adduser.password"  #Password="ngModel" name="password" required>
+                          <div [hidden]="Password.valid || (Password.pristine && !f.submitted) && ((Password.errors && (Password.dirty || Password.touched )) == false)"
+                            class="form-control-feedback">
+                            <div [hidden]="!Password.errors?.required" class="form-control-feedback">
+                              Please Enter Password
+                            </div>
+                            <div [hidden]="!Password.errors?.pattern" class="form-control-feedback">
+                                length should be greater than 6
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(ConfirmPassword.valid || (ConfirmPassword.pristine && !f.submitted)) || (ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched ))">
+                          <label>Confirm Password</label>
+                          <input type="password" class="form-control" placeholder="Confirm Password" [(ngModel)]="adduser.confirmpassword"  #ConfirmPassword="ngModel" name="confirmPassword" required>
+                          <div [hidden]="ConfirmPassword.valid || (ConfirmPassword.pristine && !f.submitted) && ((ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched )) == false)"
+                            class="form-control-feedback">
+                            <div [hidden]="!ConfirmPassword.errors?.required" class="form-control-feedback">
+                              Confirm your password
+                            </div>
+                          </div>
+                          <div [hidden]="adduser.password === adduser.confirmpassword" class="form-control-feedback" style="color: red;">
+                            Password and Confirm Password do not match
+                          </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="form-group" [class.has-error]="!(CellNumber.valid || (CellNumber.pristine && !f.submitted)) || (CellNumber.errors && (CellNumber.dirty || CellNumber.touched ))">
+                            <label>Cell Number</label>
+                            <input type="number" class="form-control" placeholder="Cell Number" [(ngModel)]="adduser.cellNumber"  #CellNumber="ngModel" name="CellNumber" required>
+                            <div [hidden]="CellNumber.valid || (CellNumber.pristine && !f.submitted) && ((CellNumber.errors && (CellNumber.dirty || CellNumber.touched )) == false)"
+                              class="form-control-feedback">
+                              <div [hidden]="!CellNumber.errors?.required" class="form-control-feedback">
+                                Cell Number is required
+                              </div>
+                            </div>
+                    
+                          </div>
+                      </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <div class="can-toggle can-toggle--size-small">
+                        <label>Status</label>
+                        <input id="b" type="checkbox" name="status" [(ngModel)]="adduser.status">
+                        <label for="b">
+                          <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                          <div class="can-toggle__label-text">{{adduser.status? "Active":"In-Active"}}</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+            </div>
+          </div>
+
+
+
+          <br>
+          <div class="card-footer">
+            <div class="col text-right">
+              <div class="btn-group pull-right">
+                <button class="btn btn-primary" name="btnsave" (click)="AddUser(adduser)">
+                  <span class="text">Save</span>
+                  <i class="fa fa-save"></i>
+                </button>
+              </div>
+              <div class="btn-group pull-right">
+                <pre> </pre>
+              </div>
+              <div class="btn-group pull-right">
+
+                <button (click)="resetForm()" class="btn btn-secondary" type="reset" value="Reset" name="brnReset">
+                  <span class="text">Reset</span>
+                  <i class="fa fa-refresh"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+  </div>
+
+</div>

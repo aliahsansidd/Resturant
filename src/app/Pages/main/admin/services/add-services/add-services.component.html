@@ -1,0 +1,267 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8" >
+      <div class="page-title">
+        <h3>Building Information System</h3>
+        <p>Add BIS Services</p>
+      </div>
+    </div>
+    <div class="col-lg-8" style="margin-top: 3%">
+      <div class="col text-right ">
+        <div>
+          <button class="btn btn-success md-2" (click)='navigateTo("/main/admin/services/add-services-list")'>Go To Service List</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+  <div class="row align-items-center justify-content-between">
+    <div class="col-sm-16">
+      <form #f="ngForm">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Add New BIS Services</h5>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(Category.valid || (Category.pristine && !f.submitted)) || (Category.errors && (Category.dirty || Category.touched ))">
+                      <label>Category</label>
+                      <select class="form-control" required #Category="ngModel" name="Category" type="text" [(ngModel)]="AddServices.buildingMaterialCategoryId">
+                        <option [value]="item.id" *ngFor="let item of BuildingCat">{{item.name}}</option>
+                      </select>
+                      <div [hidden]="Category.valid || (Category.pristine && !f.submitted) && ((Category.errors && (Category.dirty || Category.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!Category.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Category
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(EquipmentName.valid || (EquipmentName.pristine && !f.submitted)) || (EquipmentName.errors && (EquipmentName.dirty || EquipmentName.touched ))">
+                      <label>Equipment Name</label>
+                      <input class="form-control" name="EquipmentName" #EquipmentName="ngModel" type="text" [(ngModel)]="AddServices.equipmentName"
+                        placeholder="Enter Equipment name" id="example-text-input" required>
+                      <div [hidden]="EquipmentName.valid || (EquipmentName.pristine && !f.submitted) && ((EquipmentName.errors && (EquipmentName.dirty || EquipmentName.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!EquipmentName.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Equipment Name
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(EquipmentCode.valid || (EquipmentCode.pristine && !f.submitted)) || (EquipmentCode.errors && (EquipmentCode.dirty || EquipmentCode.touched ))">
+                      <label>Equipment Code</label>
+                      <input class="form-control" type="text" placeholder="Enter Equipment Code" name="EquipmentCode" #EquipmentCode="ngModel"
+                        [(ngModel)]="AddServices.equipmentCode" required>
+                      <div [hidden]="EquipmentCode.valid || (EquipmentCode.pristine && !f.submitted) && ((EquipmentCode.errors && (EquipmentCode.dirty || EquipmentCode.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!EquipmentCode.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Equipment Code
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(VendorName.valid || (VendorName.pristine && !f.submitted)) || (VendorName.errors && (VendorName.dirty || VendorName.touched ))">
+                      <label> Vendor Name</label>
+                      <input class="form-control" type="text" pattern="[a-zA-Z ]*" placeholder="Enter Vendor Name" name="VendorName" #VendorName="ngModel"
+                        [(ngModel)]="AddServices.vendorName" required>
+                      <div [hidden]="VendorName.valid || (VendorName.pristine && !f.submitted) && ((VendorName.errors && (VendorName.dirty || VendorName.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!VendorName.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Vendor Name
+                        </div>
+                        <div [hidden]="!VendorName.errors?.pattern" class="form-control-feedback">
+                          Error: Alphabets Only
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(ContactPerson.valid || (ContactPerson.pristine && !f.submitted)) || (ContactPerson.errors && (ContactPerson.dirty || ContactPerson.touched ))">
+                      <label>Contact Person</label>
+                      <input class="form-control" pattern="[a-zA-Z ]*" type="text" placeholder="Enter Contact Person" name="ContactPerson" #ContactPerson="ngModel"
+                        [(ngModel)]="AddServices.contactPerson" required>
+                      <div [hidden]="ContactPerson.valid || (ContactPerson.pristine && !f.submitted) && ((ContactPerson.errors && (ContactPerson.dirty || ContactPerson.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!ContactPerson.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Contact Person
+                        </div>
+                        <div [hidden]="!ContactPerson.errors?.pattern" class="form-control-feedback">
+                          Error: Only Aplhabets
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(Contact1.valid || (Contact1.pristine && !f.submitted)) || (Contact1.errors && (Contact1.dirty || Contact1.touched ))">
+                      <label>Contact 1</label>
+                      <input class="form-control" pattern="[0-9]*" minlength="11" maxlength="11" type="text" placeholder="03123456789" name="Contact1"
+                        #Contact1="ngModel" [(ngModel)]="AddServices.contact1" required>
+                      <div [hidden]="Contact1.valid || (Contact1.pristine && !f.submitted) && ((Contact1.errors && (Contact1.dirty || Contact1.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!Contact1.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Contact1
+                        </div>
+                        <div [hidden]="!Contact1.errors?.pattern" class="form-control-feedback">
+                          Error: Only Numbers
+                        </div>
+                        <div [hidden]="!Contact1.errors?.minlength" class="form-control-feedback">
+                          Error: Number must be 11 digits
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(Contact2.valid || (Contact2.pristine && !f.submitted)) || (Contact2.errors && (Contact2.dirty || Contact2.touched ))">
+                      <label>Contact 2</label>
+                      <input class="form-control" #Contact2="ngModel" name="Contact2" [(ngModel)]="AddServices.contact2" pattern="[0-9]*" minlength="11"
+                        maxlength="11" type="text" placeholder="03123456789" required>
+                      <div [hidden]="Contact2.valid || (Contact2.pristine && !f.submitted) && ((Contact2.errors && (Contact2.dirty || Contact2.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!Contact2.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Contact2
+                        </div>
+                        <div [hidden]="!Contact2.errors?.pattern" class="form-control-feedback">
+                          Error: Only Numbers
+                        </div>
+                        <div [hidden]="!Contact2.errors?.minlength" class="form-control-feedback">
+                          Error: Number must be 11 digits
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(Contact3.valid || (Contact3.pristine && !f.submitted)) || (Contact3.errors && (Contact3.dirty || Contact3.touched ))">
+                      <label>Contact 3</label>
+                      <input class="form-control" #Contact3="ngModel" name="Contact3" [(ngModel)]="AddServices.contact3" pattern="[0-9]*" minlength="11"
+                        maxlength="11" type="text" placeholder="03123456789" required>
+                      <div [hidden]="Contact3.valid || (Contact3.pristine && !f.submitted) && ((Contact3.errors && (Contact3.dirty || Contact3.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!Contact3.errors?.required" class="form-control-feedback">
+                          Error: Please Enter Contact3
+                        </div>
+                        <div [hidden]="!Contact3.errors?.pattern" class="form-control-feedback">
+                          Error: Only Numbers
+                        </div>
+                        <div [hidden]="!Contact3.errors?.minlength" class="form-control-feedback">
+                          Error: Number must be 11 digits
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(Purchase.valid || (Purchase.pristine && !f.submitted)) || (Purchase.errors && (Purchase.dirty || Purchase.touched ))">
+                      <label>Date of Purchase</label>
+                      <input type="text" class="form-control" name="Purchase" #Purchase="ngModel" [(ngModel)]="AddServices.purchaseDate" required
+                        placeholder="MM/DD/YYYY" bsDatepicker>
+                      <div [hidden]="Purchase.valid || (Purchase.pristine && !f.submitted) && ((Purchase.errors && (Purchase.dirty || Purchase.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!Purchase.errors" class="form-control-feedback">
+                          Error: Please Enter Purchase Date
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(WarrantyType.valid || (WarrantyType.pristine && !f.submitted)) || (WarrantyType.errors && (WarrantyType.dirty || WarrantyType.touched ))">
+                      <label>Warranty Type</label>
+                      <input class="form-control" type="text" placeholder="Daily/Weekly/Monthly/Yearly" name="WarrantyType" #WarrantyType="ngModel"
+                        [(ngModel)]="AddServices.warrantyType" required>
+                      <div [hidden]="WarrantyType.valid || (WarrantyType.pristine && !f.submitted) && ((WarrantyType.errors && (WarrantyType.dirty || WarrantyType.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!WarrantyType.errors" class="form-control-feedback">
+                          Error: Please Enter Purchase Date
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(Address.valid || (Address.pristine && !f.submitted)) || (Address.errors && (Address.dirty || Address.touched ))">
+                      <label>Address</label>
+                      <textarea rows="5" class="form-control" placeholder="Plot#, Street#, Block#, Area, City, Country" name="Address" #Address="ngModel"
+                        [(ngModel)]="AddServices.address" required>
+                </textarea>
+                      <div [hidden]="Address.valid || (Address.pristine && !f.submitted) && ((Address.errors && (Address.dirty || Address.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!ScheduledMaintenance.errors" class="form-control-feedback">
+                          Error: Please Enter Address
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group" [class.has-error]="!(WarrantyExpires.valid || (WarrantyExpires.pristine && !f.submitted)) || (WarrantyExpires.errors && (WarrantyExpires.dirty || WarrantyExpires.touched ))">
+                      <label>Warranty Expires</label>
+                      <input class="form-control" type="text" bsDatepicker placeholder="MM/DD/YYYY" name="WarrantyExpires" #WarrantyExpires="ngModel"
+                        [(ngModel)]="AddServices.warrantyExpires" required>
+                      <div [hidden]="WarrantyExpires.valid || (WarrantyExpires.pristine && !f.submitted) && ((WarrantyExpires.errors && (WarrantyExpires.dirty || WarrantyExpires.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!WarrantyExpires.errors" class="form-control-feedback">
+                          Error: Please Enter Warranty Expires Date
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="form-group" [class.has-error]="!(ScheduledMaintenance.valid || (ScheduledMaintenance.pristine && !f.submitted)) || (ScheduledMaintenance.errors && (ScheduledMaintenance.dirty || ScheduledMaintenance.touched ))">
+                      <label>Scheduled Maintenance</label>
+                      <input class="form-control" type="text" id="name" name="ScheduledMaintenance" #ScheduledMaintenance="ngModel" [(ngModel)]="AddServices.scheduledMaintenance"
+                        bsDatepicker placeholder="MM/DD/YYYY" required>
+                      <div [hidden]="ScheduledMaintenance.valid || (ScheduledMaintenance.pristine && !f.submitted) && ((ScheduledMaintenance.errors && (ScheduledMaintenance.dirty || ScheduledMaintenance.touched )) == false)"
+                        class="form-control-feedback">
+                        <div [hidden]="!ScheduledMaintenance.errors" class="form-control-feedback">
+                          Error: Please Enter scheduled Maintenance date
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="col text-right">
+                <div class="btn-group pull-right">
+                  <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                    <span class="text">Save</span>
+                    <i class="fa fa-save"></i>
+                  </button>
+                </div>
+                <div class="btn-group pull-right">
+                  <pre> </pre>
+                </div>
+                <div class="btn-group pull-right">
+
+                  <button class="btn btn-secondary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                    <span class="text">Reset</span>
+                    <i class="fa fa-refresh"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

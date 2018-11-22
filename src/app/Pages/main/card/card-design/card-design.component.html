@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Design And Template</h3>
+      <p>Upload Card Design</p>
+    </div>
+
+
+
+
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+      <script type="text/javascript">window.onload = date_time('date_time');</script>
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-xl-16">
+
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Set Smart Card Design</h5>
+        </div>
+
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+
+              <h5> Upload Front</h5>
+              <div class="card-body">
+                <p class="small-italic"> Default Size: 3.370" X 2.125" </p>
+                <div class="dropzone text-center dz-clickable">
+                  <div class="dz-default dz-message">
+                    <input type="file" accept="image/*" #coverFilesInput (change)="handleFrontImage($event)"> 
+                  </div> 
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" *ngIf="FrontImageError" role="alert">
+                  <button type="button" class="close" (click)="FrontImageError=!FrontImageError" data-dismiss="alert"
+                    aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                  <strong>Error!</strong> You should upload picture with size 3.370" x 2.125". </div>
+              </div>
+
+
+
+            </div>
+            <div class="col image-adjustment">
+              <img type="image" id="front-image" [src]="frontUrl" 
+                height="204" width="323.52" class="responsive-img" />
+              <label></label>
+            </div>
+          </div>
+
+          <div class="row">
+
+
+            <div class="col">
+              <h5> Upload Back</h5>
+              <div class="card-body">
+                <p class="small-italic"> Default Size: 3.370" X 2.125" </p>
+                <form action="../file-upload" class="dropzone text-center dz-clickable">
+                  <div class="dz-default dz-message">
+                    <input type="file" accept="image/*" #coverFilesInput2 (change)="handleBackImage($event,2)">
+
+
+                  </div>
+                </form>
+                <div class="alert alert-danger alert-dismissible fade show" *ngIf="BackImageError" role="alert">
+                  <button type="button" class="close" (click)="BackImageError=!BackImageError" data-dismiss="alert"
+                    aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                  <strong>Error!</strong> You should upload picture with size 3.370" x 2.125". </div>
+              
+            </div>
+
+            <div class="form-group row">
+              <label for="example-email-input" class="col-4 col-form-label">Year of Expiry</label>
+              <div class="col-8">
+                <input class="form-control" type="year" [(ngModel)]="expiry" placeholder="5 Years">
+              </div>
+            </div>
+
+
+            <div class="col text-right">
+                <div class="btn-group pull-right">
+                  <button class="btn btn-primary" (click)="SetExpiry(expiry)"><span class="text">Save</span> <i class="fa fa-save"></i></button>
+                </div>
+                <div class="btn-group pull-right">
+                  <pre> </pre>
+                </div>
+                <div class="btn-group pull-right">
+    
+                  <button class="btn btn-secondary" type="reset" (click)="Reset()"><span class="text">Reset</span> <i class="fa fa-refresh"></i></button>
+                </div>
+              </div>
+
+
+          </div>
+
+
+          <div class="col image-adjustment">
+
+            <img type="image" [src]="backUrl" alt="Smart card Preview" height="204" width="323.52" class="responsive-img" /><label></label>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+</div>
+
+</div>

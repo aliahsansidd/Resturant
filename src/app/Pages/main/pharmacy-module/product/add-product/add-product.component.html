@@ -1,0 +1,397 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Product</h3>
+      <p>adding product</p>
+    </div>
+  </div>
+
+  <form #f="ngForm" autocomplete="off">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Add Product</h5>
+      </div>
+      <div class="card-body">
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <!-- Product Info -->
+            <div class="row">
+              <div class="col-lg-16 col-md-16">
+                <div class="row">
+                  <div class="col-10">
+                    <strong>
+                      <h5 style="margin-top: 10px;">Product Info</h5>
+                    </strong>
+                  </div>
+                </div>
+                <hr style="margin-top: -8px;" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(ProductName.valid || (ProductName.pristine && !f.submitted)) || (ProductName.errors && (ProductName.dirty || ProductName.touched ))">
+                  <label>Product Name</label>
+                  <input class="form-control" id="Product Names" name="ProductName" required #ProductName="ngModel" (change)="collectID($event.target.value)"
+                    [(ngModel)]="Bed.roomId">
+                  <div [hidden]="ProductName.valid || (ProductName.pristine && !f.submitted) && ((ProductName.errors && (ProductName.dirty || ProductName.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Product Name
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(BarCode.valid || (BarCode.pristine && !f.submitted)) || (BarCode.errors && (BarCode.dirty || BarCode.touched ))">
+                  <label>Bar Code</label>
+                  <input class="form-control" name="BarCode" required #BarCode="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="BarCode.valid || (BarCode.pristine && !f.submitted) && ((BarCode.errors && (BarCode.dirty || BarCode.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Bar Code Name
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(Genric.valid || (Genric.pristine && !f.submitted)) || (Genric.errors && (Genric.dirty || Genric.touched ))">
+                  <label>Genric</label>
+                  <select class="form-control" name="Genric" required #Genric="ngModel" [(ngModel)]="Bed.roomId">
+                    <option selected="selected" hidden disabled="disabled" [value]="null">Select</option>
+
+                    <option [value]="item.id" *ngFor="let item of ProductGenericCollection">
+                      {{item.name}}
+                    </option>
+                  </select>
+                  <div [hidden]="Genric.valid || (Genric.pristine && !f.submitted) && ((Genric.errors && (Genric.dirty || Genric.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Select Generic
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(RackName.valid || (RackName.pristine && !f.submitted)) || (RackName.errors && (RackName.dirty || RackName.touched ))">
+                  <label>Rack Name</label>
+                  <select class="form-control" name="RackName" required #RackName="ngModel" [(ngModel)]="Bed.roomId">
+                    <option selected="selected" hidden disabled="disabled" [value]="null">Select</option>
+
+                    <option [value]="item.id" *ngFor="let item of RackNameCollection">
+                      {{item.name}}
+                    </option>
+                  </select>
+                  <div [hidden]="RackName.valid || (RackName.pristine && !f.submitted) && ((RackName.errors && (RackName.dirty || RackName.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Rack Name
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="dropzone text-center dz-clickable">
+                  <div class="dz-default dz-message">
+                    <input type="file" accept="image/*" #coverFilesInput (change)="handleFrontImage($event)">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="col image-adjustment">
+                  <img type="image" id="front-image" [src]="frontUrl" height="204" width="323.52" class="responsive-img" />
+                  <label></label>
+                </div>
+              </div>
+            </div>
+            <!-- Brand -->
+            <div class="row">
+              <div class="col-lg-16 col-md-16">
+                <div class="row">
+                  <div class="col-10">
+                    <strong>
+                      <h5 style="margin-top: 10px;">Brand</h5>
+                    </strong>
+                  </div>
+                </div>
+                <hr style="margin-top: -8px;" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(BrandName.valid || (BrandName.pristine && !f.submitted)) || (BrandName.errors && (BrandName.dirty || BrandName.touched ))">
+                  <label>Brand Name</label>
+                  <select class="form-control" name="BrandName" required #BrandName="ngModel" [(ngModel)]="Bed.roomId">
+                    <option selected="selected" hidden disabled="disabled" [value]="null">Select</option>
+
+                    <option [value]="item.id" *ngFor="let item of BrandNameCollection">
+                      {{item.name}}
+                    </option>
+                  </select>
+                  <div [hidden]="BrandName.valid || (BrandName.pristine && !f.submitted) && ((BrandName.errors && (BrandName.dirty || BrandName.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Select Brand Name
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(ProductCategory.valid || (ProductCategory.pristine && !f.submitted)) || (ProductCategory.errors && (ProductCategory.dirty || ProductCategory.touched ))">
+                  <label>Product Category</label>
+                  <select class="form-control" name="ProductCategory" required #ProductCategory="ngModel" [(ngModel)]="Bed.roomId">
+                    <option selected="selected" hidden disabled="disabled" [value]="null">Select</option>
+
+                    <option [value]="item.id" *ngFor="let item of ProductCategoryCollection">
+                      {{item.name}}
+                    </option>
+                  </select>
+                  <div [hidden]="ProductCategory.valid || (ProductCategory.pristine && !f.submitted) && ((ProductCategory.errors && (ProductCategory.dirty || ProductCategory.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Product Category
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(ProductType.valid || (ProductType.pristine && !f.submitted)) || (ProductType.errors && (ProductType.dirty || ProductType.touched ))">
+                  <label>Product Type</label>
+                  <select class="form-control" name="ProductType" required #ProductType="ngModel" [(ngModel)]="Bed.roomId">
+                    <option selected="selected" hidden disabled="disabled" [value]="null">Select</option>
+
+                    <option [value]="item.id" *ngFor="let item of ProductTypeCollection">
+                      {{item.name}}
+                    </option>
+                  </select>
+                  <div [hidden]="ProductType.valid || (ProductType.pristine && !f.submitted) && ((ProductType.errors && (ProductType.dirty || ProductType.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Select Product Type
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Units -->
+            <div class="row">
+              <div class="col-lg-16 col-md-16">
+                <div class="row">
+                  <div class="col-10">
+                    <strong>
+                      <h5 style="margin-top: 10px;">Unit / Weight</h5>
+                    </strong>
+                  </div>
+                </div>
+                <hr style="margin-top: -8px;" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(UnitType.valid || (UnitType.pristine && !f.submitted)) || (UnitType.errors && (UnitType.dirty || UnitType.touched ))">
+                  <label>Unit Type</label>
+                  <input class="form-control" name="UnitType" required #UnitType="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="UnitType.valid || (UnitType.pristine && !f.submitted) && ((UnitType.errors && (UnitType.dirty || UnitType.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Select Unit Type
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(UnitWeight.valid || (UnitWeight.pristine && !f.submitted)) || (UnitWeight.errors && (UnitWeight.dirty || UnitWeight.touched ))">
+                  <label>Unit Weight</label>
+                  <input class="form-control" name="UnitWeight" required #UnitWeight="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="UnitWeight.valid || (UnitWeight.pristine && !f.submitted) && ((UnitWeight.errors && (UnitWeight.dirty || UnitWeight.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Select Unit Weight
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(NetWeight.valid || (NetWeight.pristine && !f.submitted)) || (NetWeight.errors && (NetWeight.dirty || NetWeight.touched ))">
+                  <label>Net Weight</label>
+                  <input class="form-control" name="NetWeight" required #NetWeight="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="NetWeight.valid || (NetWeight.pristine && !f.submitted) && ((NetWeight.errors && (NetWeight.dirty || NetWeight.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Select Net Weight
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stock Expiry -->
+            <div class="row">
+              <div class="col-lg-16 col-md-16">
+                <div class="row">
+                  <div class="col-10">
+                    <strong>
+                      <h5 style="margin-top: 10px;">Stock Expiry</h5>
+                    </strong>
+                  </div>
+                </div>
+                <hr style="margin-top: -8px;" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(MinimumStockLevel.valid || (MinimumStockLevel.pristine && !f.submitted)) || (MinimumStockLevel.errors && (MinimumStockLevel.dirty || MinimumStockLevel.touched ))">
+                  <label>Minimum Stock Level</label>
+                  <input class="form-control" name="MinimumStockLevel" required #MinimumStockLevel="ngModel" [(ngModel)]="Bed.abc">
+                  <div [hidden]="MinimumStockLevel.valid || (MinimumStockLevel.pristine && !f.submitted) && ((MinimumStockLevel.errors && (MinimumStockLevel.dirty || MinimumStockLevel.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Minimum Stock Level
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(ManufacturingDate.valid || (ManufacturingDate.pristine && !f.submitted)) || (ManufacturingDate.errors && (ManufacturingDate.dirty || ManufacturingDate.touched ))">
+                  <label>Manufacturing Date</label>
+                  <input type="text" class="form-control" name="ManufacturingDate" #ManufacturingDate="ngModel" [(ngModel)]="Bed.roomId" required
+                    placeholder="MM/DD/YYYY" bsDatepicker>
+                  <div [hidden]="ManufacturingDate.valid || (ManufacturingDate.pristine && !f.submitted) && ((ManufacturingDate.errors && (ManufacturingDate.dirty || ManufacturingDate.touched )) == false)"
+                    class="form-control-feedback">
+                    <div [hidden]="!ManufacturingDate.errors" class="form-control-feedback">
+                      Error: Please Enter Manufacturing Date
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(ExpiryDate.valid || (ExpiryDate.pristine && !f.submitted)) || (ExpiryDate.errors && (ExpiryDate.dirty || ExpiryDate.touched ))">
+                  <label>Expiry Date</label>
+                  <input type="text" class="form-control" name="ExpiryDate" #ExpiryDate="ngModel" [(ngModel)]="Bed.roomId" required placeholder="MM/DD/YYYY"
+                    bsDatepicker>
+                  <div [hidden]="ExpiryDate.valid || (ExpiryDate.pristine && !f.submitted) && ((ExpiryDate.errors && (ExpiryDate.dirty || ExpiryDate.touched )) == false)"
+                    class="form-control-feedback">
+                    <div [hidden]="!ExpiryDate.errors" class="form-control-feedback">
+                      Error: Please Enter Expiry Date
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(SideEffects.valid || (SideEffects.pristine && !f.submitted)) || (SideEffects.errors && (SideEffects.dirty || SideEffects.touched ))">
+                  <label>Side Effects</label>
+                  <input class="form-control" name="SideEffects" required #SideEffects="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="SideEffects.valid || (SideEffects.pristine && !f.submitted) && ((SideEffects.errors && (SideEffects.dirty || SideEffects.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Side Effects
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Pricing / Cost -->
+            <div class="row">
+              <div class="col-lg-16 col-md-16">
+                <div class="row">
+                  <div class="col-10">
+                    <strong>
+                      <h5 style="margin-top: 10px;">Pricing Cost</h5>
+                    </strong>
+                  </div>
+                </div>
+                <hr style="margin-top: -8px;" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(TotalPacks.valid || (TotalPacks.pristine && !f.submitted)) || (TotalPacks.errors && (TotalPacks.dirty || TotalPacks.touched ))">
+                  <label>Total Packs</label>
+                  <input class="form-control" type="number" name="TotalPacks" required #TotalPacks="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="TotalPacks.valid || (TotalPacks.pristine && !f.submitted) && ((TotalPacks.errors && (TotalPacks.dirty || TotalPacks.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Total Packs
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(UnitPerPack.valid || (UnitPerPack.pristine && !f.submitted)) || (UnitPerPack.errors && (UnitPerPack.dirty || UnitPerPack.touched ))">
+                  <label>Unit Per Pack</label>
+                  <input class="form-control" name="UnitPerPack" required #UnitPerPack="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="UnitPerPack.valid || (UnitPerPack.pristine && !f.submitted) && ((UnitPerPack.errors && (UnitPerPack.dirty || UnitPerPack.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Unit Per Pack
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(StockQuantity.valid || (StockQuantity.pristine && !f.submitted)) || (StockQuantity.errors && (StockQuantity.dirty || StockQuantity.touched ))">
+                  <label>Stock Quantity</label>
+                  <input class="form-control" type="number" name="StockQuantity" required #StockQuantity="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="StockQuantity.valid || (StockQuantity.pristine && !f.submitted) && ((StockQuantity.errors && (StockQuantity.dirty || StockQuantity.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Stock Quantity
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(UnitRetailPrice.valid || (UnitRetailPrice.pristine && !f.submitted)) || (UnitRetailPrice.errors && (UnitRetailPrice.dirty || UnitRetailPrice.touched ))">
+                  <label>Unit Retail Price </label>
+                  <input class="form-control" name="UnitRetailPrice" required #UnitRetailPrice="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="UnitRetailPrice.valid || (UnitRetailPrice.pristine && !f.submitted) && ((UnitRetailPrice.errors && (UnitRetailPrice.dirty || UnitRetailPrice.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Unit Retail Price
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(UnitCostPrice.valid || (UnitCostPrice.pristine && !f.submitted)) || (UnitCostPrice.errors && (UnitCostPrice.dirty || UnitCostPrice.touched ))">
+                  <label>Unit Cost Price </label>
+                  <input class="form-control" name="UnitCostPrice" required #UnitCostPrice="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="UnitCostPrice.valid || (UnitCostPrice.pristine && !f.submitted) && ((UnitCostPrice.errors && (UnitCostPrice.dirty || UnitCostPrice.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Unit Cost Price
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(PackRetailPrice.valid || (PackRetailPrice.pristine && !f.submitted)) || (PackRetailPrice.errors && (PackRetailPrice.dirty || PackRetailPrice.touched ))">
+                  <label>Pack Retail Price</label>
+                  <input class="form-control" type="text" name="PackRetailPrice" required #PackRetailPrice="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="PackRetailPrice.valid || (PackRetailPrice.pristine && !f.submitted) && ((PackRetailPrice.errors && (PackRetailPrice.dirty || PackRetailPrice.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Pack Retail Price
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(PackPurchasePrice.valid || (PackPurchasePrice.pristine && !f.submitted)) || (PackPurchasePrice.errors && (PackPurchasePrice.dirty || PackPurchasePrice.touched ))">
+                  <label>Pack Purchase Price</label>
+                  <input class="form-control" type="text" name="PackPurchasePrice" required #PackPurchasePrice="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="PackPurchasePrice.valid || (PackPurchasePrice.pristine && !f.submitted) && ((PackPurchasePrice.errors && (PackPurchasePrice.dirty || PackPurchasePrice.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Pack Purchase Price
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(SaleRatePerPack.valid || (SaleRatePerPack.pristine && !f.submitted)) || (SaleRatePerPack.errors && (SaleRatePerPack.dirty || SaleRatePerPack.touched ))">
+                  <label>Sale Rate Per Pack </label>
+                  <input class="form-control" name="SaleRatePerPack" required #SaleRatePerPack="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="SaleRatePerPack.valid || (SaleRatePerPack.pristine && !f.submitted) && ((SaleRatePerPack.errors && (SaleRatePerPack.dirty || SaleRatePerPack.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Sale Rate Per Pack
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(SaleTax.valid || (SaleTax.pristine && !f.submitted)) || (SaleTax.errors && (SaleTax.dirty || SaleTax.touched ))">
+                  <label>Sale Tax </label>
+                  <input class="form-control" name="SaleTax" required #SaleTax="ngModel" [(ngModel)]="Bed.roomId">
+                  <div [hidden]="SaleTax.valid || (SaleTax.pristine && !f.submitted) && ((SaleTax.errors && (SaleTax.dirty || SaleTax.touched )) == false)"
+                    class="form-control-feedback">
+                    Error: Please Enter Sale Tax
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+          <div class="col text-right">
+            <div class="btn-group pull-right">
+              <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                <span class="text">Save</span>
+                <i class="fa fa-save"></i>
+              </button>
+            </div>
+            <div class="btn-group pull-right">
+              <pre> </pre>
+            </div>
+            <div class="btn-group pull-right">
+
+              <button class="btn btn-secondary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                <span class="text">Reset</span>
+                <i class="fa fa-refresh"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>

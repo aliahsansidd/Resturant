@@ -1,0 +1,713 @@
+<div class="sidebar-left">
+	<div class="user-menu-items">
+		<div class="list-unstyled btn-group">
+			<button class="media btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="message_userpic">
+					<img class="d-flex" [src]="userImage" alt="Generic user image">
+				</span>
+				<span class="media-body">
+					<span class="mt-0 mb-1">{{firstName}}</span>
+					<!-- <small>New Jersey, UK.</small> -->
+				</span>
+			</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item">Profile</a>
+				<a class="dropdown-item">Mailbox</a>
+				<a class="dropdown-item">Application</a>
+				<a class="dropdown-item">Analytics Report</a>
+				<a class="dropdown-item">Preferances</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item">Setting</a>
+			</div>
+		</div>
+	</div>
+	<br>
+	<ul class="nav flex-column in" id="side-menu">
+		<li class="title-nav">MENU</li>
+		<!-- Dashboards -->
+		<li class="nav-item active" [ngClass]="{'active' : (showMenu === 'dashboard')}">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('dashboard')">Dashboard
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class=" nav-item active">
+					<a class="nav-link" [routerLink]="['patient/patient-dashboard']" [ngClass]="{'active' : ( addActive === 'patient/patient-dashboard')}"
+					 (click)="addActiveMenu('patient/patient-dashboard')">
+						<i class="fa fa-globe"></i>
+						Patient Dashboard</a>
+				</li>
+				<!-- <li class="nav-item"><a class="nav-link" routerLink="Abc/MaintainPatient"  [ngClass]="{'active' : ( addActive === 'Dashboard/MaintainComponent')}" (click)="addActiveMenu('Dashboard/MaintainComponent')"><i class="fa fa-dashboard"></i> Networking</a></li> -->
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['patient/add-patient']" [ngClass]="{'active' : ( addActive === 'patient/add-patient')}"
+					 (click)="addActiveMenu('patient/add-patient')">
+						<i class="fa fa-play"></i>
+						Register Patient</a>
+				</li>
+			</ul>
+			<!-- /.nav-second-level -->
+		</li>
+		<!-- Master Settings -->
+		<li class="nav-item active" [ngClass]="{'active' : (showMenu === 'master-settings')}">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('master-settings')">Master
+				Settings
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'card-design' }">
+
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('card-design')">Design and
+						Template
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item">
+							<a class="nav-link" routerLink="card/card-design" [ngClass]="{'active' : ( addActive === 'card/card-design')}"
+							 (click)="addActiveMenu('card/card-design')">
+								<i class="fa fa-id-card"></i>Set Smart Card Design
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'card-price' }">
+
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('card-price')">Price
+						Settings
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item">
+							<a class="nav-link" routerLink="card/card-price" [ngClass]="{'active' : ( addActive === 'card/card-price')}"
+							 (click)="addActiveMenu('card/card-price')">
+								<i class="fa fa-money"></i>Smart Card Price</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'user-management-system' }">
+
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('user-management-system')">User
+						Settings
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['admin/add-user']" [ngClass]="{'active' : ( addActive === 'main/add-user')}"
+							 (click)="addActiveMenu('admin/add-user')">
+								<i class="fa fa-user-md"></i>
+								Add User</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['admin/add-role']" [ngClass]="{'active' : ( addActive === 'main/add-role')}"
+							 (click)="addActiveMenu('admin/add-role')">
+								<i class="fa fa-user-plus"></i>
+								Add role</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'opd-settings' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('opd-settings')">Opd
+						Settings
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['opd/opd-add']" [ngClass]="{'active' : ( addActive === 'opd/opd-add')}"
+							 (click)="addActiveMenu('opd/opd-add')">
+								<i class="fa fa-wheelchair"></i>
+								Add New Opd</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['opd/opd-timing']" [ngClass]="{'active' : ( addActive === 'opd/opd-timing')}"
+							 (click)="addActiveMenu('opd/opd-timing')">
+								<i class="fa fa-calendar"></i>
+								Opd Timing</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['opd/opd-type']" [ngClass]="{'active' : ( addActive === 'opd/opd-type')}"
+							 (click)="addActiveMenu('opd/opd-type')">
+								<i class="fa fa-user-md"></i>
+								Doctor Categories</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['doctor/add-doctor']" [ngClass]="{'active' : ( addActive === 'doctor/add-doctor')}"
+							 (click)="addActiveMenu('doctor/add-doctor')">
+								<i class="fa fa-user-plus"></i>
+								Add new doctor</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'Ward&BedManagement' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('Ward&BedManagement')">Ward
+						And Bed Settings
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['admin/ward-category']" [ngClass]="{'active' : ( addActive === 'main/ward-category')}"
+							 (click)="addActiveMenu('admin/ward-category')">
+								<i class="fa fa-plus"></i>
+								Ward Category</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['admin/add-room']" [ngClass]="{'active' : ( addActive === 'admin/add-room')}"
+							 (click)="addActiveMenu('admin/add-room')">
+								<i class="fa fa-building"></i>
+								Add Rooms</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['admin/add-bed']" [ngClass]="{'active' : ( addActive === 'admin/add-bed')}"
+							 (click)="addActiveMenu('admin/add-bed')">
+								<i class="fa fa-bed"></i>
+								Add Beds</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['admin/floor']" [ngClass]="{'active' : ( addActive === 'admin/floor')}"
+							 (click)="addActiveMenu('admin/floor')">
+								<i class="fa fa-plus"></i>
+								Add Floors</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'laboratory-management' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('laboratory-management')">Laboratory
+						Settings
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['lab/lab-department']" [ngClass]="{'active' : ( addActive === 'lab/lab-department')}"
+							 (click)="addActiveMenu('lab/lab-department')">
+								<i class="fa fa-play"></i>
+								Lab Department</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['lab/rate-sheet']" [ngClass]="{'active' : ( addActive === 'lab/rate-sheet')}"
+							 (click)="addActiveMenu('lab/rate-sheet')">
+								<i class="fa fa-money"></i>
+								Rate Sheet </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['lab/lab-testing']" [ngClass]="{'active' : ( addActive === 'lab/lab-testing')}"
+							 (click)="addActiveMenu('lab/lab-testing')">
+								<i class="fa fa-flask"></i>
+								Lab Testing </a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" [routerLink]="['lab/build-test']" [ngClass]="{'active' : ( addActive === 'lab/build-test')}"
+							 (click)="addActiveMenu('lab/build-test')">
+								<i class="fa fa-flask"></i>
+								Build Test </a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'Pharmacy' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('Pharmacy')">Pharmacy
+						Settings
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'product-category')}" (click)="addActiveMenu('product-category')">
+							<a routerLink="pharmacy-module/product/product-category" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/product-category')}"
+							 (click)="addActiveMenu('pharmacy-module/product/product-category')">Product Category</a>
+						</li>
+
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'product-type')}" (click)="addActiveMenu('product-type')">
+							<a routerLink="pharmacy-module/product/product-type" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/product-type')}"
+							 (click)="addActiveMenu('pharmacy-module/product/product-type')">Product Type</a>
+						</li>
+
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'products-unit')}" (click)="addActiveMenu('products-unit')">
+							<a routerLink="pharmacy-module/product/products-unit" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/products-unit')}"
+							 (click)="addActiveMenu('pharmacy-module/product/products-unit')">Products Unit</a>
+						</li>
+
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'unit-of-measurement')}" (click)="addActiveMenu('unit-of-measurement')">
+							<a routerLink="pharmacy-module/product/unit-of-measurement" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/unit-of-measurement')}"
+							 (click)="addActiveMenu('pharmacy-module/product/unit-of-measurement')">Units Of Measurement</a>
+						</li>
+
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'product-generic')}" (click)="addActiveMenu('product-generic')">
+							<a routerLink="pharmacy-module/product/product-generic" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/product-generic')}"
+							 (click)="addActiveMenu('pharmacy-module/product/product-generic')">Product Generic</a>
+						</li>
+
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'brand-name')}" (click)="addActiveMenu('brand-name')">
+							<a routerLink="pharmacy-module/product/brand-name" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/brand-name')}"
+							 (click)="addActiveMenu('pharmacy-module/product/brand-name')">Brand Name</a>
+						</li>
+
+
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'rack-management')}" (click)="addActiveMenu('rack-management')">
+							<a routerLink="pharmacy-module/product/rack-management" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/rack-management')}"
+							 (click)="addActiveMenu('pharmacy-module/product/rack-management')">Rack Management</a>
+						</li>
+
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<!-- User Management -->
+		<li class="nav-item " [ngClass]="{'active' : showMenu === 'UserManagementModule' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('UserManagementModule')">User
+				Management
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['user/user-manage']" [ngClass]="{'active' : ( addActive === 'user/user-manage')}"
+					 (click)="addActiveMenu('user/user-manage')">
+						<i class="fa fa-pencil-square-o"></i>
+						Manage User</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['user/role-manage']" [ngClass]="{'active' : ( addActive === 'user/role-manage')}"
+					 (click)="addActiveMenu('user/role-manage')">
+						<i class="fa fa-pencil-square-o"></i>
+						Manage Role</a>
+				</li>
+
+			</ul>
+
+		</li>
+		<!-- Ambulance Management -->
+		<li class="nav-item " [ngClass]="{'active' : showMenu === 'AmbulanceManagementModule' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('AmbulanceManagementModule')">Ambulance
+				Management
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['ambulance-management/ambulance']" [ngClass]="{'active' : ( addActive === 'ambulance-management/ambulance')}"
+					 (click)="addActiveMenu('ambulance-management/ambulance')">
+						<i class="fa fa-pencil-square-o"></i>
+						Ambulance</a>
+				</li>
+
+
+			</ul>
+
+		</li>
+		<!-- Patient Registration -->
+		<li class="nav-item active" [ngClass]="{'active' : (showMenu === 'patient-registration')}">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('patient-registration')">Patient
+				Registration
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['patient/add-patient']" [ngClass]="{'active' : ( addActive === 'patient/add-patient')}"
+					 (click)="addActiveMenu('patient/add-patient')">
+						<i class="fa fa-wheelchair"></i>
+						Add new Patient</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['patient/patient-invoice']" [ngClass]="{'active' : ( addActive === 'patient/patient-invoice')}"
+					 (click)="addActiveMenu('patient/patient-invoice')">
+						<i class="fa fa-files-o"></i>
+						Generate Invoices</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['patient/patient-list']" [ngClass]="{'active' : ( addActive === 'patient/patient-list')}"
+					 (click)="addActiveMenu('patient/patient-list')">
+						<i class="fa fa-wheelchair"></i>
+						Manage Patient List</a>
+				</li>
+			</ul>
+		</li>
+		<!-- Appointment Registration -->
+		<li class="nav-item active" [ngClass]="{'active' : (showMenu === 'appointment-registration')}">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('appointment-registration')">Appointment
+				Registration
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item">
+					<a class="nav-link" routerLink="doctor/appointment-registration" [ngClass]="{'active' : ( addActive === 'doctor/appointment-registration')}"
+					 (click)="addActiveMenu('doctor/appointment-registration')">
+						<i class="fa fa-calendar"></i>Add New Appointment
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" routerLink="doctor/appointment-registration-view" [ngClass]="{'active' : ( addActive === 'doctor/appointment-registration-view')}"
+					 (click)="addActiveMenu('doctor/appointment-registration-view')">
+						<i class="fa fa-pencil-square-o"></i>Manange Appointments
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- OPD Registration -->
+		<li class="nav-item active" [ngClass]="{'active' : (showMenu === 'opd-registration')}">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('opd-registration')">Opd
+				Registration
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['opd/opd-registration']" [ngClass]="{'active' : ( addActive === 'opd/opd-registration')}"
+					 (click)="addActiveMenu('opd/opd-registration')">
+						<i class="fa fa-user-md"></i>
+						Register New Opd</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['opd/opd-registration-view']" [ngClass]="{'active' : ( addActive === 'opd/opd-registration-view')}"
+					 (click)="addActiveMenu('opd/opd-registration-view')">
+						<i class="fa fa-pencil-square-o"></i>
+						Manage Opds</a>
+				</li>
+			</ul>
+		</li>
+		<!-- Birth Registration -->
+		<li class="nav-item" [ngClass]="{'active' : showMenu === 'BirthRegistration' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('BirthRegistration')">Birth
+				Registration
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['child/child-register']" [ngClass]="{'active' : ( addActive === 'child/child-register')}"
+					 (click)="addActiveMenu('child/child-register')">
+						<i class="fa fa-child"></i>
+						Add New Birth</a>
+				</li> 
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['child/birth-registration-view']" [ngClass]="{'active' : ( addActive === 'child/birth-registration-view')}"
+					 (click)="addActiveMenu('child/birth-registration-view')">
+						<i class="fa fa-pencil-square-o"></i>
+						Manage Birth Registration</a>
+				</li>
+
+			</ul>
+		</li>
+		<!-- Death Registration -->
+		<li class="nav-item" [ngClass]="{'active' : showMenu === 'DeathRegistration' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('DeathRegistration')">Death
+				Registration
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item"><a class="nav-link" [routerLink]="['child/death-registration']" [ngClass]="{'active' : ( addActive === 'child/death-registration')}"
+					 (click)="addActiveMenu('child/death-registration')"><i class="fa fa-plus"></i>
+						Add New Death</a></li>
+
+				<li class="nav-item"><a class="nav-link" [routerLink]="['child/death-registration-view']" [ngClass]="{'active' : ( addActive === 'child/death-registration-view')}"
+					 (click)="addActiveMenu('child/death-registration-view')"><i class="fa fa-pencil-square-o"></i>
+						Manage Death Registration</a></li>
+			</ul>
+		</li>
+		<!-- Accident And Emergency Panel -->
+		<li class="nav-item " [ngClass]="{'active' : showMenu === 'app_pages' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('app_pages')">Accident And
+				Emergency Panel
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['accident-emergency/add-patient-accident']" [ngClass]="{'active' : ( addActive === 'accident-emergency/add-patient-accident')}"
+					 (click)="addActiveMenu('accident-emergency/add-patient-accident')">
+						<i class="fa fa-ambulance"></i>
+						Emergency Registration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['accident-emergency/accident-patient-view']" [ngClass]="{'active' : ( addActive === 'accident-emergency/accident-patient-view')}"
+					 (click)="addActiveMenu('accident-emergency/accident-patient-view')">
+						<i class="fa fa-pencil-square-o"></i>
+						Manage Emergency Patients</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['patient/catastrophic-event']" [ngClass]="{'active' : ( addActive === 'patient/catastrophic-event')}"
+					 (click)="addActiveMenu('patient/catastrophic-event')">
+						<i class="fa fa-user-plus"></i>
+						Catastrophic Events</a>
+				</li>
+			</ul>
+		</li>
+		<!-- Ward And Bed Mangement View Only -->
+		<li class="nav-item " [ngClass]="{'active' : showMenu === 'WardbedModule' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('WardbedModule')">Ward And Bed
+				Management View
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['accident-emergency/bed-management']" [ngClass]="{'active' : ( addActive === 'accident-emergency/bed-management')}"
+					 (click)="addActiveMenu('accident-emergency/bed-management')">
+						<i class="fa fa-pencil-square-o"></i>
+						Manage Beds</a>
+				</li>
+			</ul>
+		</li>
+
+		<!-- Building Information System  -->
+
+		<li class="nav-item" [ngClass]="{'active' : showMenu === 'BuildingInfo' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('BuildingInfo')">Building
+				Information System
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+
+				<li class="nav-item">
+					<a routerLink="admin/building-information-category" class="nav-link" [ngClass]="{'active' : ( addActive === 'admin/building-information-category')}"
+					 (click)="addActiveMenu('admin/building-information-category')">
+						<i class="fa fa-building"></i>Add BIS Category
+					</a>
+				</li>
+				<li class="nav-item">
+					<a routerLink="/main/admin/services/add-services" class="nav-link" [ngClass]="{'active' : ( addActive === 'main/add-services')}"
+					 (click)="addActiveMenu('/main/admin/services/add-services')">
+						<i class="fa fa-plus"></i>Add New Services</a>
+				</li>
+				<li class="nav-item">
+					<a routerLink="/main/admin/services/add-services-list" class="nav-link" [ngClass]="{'active' : ( addActive === 'main/add-services-list')}"
+					 (click)="addActiveMenu('/main/admin/services/add-services-list')">
+						<i class="fa fa-pencil-square-o"></i>Manage BIS Services</a>
+				</li>
+
+			</ul>
+			<!-- /.nav-second-level -->
+		</li>
+
+		<!-- Treatment Services And Packages -->
+		<li class="nav-item" [ngClass]="{'active' : showMenu === 'TreatmentServices' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('TreatmentServices')">Treatment
+				Services And Packages
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+
+				<li class="nav-item">
+					<a routerLink="/main/admin/treatment/treatment-category" class="nav-link" [ngClass]="{'active' : ( addActive === 'main/treatment-category')}"
+					 (click)="addActiveMenu('/main/admin/treatment/treatment-category')">
+						<i class="fa fa-plus"></i>Add Services Category</a>
+				</li>
+				<li class="nav-item">
+					<a routerLink="/main/admin/treatment/treatment-service" class="nav-link" [ngClass]="{'active' : ( addActive === 'main/treatment-service')}"
+					 (click)="addActiveMenu('/main/admin/treatment/treatment-service')">
+						<i class="fa fa-plus"></i>Add New Service</a>
+				</li>
+				<li class="nav-item">
+					<a routerLink="/main/admin/treatment/treatment-package" class="nav-link" [ngClass]="{'active' : ( addActive === 'main/treatment-package')}"
+					 (click)="addActiveMenu('/main/admin/treatment/treatment-package')">
+						<i class="fa fa-plus"></i>Add Packages</a>
+				</li>
+			</ul>
+		</li>
+
+		<!-- Lab Management -->
+		<li class="nav-item" [ngClass]="{'active' : showMenu === 'Labs' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('Labs')">Lab Management
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['lab/lab-registration']" [ngClass]="{'active' : ( addActive === 'lab/lab-registration')}"
+					 (click)="addActiveMenu('lab/lab-registration')">
+						<i class="fa fa-flask"></i>
+						Add Lab</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['lab/lab-services']" [ngClass]="{'active' : ( addActive === 'lab/lab-services')}"
+					 (click)="addActiveMenu('lab/lab-services')">
+						<i class="fa fa-pencil-square-o"></i>
+						Add Services </a>
+				</li>
+
+
+
+			</ul>
+		</li>
+		<!-- Opd Settigns -->
+		<!-- <li class="nav-item" [ngClass]="{'active' : showMenu === 'OPDSettings' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('OPDSettings')">OPD Settings
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['opd/opd-dashboard']" [ngClass]="{'active' : ( addActive === 'opd/opd-dashboard')}" (click)="addActiveMenu('opd/opd-dashboard')">
+
+						<i class="fa fa-play"></i>
+						OPD Dashboard</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['opd/opd-doctor']" [ngClass]="{'active' : ( addActive === 'opd/opd-doctor')}" (click)="addActiveMenu('opd/opd-doctor')">
+						<i class="fa fa-play"></i>
+						OPD Doctor</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['opd/opd-summary']" [ngClass]="{'active' : ( addActive === 'opd/opd-summary')}" (click)="addActiveMenu('opd/opd-summary')">
+						<i class="fa fa-play"></i>
+						OPD Summary</a>
+				</li>
+			</ul> 
+		</li> -->
+
+
+		<!-- Insurance Module -->
+		<!-- <li class="nav-item" [ngClass]="{'active' : showMenu === 'Insurance' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('Insurance')">Insurance
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['insurance/client-group']" [ngClass]="{'active' : ( addActive === 'insurance/client-group')}"
+					 (click)="addActiveMenu('insurance/client-group')">
+						<i class="fa fa-play"></i>
+						Client Group</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['insurance/client-type']" [ngClass]="{'active' : ( addActive === 'insurance/client-type')}"
+					 (click)="addActiveMenu('insurance/client-type')">
+						<i class="fa fa-play"></i>
+						Client Type</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['insurance/insurance-companies']" [ngClass]="{'active' : ( addActive === 'insurance/insurance-companies')}"
+					 (click)="addActiveMenu('insurance/insurance-companies')">
+						<i class="fa fa-play"></i>
+						Insurance Company</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['insurance/cptcategory']" [ngClass]="{'active' : ( addActive === 'insurance/cptcategory')}"
+					 (click)="addActiveMenu('insurance/cptcategory')">
+						<i class="fa fa-play"></i>
+						CPT Category</a>
+				</li>
+
+			</ul>
+		</li> -->
+
+		<!-- <li class="nav-item" [ngClass]="{'active' : showMenu === 'WardBed' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('WardBed')">Admin
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level">
+
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['admin/bed-time']" [ngClass]="{'active' : ( addActive === 'admin/bed-time')}" (click)="addActiveMenu('admin/bed-time')">
+						<i class="fa fa-play"></i>
+						Bed Time </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['admin/building-information-category']" [ngClass]="{'active' : ( addActive === 'main/building-information-category')}"
+					 (click)="addActiveMenu('admin/building-information-category')">
+						<i class="fa fa-play"></i>
+						Building Info </a>
+				</li>
+			</ul>
+		</li>  -->
+
+		<!-- Account Management -->
+		<!-- <li class="nav-item " [ngClass]="{'active' : showMenu === 'AccountsManagement' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('AccountsManagement')">Accounts Management
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'AccountsMaster' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('AccountsMaster')">Accounts Master
+						<i class="fa fa-angle-down "></i>
+					</a>
+				 
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'ChartsOfAccounts' }">
+							<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('ChartsOfAccounts')">Charts of Accounts
+								<i class="fa fa-angle-down "></i>
+							</a>
+							 
+							<ul class="nav flex-column nav-third-level">
+								<li class="nav-item" [ngClass]="{'active' : ( addActive === 'setup')}" (click)="addActiveMenu('setup')">
+									<a routerLink="accounts-management/charts-of-accounts/setup" class="nav-link  " [ngClass]="{'active' : ( addActive === 'charts-of-accounts/setup')}"
+									 (click)="addActiveMenu('charts-of-accounts/setup')">Setup</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul>
+				</li> 
+			</ul> 
+		</li> -->
+
+		<!-- Pharmacy Module -->
+		<li class="nav-item " [ngClass]="{'active' : showMenu === 'Pharmacy-Module' }">
+			<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addExpandClass('Pharmacy-Module')">Pharmacy
+				Management
+				<i class="fa fa-angle-down "></i>
+			</a>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'Product' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('Product')">Product
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'add-product')}" (click)="addActiveMenu('add-product')">
+							<a routerLink="pharmacy-module/product/add-product" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/product/add-product')}"
+							 (click)="addActiveMenu('pharmacy-module/product/add-product')">Add Product</a>
+						</li>
+					</ul>
+
+				</li>
+			</ul>
+			<ul class="nav flex-column nav-second-level ">
+				<li class="nav-item" [ngClass]="{'active' : showSubMenu === 'Supplier' }">
+					<a href="javascript:void(0)" class="menudropdown nav-link" (click)="addSubExpandClass('Supplier')">Supplier
+						<i class="fa fa-angle-down "></i>
+					</a>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'add-supplier')}" (click)="addActiveMenu('add-supplier')">
+							<a routerLink="pharmacy-module/supplier/add-supplier" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/supplier/add-supplier')}"
+							 (click)="addActiveMenu('pharmacy-module/supplier/add-supplier')">Add Supplier</a>
+						</li>
+					</ul>
+					<ul class="nav flex-column nav-third-level">
+						<li class="nav-item" [ngClass]="{'active' : ( addActive === 'supplier-payment-report')}" (click)="addActiveMenu('supplier-payment-report')">
+							<a routerLink="pharmacy-module/supplier/supplier-payment-report" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/supplier/supplier-payment-report')}"
+							 (click)="addActiveMenu('pharmacy-module/supplier/supplier-payment-report')">Supplier Payment Report</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav flex-column nav-second-level">
+				<li class="nav-item" [ngClass]="{'active' : ( addActive === 'purchase')}" (click)="addActiveMenu('purchase')">
+					<a routerLink="pharmacy-module/purchase" class="nav-link  " [ngClass]="{'active' : ( addActive === 'pharmacy-module/purchase')}"
+					 (click)="addActiveMenu('pharmacy-module/purchase')">Purchase</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<hr>
+	<ul class="nav flex-column in">
+		<li class="title-nav">Activity States</li>
+		<li class="nav-item ">
+			<a href="#" class="nav-link">
+				<span>
+					<span class="dynamicsparkline2">Loading..</span>
+				</span>
+				<br> Daily activity</a>
+		</li>
+	</ul>
+	<hr>
+	<ul class="nav flex-column in">
+		<li class="title-nav">Next Meeting</li>
+		<li class="nav-item ">
+			<div class="nav-link">
+				<h5>12:30 PM, Today
+					<span class="fa fa-bell-o pull-right"></span>
+				</h5>
+				<span class="meeting-subject">Agenda: Team mnufacturing review meeting. Board Compulsory
+				</span>
+				<div class="">
+					<button class="btn btn-outline-success btn-round mr-sm-2">Snooz</button>
+					<button class="btn btn-outline-danger btn-round ">Dismiss</button>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<br>
+	<br>
+</div>

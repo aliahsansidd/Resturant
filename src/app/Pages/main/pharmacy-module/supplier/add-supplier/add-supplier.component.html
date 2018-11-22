@@ -1,0 +1,230 @@
+<div class="container">
+    <div class="page-title">
+      <h3>Supplier</h3>
+    </div>
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+    </div>
+  
+    <div class="row align-items-center justify-content-between">
+      <div class="col-sm-16">
+          <form #f="ngForm">
+        <div class="card"> 
+            <div class="card-header">
+              <h5 class="card-title">Add Supplier</h5>
+            </div>
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-md-10">
+                  <div class="row ">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(SupplierCode.valid || (SupplierCode.pristine && !f.submitted)) || (SupplierCode.errors && (SupplierCode.dirty || SupplierCode.touched ))">
+                        <label>Supplier Code</label>
+                        <input class="form-control" required #SupplierCode="ngModel" name="SupplierCode" type="text" [(ngModel)]="AddServices.buildingMaterialCategoryId">
+                        <div [hidden]="SupplierCode.valid || (SupplierCode.pristine && !f.submitted) && ((SupplierCode.errors && (SupplierCode.dirty || SupplierCode.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!SupplierCode.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Supplier Code
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(Name.valid || (Name.pristine && !f.submitted)) || (Name.errors && (Name.dirty || Name.touched ))">
+                        <label>Name</label>
+                        <input class="form-control" name="Name" #Name="ngModel" type="text" [(ngModel)]="AddServices.Name"
+                          placeholder="Enter Name" id="example-text-input" required>
+                        <div [hidden]="Name.valid || (Name.pristine && !f.submitted) && ((Name.errors && (Name.dirty || Name.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!Name.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Name
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(CNICNumbers.valid || (CNICNumbers.pristine && !f.submitted)) || (CNICNumbers.errors && (CNICNumbers.dirty || CNICNumbers.touched ))">
+                        <label>CNIC Numbers</label>
+                        <input class="form-control" type="text" pattern="[0-9]*" minlength="14" maxlength="14" placeholder="4210XXXXXXXXXX" name="CNICNumbers" #CNICNumbers="ngModel"
+                          [(ngModel)]="AddServices.CNICNumbers" required>
+                        <div [hidden]="CNICNumbers.valid || (CNICNumbers.pristine && !f.submitted) && ((CNICNumbers.errors && (CNICNumbers.dirty || CNICNumbers.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!CNICNumbers.errors?.pattern" class="form-control-feedback">
+                              Error: Only Digits Without '-'
+                            </div>
+                          <div [hidden]="!CNICNumbers.errors?.required" class="form-control-feedback">
+                            Error: Please Enter CNIC number
+                          </div> 
+                          <div [hidden]="!CNICNumbers.errors?.minlength" class="form-control-feedback">
+                              Error: Not less than 14 digits
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(LiscenseNo.valid || (LiscenseNo.pristine && !f.submitted)) || (LiscenseNo.errors && (LiscenseNo.dirty || LiscenseNo.touched ))">
+                        <label>Liscense No</label>
+                        <input class="form-control" type="text" pattern="[a-zA-Z ]*" placeholder="Enter Liscense No" name="LiscenseNo" #LiscenseNo="ngModel"
+                          [(ngModel)]="AddServices.LiscenseNo" required>
+                        <div [hidden]="LiscenseNo.valid || (LiscenseNo.pristine && !f.submitted) && ((LiscenseNo.errors && (LiscenseNo.dirty || LiscenseNo.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!LiscenseNo.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Vendor Name
+                          </div> 
+                        </div>
+                      </div>
+                    </div> 
+                  </div> 
+                  <div class="row"> 
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(LandlineNumber.valid || (LandlineNumber.pristine && !f.submitted)) || (LandlineNumber.errors && (LandlineNumber.dirty || LandlineNumber.touched ))">
+                        <label>Landline Number</label>
+                        <input class="form-control" #LandlineNumber="ngModel" name="LandlineNumber" [(ngModel)]="AddServices.LandlineNumber" pattern="[0-9]*" minlength="11"
+                          maxlength="11" type="text" placeholder="03123456789" required>
+                        <div [hidden]="LandlineNumber.valid || (LandlineNumber.pristine && !f.submitted) && ((LandlineNumber.errors && (LandlineNumber.dirty || LandlineNumber.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!LandlineNumber.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Landline Number
+                          </div>
+                          <div [hidden]="!LandlineNumber.errors?.pattern" class="form-control-feedback">
+                            Error: Only Numbers
+                          </div>
+                          <div [hidden]="!LandlineNumber.errors?.minlength" class="form-control-feedback">
+                            Error: Number must be 11 digits
+                          </div>
+  
+                        </div>
+                      </div>
+  
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(MobileNumber.valid || (MobileNumber.pristine && !f.submitted)) || (MobileNumber.errors && (MobileNumber.dirty || MobileNumber.touched ))">
+                        <label>Mobile Number</label>
+                        <input class="form-control" #MobileNumber="ngModel" name="MobileNumber" [(ngModel)]="AddServices.MobileNumber" pattern="[0-9]*" minlength="11"
+                          maxlength="11" type="text" placeholder="03123456789" required>
+                        <div [hidden]="MobileNumber.valid || (MobileNumber.pristine && !f.submitted) && ((MobileNumber.errors && (MobileNumber.dirty || MobileNumber.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!MobileNumber.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Mobile Number
+                          </div>
+                          <div [hidden]="!MobileNumber.errors?.pattern" class="form-control-feedback">
+                            Error: Only Numbers
+                          </div>
+                          <div [hidden]="!MobileNumber.errors?.minlength" class="form-control-feedback">
+                            Error: Number must be 11 digits
+                          </div> 
+                        </div> 
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-8 col-md-8">
+                          <div class="form-group" [class.has-error]="!(Address.valid || (Address.pristine && !f.submitted)) || (Address.errors && (Address.dirty || Address.touched ))">
+                            <label>Address</label>
+                            <textarea rows="1" class="form-control" placeholder="Plot#, Street#, Block#, Area, City, Country" name="Address" #Address="ngModel"
+                              [(ngModel)]="AddServices.address" required>
+                           </textarea>
+                            <div [hidden]="Address.valid || (Address.pristine && !f.submitted) && ((Address.errors && (Address.dirty || Address.touched )) == false)"
+                              class="form-control-feedback">
+                              <div [hidden]="!Address.errors" class="form-control-feedback">
+                                Error: Please Enter Address
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <div class="form-group" [class.has-error]="!(Address2.valid || (Address2.pristine && !f.submitted)) || (Address2.errors && (Address2.dirty || Address2.touched ))">
+                              <label>Address 2</label>
+                              <textarea rows="1" class="form-control" placeholder="Plot#, Street#, Block#, Area, City, Country" name="Address2" #Address2="ngModel"
+                                [(ngModel)]="AddServices.address" required>
+                             </textarea>
+                              <div [hidden]="Address2.valid || (Address2.pristine && !f.submitted) && ((Address2.errors && (Address2.dirty || Address2.touched )) == false)"
+                                class="form-control-feedback">
+                                <div [hidden]="!Address2.errors" class="form-control-feedback">
+                                  Error: Please Enter Address 2
+                                </div>
+                              </div>
+                            </div>
+                          </div>   
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-8 col-md-8">
+                          <div class="form-group" [class.has-error]="!(Region.valid || (Region.pristine && !f.submitted)) || (Region.errors && (Region.dirty || Region.touched ))">
+                            <label>Region</label>
+                            <input class="form-control" name="Region" #Region="ngModel" type="text" [(ngModel)]="AddServices.Region"
+                              placeholder="Enter Region" id="example-text-input" required>
+                            <div [hidden]="Region.valid || (Region.pristine && !f.submitted) && ((Region.errors && (Region.dirty || Region.touched )) == false)"
+                              class="form-control-feedback">
+                              <div [hidden]="!Region.errors?.required" class="form-control-feedback">
+                                Error: Please Enter Region
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <div class="form-group" [class.has-error]="!(Town.valid || (Town.pristine && !f.submitted)) || (Town.errors && (Town.dirty || Town.touched ))">
+                              <label>Town</label>
+                              <input class="form-control" name="Town" #Town="ngModel" type="text" [(ngModel)]="AddServices.Town"
+                                placeholder="Enter Town" id="example-text-input" required>
+                              <div [hidden]="Town.valid || (Town.pristine && !f.submitted) && ((Town.errors && (Town.dirty || Town.touched )) == false)"
+                                class="form-control-feedback">
+                                <div [hidden]="!Town.errors?.required" class="form-control-feedback">
+                                  Error: Please Enter Town
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(JoiningDate.valid || (JoiningDate.pristine && !f.submitted)) || (JoiningDate.errors && (JoiningDate.dirty || JoiningDate.touched ))">
+                        <label>Joining Date</label>
+                        <input class="form-control" type="date"  bsDatepicker name="JoiningDate" #JoiningDate="ngModel"
+                          [(ngModel)]="AddServices.dates">  
+                        <div [hidden]="JoiningDate.valid || (JoiningDate.pristine && !f.submitted) && ((JoiningDate.errors && (JoiningDate.dirty || JoiningDate.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!JoiningDate.errors" class="form-control-feedback">
+                            Error: Please Enter Joining Date
+                          </div>
+                        </div> 
+                      </div> 
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="form-group" [class.has-error]="!(NoItems.valid || (NoItems.pristine && !f.submitted)) || (NoItems.errors && (NoItems.dirty || NoItems.touched ))">
+                          <label>No Items</label>
+                          <input class="form-control" type="number" name="NoItems" required #NoItems="ngModel" [(ngModel)]="AddServices.roomId">
+                          <div [hidden]="NoItems.valid || (NoItems.pristine && !f.submitted) && ((NoItems.errors && (NoItems.dirty || NoItems.touched )) == false)"
+                            class="form-control-feedback">
+                            Error: Please Enter No Items
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div class="col text-right">
+                    <div class="btn-group pull-right">
+                      <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                        <span class="text">Save</span>
+                        <i class="fa fa-save"></i>
+                      </button>
+                    </div>
+                    <div class="btn-group pull-right">
+                      <pre> </pre>
+                    </div>
+                    <div class="btn-group pull-right">
+    
+                      <button class="btn btn-secondary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                        <span class="text">Reset</span>
+                        <i class="fa fa-refresh"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div> 
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

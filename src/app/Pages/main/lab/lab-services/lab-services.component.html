@@ -1,0 +1,247 @@
+<div class="container content-width-100">
+    <div class="row  align-items-center justify-content-between">
+      <div class="col-11 col-sm-12 page-title">
+        <h3 #target>Lab Services</h3>
+      </div>
+  
+  
+  
+  
+      <div class="col text-right ">
+  
+      </div>
+  
+    </div>
+    <div class="row">
+  
+      <div class="col-xl-16">
+  
+  
+        <div class="card">
+          <form #f="ngForm">
+            <div class="card-header">
+              <h5 class="card-title">Set Lab Department Services</h5>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                <div class="col-md-10">
+              <div class="row">
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group " [class.has-error]="!(OpdType.valid || (OpdType.pristine && !f.submitted)) || (OpdType.errors && (OpdType.dirty || OpdType.touched ))">
+                    <label>Department Name</label>
+                    <!-- <select #labDepartName="ngModel" name="" [(ngModel)]="name" id="" placeholder="Department Name">
+                    </select> -->
+                    <select class="form-control" id="doctors" name="department" [(ngModel)]="lab.labDepartmentId" placeholder="Select Tests" >
+                        <option *ngFor="let department of labDepartments" [value]="department.id" >{{department.name}}</option>
+                      </select>
+                    <!-- <input id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Department Name"
+                      id="example-text-input"  [(ngModel)]="name" required> -->
+                    <!-- <div [hidden]="OpdType.valid || (OpdType.pristine && !f.submitted) && (OpdType.errors && (OpdType.dirty || OpdType.touched )) == false"
+                      class="form-control-feedback">
+                      Error: Please Enter End Time
+                    </div> -->
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group " [class.has-error]="!(OpdType.valid || (OpdType.pristine && !f.submitted)) || (OpdType.errors && (OpdType.dirty || OpdType.touched ))">
+                      <label>Service Name</label>
+                      <input id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Department Name"
+                        id="example-text-input" #OpdType="ngModel" [(ngModel)]="lab.name" required>
+                      <!-- <div [hidden]="OpdType.valid || (OpdType.pristine && !f.submitted) && (OpdType.errors && (OpdType.dirty || OpdType.touched )) == false"
+                        class="form-control-feedback">
+                        Error: Please Enter End Time
+                      </div> -->
+                    </div>
+                  </div>
+                <div class="col-lg-4 col-md-4">
+                        <!-- <div class="form-group" [class.has-error]="!(OpdType.valid || (OpdType.pristine && !f.submitted)) || (OpdType.errors && (OpdType.dirty || OpdType.touched ))">
+                          <label>Department Type</label>
+                          <input id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="OPD Type"
+                            id="example-text-input" #OpdType="ngModel" [(ngModel)]="name" required>
+                          <div [hidden]="OpdType.valid || (OpdType.pristine && !f.submitted) && (OpdType.errors && (OpdType.dirty || OpdType.touched )) == false"
+                            class="form-control-feedback">
+                            Error: Please Enter End Time
+                          </div>
+                        </div> -->
+                                <div class="can-toggle can-toggle--size-small">
+                                  <div class="form-group">
+                                    <label>Status</label>
+                                  <input id="b" type="checkbox" name="status" [(ngModel)]="status">
+                                  <label for="b">
+                                    <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                                    <div class="can-toggle__label-text">{{status? "Active":"In-Active"}}</div>
+                                  </label>
+                                </div>
+                              </div>
+                      </div>
+                    </div>
+                <!-- <div class="col-3">
+                  <div class="form-group" [class.has-error]="!(charges.valid || (charges.pristine && !f.submitted)) || (charges.errors && (charges.dirty || charges.touched ))">
+                    <label>Charges</label>
+                    <input type="number" id="charges" name="charges" class="form-control" placeholder=".00" required
+                      #charges="ngModel" [(ngModel)]="fee">
+                    <div [hidden]="charges.valid || (charges.pristine && !f.submitted) && (charges.errors && (charges.dirty || charges.touched )) == false"
+                      class="form-control-feedback">
+                      Error: Please Enter Fee
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="can-toggle can-toggle--size-small">
+  
+                    <input id="b" type="checkbox" name="status" [(ngModel)]="status">
+                    <label for="b">
+                      <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                      <div class="can-toggle__label-text">{{status? "Active":"In-Active"}}</div>
+                    </label>
+                  </div>
+  
+                </div>
+                <div class="col-3">
+                  <br>
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-primary" (click)="Save()"><span class="text">Save</span> <i class="fa fa-save"></i></button>
+                  </div>
+                  <div class="btn-group pull-right">
+                    <pre> </pre>
+                  </div>
+                  <div class="btn-group pull-right">
+  
+                    <button class="btn btn-secondary" (click)="Reset()"><span class="text">Reset</span> <i class="fa fa-refresh"></i></button>
+                  </div>
+                </div> -->
+              <!-- <div class="form-group row">
+            <label for="example-search-input" class="col-sm-3 col-form-label">Duplicate Card Price :</label>
+            <div class="col-8">
+              <input class="form-control" type="number" placeholder="{{DupCardPrice}}" id="example-search-input"
+                [(ngModel)]="DupCardPrice">
+            </div>
+          </div> -->
+  
+            </div>
+        </div>
+    </div>
+    
+          </form>
+          <div class="card-footer">
+              <div class="col text-right">
+                <div class="btn-group pull-right">
+                  <button (click)="save(lab, department)" class="btn btn-primary">
+                    <span class="text">Save</span>
+                    <i class="fa fa-save"></i>
+                  </button>
+                </div>
+                <div class="btn-group pull-right">
+                  <pre> </pre>
+                </div>
+                <div class="btn-group pull-right">
+      
+                  <button class="btn btn-secondary" type="reset" (click)="Reset()">
+                    <span class="text">Reset</span>
+                    <i class="fa fa-refresh"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card">
+          <!-- <div class="card-header">
+              <h5 class="card-title">Patient List</h5>
+            </div> -->
+          <div class="card-header">
+            <div class="row">
+              <div class="col-sm-3">
+                <h5 class="pull-left mr-2">Manage Records</h5>
+              </div>
+  
+  
+              <div class="col-lg-13">
+                <div class="row">
+  
+  
+                  <div class="col-16">
+                    <div class="input-daterange form-inline pull-right" id="destination">
+                      <label style="color: black;">
+                        Choose Range &nbsp; <i class="fa fa-calendar"></i> &nbsp;</label>
+  
+                      <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue" type="text">
+                      <button type="button" class="btn btn-outline-primary" (click)="ResetTable()">Reset
+                        <i class="fa fa-refresh"></i>
+                      </button>
+  
+  
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-sm-5">
+                  
+                </div>
+                <div class="col-sm-2"></div> -->
+  
+            </div>
+          </div>
+  
+          <div class="card-body">
+            <!-- Table Start -->
+            <div class="table-responsive" style="overflow: auto; padding-top: 2px;">
+              <table id="example" class="table table-hover dataTable no-footer dtr-inline">
+                <thead>
+                  <tr>
+                    <th>SNo.</th>
+                    <th>Department Name</th>
+                    <th>status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of labDepartments | reverse;let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                      <span [class]="item.status == 1? 'status success':'status danger'" style="width:60px !important">{{item.status
+                        == 1?
+                        "Active":"In-Active" }}</span>
+                    </td>
+                    <td>
+                      <span style="display: inline">
+                        <a class=" btn btn-link btn-sm " title="Delete" [id]="item.id" (click)="modal.ShowModal(item.id)">
+                          <i class="fa fa-trash-o ">
+                          </i>
+                        </a>
+                        <a class="btn btn-link btn-sm" title="Edit" (click)="EditRecord(item.id,target)">
+                          <i class="fa fa-pencil-square-o "></i>
+                        </a>
+                      </span>
+                    </td>
+                    <td>{{item.id}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>SNo</th>
+                    <th>Doctor Type</th>
+                    <th>status</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.table-end -->
+  
+  
+          </div>
+        </div>
+  
+  
+      </div>
+  
+  
+  
+  
+    </div>
+  
+  </div>
+  <app-delete-modal #modal (IsDelete)="DeleteData($event)"></app-delete-modal>

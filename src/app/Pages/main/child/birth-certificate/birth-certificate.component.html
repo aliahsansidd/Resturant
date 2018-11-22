@@ -1,0 +1,241 @@
+<div style=" background-color:#FFFFFF " #Printable id="Printable" *ngIf="DataSource != undefined" style="display: none;">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3 " style="text-align: right"><img src="../../../assets/img/logo-orignal-big (1).jpg"
+            alt="xyz" width="120" height="105" /></div>
+        <div class="col-9">
+          <h1 style="text-align: center;"><strong style="font-family: 'Times New Roman', Times, serif;font-size: 24px ">SIR
+              SYED TRUST
+              HOSPITAL</strong></h1>
+          <p style="text-align: center;margin-top: -15px;margin-bottom: 2px;font-size: 12px">D.H.A Phase-VII,Extension,
+            Hino Chowk, Korangi
+            Road, <br />
+            Karachi. Ph:35383241
+            - 35383978</p><br>
+          <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-11">
+                <h3 style="text-align: center"><span><strong><u style="font-family: 'Times New Roman', Times, serif;font-size: 23px ;">
+                    BIRTH
+                    CERTIFICATE</u></strong></span></h3>
+            </div>
+            <div class="col-2">
+
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="col-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9" style="text-align: center">
+
+        </div>
+
+        <div class="col-3"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-5">
+          <div class="row">
+            <div class="col-16">
+              <table width="100%" height="16">
+                <tbody>
+                  <tr style="height: 21px;">
+                    <td style="width: 35%; height: 21px;">Regd. No.</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-5">
+          <div class="row">
+            <div class="col-16">
+              <table width="100%" height="16">
+                <tbody>
+                  <tr style="height: 21px;">
+                    <td style="width: 12%; height: 21px;">Date</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.birthDate}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-16">
+          <table width="100%" height="16">
+            <tbody>
+              <br>
+              <tr style="height: 21px;">
+                <td style="width: 20%; height: 21px;">This is to certify that</td>
+                <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.MotherName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-16">
+          <table width="100%" height="16">
+            <tbody>
+              <br>
+              <tr style="height: 21px;">
+                <td style="width: 9%; height: 21px;">W/o. Mr.</td>
+                <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.FatherName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-16">
+          <table width="100%" height="16">
+            <tbody>
+              <br>
+              <tr style="height: 21px;">
+                <td style="width: 4%; height: 21px;">Resident of</td>
+                <td style="border-bottom: solid 1px; border-radius: 3px;width: 38%">{{DataSource.Address}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-16">
+          <table width="100%" height="16">
+            <tbody>
+              <br>
+              <tr style="height: 21px;">
+                <td style="width: 25%; height: 21px;">has been delivered a Male/Female Child</td>
+                <td style="border-bottom: solid 1px; border-radius: 3px;width: 38%">{{DataSource.childGender}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-16">
+          <div class="row">
+            <div class="col-16">
+              <table width="100%" height="16">
+                <tbody>
+                  <br>
+                  <tr style="height: 21px;">
+                    <td style="width: 6%; height: 21px;">Weighing</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.weight}}</td>
+                    <td style="width: 1%; height: 21px;">on</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-16">
+          <div class="row">
+            <div class="col-16">
+              <table width="100%" height="16">
+                <tbody>
+                  <br>
+                  <tr style="height: 21px;">
+                    <td style="width: 1%; height: 21px;">at</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.time}}</td>
+                    <td style="width: 60%; height: 21px;">A.M. / P.M.</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-16">
+          <div class="row">
+            <div class="col-8">
+              <table width="100%" height="16">
+                <tbody>
+                  <br>
+                  <tr style="height: 21px;">
+                    <td style="width: 40%; height: 21px;">Date of Birth</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.birthDate}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-16">
+          <div class="row">
+            <div class="col-8">
+              <table width="100%" height="16">
+                <tbody>
+                  <br>
+                  <tr style="height: 21px;">
+                    <td style="width: 40%; height: 21px;">Time of Birth</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.time}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-16">
+          <div class="row">
+            <div class="col-8">
+              <table width="100%" height="16">
+                <tbody>
+                  <br>
+                  <tr style="height: 21px;">
+                    <td style="width: 40%; height: 21px;">Case Conducted by</td>
+                    <td style="border-bottom: solid 1px; border-radius: 3px;">{{DataSource.caseConductedBy}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-16">
+          <div class="row">
+            <div class="col-8" style="text-align: right">
+              <br>
+              <u style="font-size: 16px;font-family: 'Times New Roman', Times, serif">FOOT STAMP</u>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-16"><br><br><br><br></div>
+          </div>
+          <div class="row">
+            <div class="col-16"><br><br><br><br><br><br><br><br></div>
+            <div class="col-16">
+              <div class="row">
+                <div class="col-12"></div>
+                <div class="col-4"><strong style="font-family: 'Times New Roman', Times, serif !important;font-size: 15px;">
+                    MEDICAL OFFICER</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<!-- <button class="btn btn-success" (click)="Print()">Print</button> -->

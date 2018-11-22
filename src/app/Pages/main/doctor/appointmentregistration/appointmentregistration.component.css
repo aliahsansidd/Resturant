@@ -1,0 +1,242 @@
+fieldset.scheduler-border {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow: 0px 0px 0px 0px #000;
+  box-shadow: 0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+  width: inherit;
+  /* Or auto */
+  padding: 0 10px;
+  /* To give a bit of padding on the left and right */
+  border-bottom: none;
+}
+
+.selectedCard {
+  /* opacity: 0.6; */
+  background: linear-gradient(to right, #22bfed 0%, #6c8bef 100%);
+}
+
+fieldset {
+  border: 1px solid #ddd !important;
+  margin: 0;
+  min-width: 0;
+  padding: 10px;
+  position: relative;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  padding-left: 10px !important;
+}
+
+legend {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  width: 35%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 5px 5px 10px;
+  background-color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+
+#textcenter {
+  text-align: center;
+}
+
+.card-data {
+  display: flex;
+  justify-content: center;
+}
+
+nz-card {
+  text-align: center;
+  color: white;
+  font-weight: 300;
+  width: 200px;
+  height: 225px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  background: linear-gradient(to right, #2ec7cb 0%, #6c8bef 100%);
+}
+
+.basic-information {
+  margin-top: 4%;
+}
+
+.search-selector {
+  display: flex;
+}
+
+.ant-modal-title {
+  display: flex !important;
+}
+
+.printClass {
+  visibility: hidden;
+}
+
+.disabled {
+  opacity: 0.2;
+}
+
+.highlighted {
+  opacity: 1;
+}
+
+.doctor-name {
+  font-weight: 700;
+  margin-top: 3px;
+}
+
+.doctor-days {
+  font-style: italic;
+}
+
+.card-events {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4%;
+}
+
+.doctor-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 60px;
+}
+
+.steps-content {
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 6px;
+  background-color: #fafafa;
+  min-height: 200px;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.steps-action {
+  margin-top: 24px;
+}
+
+button {
+  margin-right: 8px;
+}
+
+.dp-calendar-nav-container {
+  /* height: 68px !important; */
+}
+
+.slot-div {
+  display: flex;
+    width: 200px;
+    justify-content: space-evenly;
+    padding: 4px;
+}
+.date-range {
+  background: #12eca6;
+  width: 115px;
+  text-align: center;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21px;
+  font-family: monospace;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+.disabled-date-range {
+  background: lightgray;
+  width: 115px;
+  text-align: center;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21px;
+  font-family: monospace;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+#slot-number {
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+}
+
+.selected-date {
+  background: red;
+  width: 115px;
+  text-align: center;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21px;
+  font-family: monospace;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+.disabled-date {
+  background: lightgray;
+}

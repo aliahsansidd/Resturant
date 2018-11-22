@@ -1,0 +1,33 @@
+/* :host /deep/ .data-table-row {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+} */
+.alert-message {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    height: 8vh;
+}
+/* td.dataTables_empty {
+    display: none;
+}
+.thead {
+    text-align: center;
+}
+td {
+    text-align: center;
+}
+.table-data-input {
+    border: 0px; */
+/* } */
+
+.Edit-active {
+    border: 1px solid lightgray !important;
+}
+.center .fa {
+    color: dodgerblue;
+    cursor: pointer;
+}

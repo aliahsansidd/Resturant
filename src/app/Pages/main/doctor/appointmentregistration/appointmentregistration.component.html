@@ -1,0 +1,249 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-lg-8 col-md-8 col-sm-11 page-title" style="padding-top: 0px">
+      <h3>Appointment Registration </h3>
+      <p>Make a New Patient</p>
+    </div> 
+    <!-- <div class="col text-right ">
+      <div><button class="btn btn-success pull-right" (click)="showModal()">Find Patient</button></div>
+    </div> -->
+    <div  class="col-lg-8 col-md-8">
+        <br>
+          <div class="row" style="display: flex; justify-content: flex-end">
+          <div class="col-lg-4">
+          <h5 class="patientCard">
+          <i class="fa fa-wheelchair"></i> Patient Card</h5>
+        </div>
+        <div class="col-lg-4"> 
+                <i class="fa fa-search MousePointer" title="search patient" (click)="showModal('isVisible')" style="font-size: 20px;color:#6c8bef" ></i>
+          
+            &nbsp; &nbsp; &nbsp; 
+              <i class="fa fa-plus-square MousePointer" title="register patient" (click)="showModal('register')" style="font-size: 20px; color:#6c8bef" ></i>
+            </div>
+            
+        </div>
+         <div class="row" style="display: flex; justify-content: flex-end">
+           <div class="col-lg-4 col-md-4" style="font-weight:bold;">
+          <div class="form-group">
+           <label>{{mrNumber || 'No Value' }}</label><br>
+           <label>{{fullName || 'No Value'}}</label>
+          </div>
+           </div>
+           <div  class="col-lg-4 col-md-4"style="font-weight:bold;"> 
+             <div class="form-group">
+           <label>{{contactNumber || 'No Value' }}</label><br>
+           <label>{{PatientDOB || 'No Value' }}</label>
+          </div>
+           </div> 
+         </div>
+      </div>
+  </div> 
+<div class="card">
+      <div class="card-header">
+          <h3 class="card-title">Doctors On Duty</h3>
+        </div>
+      <div class="col-lg-16">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="list-unstyled member-list row" style="height:325px; overflow-y:auto; color:black;">
+                    <div class="col-lg-5" *ngFor="let doctor of filteredDoctorsFromOpd; let index = index">
+                        <!-- <div [ngClass]="{'disabled': index !== selectedDoctor, 'highlighted': index === index}" class="media flex-column bg-info">
+                          <span class="doctor-image">
+                            <img class="doctor-image" src="src/assets/img/dummy-user.jpg" alt="Generic user image">
+                            <span class="user-status bg-success "></span>
+                          </span>
+                          <div class="media-body">
+                            <h6 class="doctor-name">Dr.{{doctor.doctorUser.fullName}}</h6>
+                            {{doctor.doctorUser.cellNumber || 'Not Available'}}
+                            <br>
+                            <div class="doctor-days card-data row">
+                              {{doctor.opdName || 'Not available' }}
+                            </div>
+                            <div class="doctor-days card-data row">
+                              {{doctor.days || 'Mon/Tue/Wed' }}
+                            </div>
+                            <div class="doctor-time card-data row">
+                              {{doctor.startTime || '0:00' }} - {{doctor.endTime}}
+                            </div>
+                            <div class="doctor-room card-data row">
+                              {{doctor.roomName || 'Ask at Reception' }}
+                            </div>
+                            <div class="doctor-charges card-data row">
+                              Charges {{doctor.fee || 'Not Available' }}
+                            </div>
+                            <div class="card-events card-data row">
+                              <button class="btn btn-success" (click)="appoint(index, doctor)"> Appoint</button>
+                              <br>
+                              <select class="col-10 form-control" style="background: lightgray;" name="" id="" [(ngModel)]="timeSlot">
+                                <option selected disabled hidden>Select Time Slot</option>
+                                <option style="color: rgb(245, 2, 2);" *ngFor="let time of timeSlot">{{time}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div> -->
+                            <div class="media flex-column MousePointer" [title]="selected? 'cancel':'Select a Doctor'" [ngClass]="{'selectedCard': selected}"> 
+                              <div class="overlay" style="display: flex;" (click)="appoint(index, doctor)"></div>
+                              <div *ngIf="selectedIndex === index"  style="display: flex; position: absolute">
+                                <button  class="btn btn-success btn-round mr-2"><i class="fa fa-check"></i></button>
+                              </div> 
+                              <span class="message_userpic large">
+                                <img class="d-flex mr-3" src="data:image/jpeg;base64,{{doctor.doctorUser.picture}}" alt="Generic user image">
+                                <span class="user-status bg-success "></span>
+                              </span>
+                              <div class="media-body">
+                                <h6 class="mt-0 mb-1">Dr.{{doctor.doctorUser.fullName}}</h6>
+                                {{doctor.startTime || '0:00' }} - {{doctor.endTime}}
+                                <br>
+                                <br>
+                                <!-- <div class="row text-white followers">
+                                  <div class="col ">
+                                    <h4>Mon-Fri
+                                      <br>
+                                      <small>10am-8pm</small>
+                                    </h4>
+                                  </div>
+                                  <div class="col ">
+                                    <h4>
+                                      <button class="btn btn-success" > Appoint</button>
+                                      <br>
+                                      <small>
+                                        <a href="">View Details</a>
+                                      </small>
+                                    </h4>
+                                  </div>
+                                </div> -->
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="col">
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-6 col-form-label">Select OPD</label>
+                      <select class="col-10 form-control" name="" id="" [(ngModel)]="opdName">
+                        <option selected disabled hidden>Select OPD</option>
+                        <option *ngFor="let type of opdTypes">{{type.name}}</option>
+                      </select>
+                      <!-- <nz-select style="width: 200px;" nzShowSearch nzAllowClear nzPlaceHolder="Select OPD" (change)="filterByOPD(opdName)" [(ngModel)]="opdName">
+                          <nz-option *ngFor="let type of opdTypes" [nzLabel]="type.name">{{type.name}}</nz-option>
+                        </nz-select> -->
+                    </div>
+                    <!-- <div class="form-group row">
+                        <nz-radio-group [(ngModel)]="radioValue">
+                            <label class="col-8" nz-radio nzValue="A">Show Available</label>
+                            <label class="col-6" nz-radio nzValue="B">Show All</label>
+                        </nz-radio-group>
+                    </div> -->
+                    <!-- <div class="form-group row">
+                        <label for="example-text-input" class="col-6 col-form-label">Select Day</label>
+                        <select class="col-10 form-control" name="" id="" [(ngModel)]="days">
+                          <option selected disabled hidden>Select Day</option>
+                          <option *ngFor="let day of Days">{{day.text}}</option>
+                        </select>
+                      </div> -->
+                      <div class="form-group row">
+                          <label for="example-text-input" class="col-6 col-form-label">Select TimeSlot</label>
+                          <app-appointment-calendar doctorDates=[doctorDates] (sendSelectedDate)="getSelectedDateFromCalender($event)"></app-appointment-calendar>
+                          <!-- <button (click)="showModal('isCalendarVisible')">Select Time Slot</button> -->
+                          <nz-modal [nzWidth]="789" [(nzVisible)]="isCalendarVisible" [nzTitle]="modalTitle" [nzContent]="calendarContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel('isCalendarVisible')">
+                              <ng-template #modalTitle class="search-ng-template">
+                                Select Time Slot
+                              </ng-template>
+                              <ng-template  #calendarContent>
+                                TIME SLOTS
+                                <div class="row">
+                                <div *ngFor="let slot of timeSlot; let i = index">
+                                    <div class="col-lg-16 col-md-16 col-sm-16">
+                                      <div class="slot-div">
+                                      <!-- <div class="slot-div" *ngIf="IsDisabledSlot(i)" [ngClass]="{'disabled-date': i === unavailableDate}"> -->
+                                <span id="slot-number">{{i}}</span>
+                                <span *ngIf="!IsDisabledSlot(i)" class="date-range" [ngClass]="{'disabled-date': i === selectedSlot}" (click)="selectSlot(i, slot)">{{slot}}</span>
+                                <span *ngIf="IsDisabledSlot(i)" class="disabled-date-range" [ngClass]="{'selected-date': i === selectedSlot}" (click)="selectSlot(i, slot)">{{slot}}</span>
+                              </div>
+                              </div>
+                              </div>
+                                </div>
+                                <!-- <app-owl-date-picker [doctorDays]="backupDates" #ref> </app-owl-date-picker> -->
+                              </ng-template>
+                              <ng-template  #modalFooter>
+                                <!-- <button nz-button nzType="default" (click)="Print(modalContent.value)">Print</button> 
+                                  <button nz-button nzType="default" (click)="handleCancel()">Close</button> -->
+                                  <button *ngIf="viewSaveButton" nz-button nzType="primary" (click)="saveTimeSlot()">Save</button>
+                                </ng-template>
+                            </nz-modal>
+                        </div>
+                    <div class="form-group row">
+                      <label for="example-email-input" class="col-6 col-form-label">Summary</label>
+                      <div class="col-10" style="position: relative;
+                      top: 5px;">
+                        <p><strong>{{allDoctorsLength}}</strong> Found.</p>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group row">
+                      <label for="example-url-input" class="col-6 col-form-label">URL</label>
+                      <div class="col-10">
+                        <input class="form-control" type="url" value="https://getbootstrap.com" id="example-url-input">
+                      </div>
+                    </div> -->
+                    <div class="row  align-items-center justify-content-between">
+                      <div class="col-md-16 card-events">
+                        <button class="btn btn-secondary" (click)="resetOPDSearch()">Reset</button>
+                        <button class="btn btn-success" (click)="searchOPD(opdName)">Search</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+        </div>
+</div>
+</div>
+
+<div>
+  <nz-modal [nzWidth]="789" [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <!-- <ng-template #modalTitle class="search-ng-template">
+      Find Patient
+      <div class="search-selector"><app-search-field [patientData]="patientData"> </app-search-field></div>
+    </ng-template> -->
+    <ng-template  #modalContent>
+      <div class="search-selector">
+        <app-search-field [patientData]="patientData" style="width: 100%; height: 325px;"> </app-search-field>
+      </div>
+     
+    </ng-template>
+    <!-- <ng-template style="display: none;" #modalFooter>
+    </ng-template> -->
+  </nz-modal>
+</div>
+
+<div class="printClass" id="printClass">
+  <div id="textcenter">
+  <h4>Sir Syed Hospital</h4>
+  <p> Qayyumabad Rd, A Area Qayyumabad Karachi City, Sindh 75640</p>		
+  </div>
+  <div id="textcenter">
+    <h5>Appointment Slip </h5>
+    <h5>Consulting Clinics </h5>
+  </div>
+  <div>
+    <div id="textcenter">
+      <strong>{{firstName || 'Value Error'}} {{mrNumber || 'Value Error'}}</strong><br>
+            Your next appointment is on:
+    </div>				
+    <div>
+        Day : {{day || 'Value Error'}}<br>
+        Date : {{currentDate || 'Value Error'}}<br>
+        Time : {{timeNow || 'Value Error'}}<br>
+        Location : {{roomLocation || 'Value Error'}}<br>
+        Doctor : {{doctorName || 'Value Error' }} <br><br>
+    </div>
+    <div>
+        Please note:<br>
+        While your appointment is scheduled for a specific time, the length of consultation for each patient could vary which may result in delays			
+
+    </div>
+  </div>
+  </div>

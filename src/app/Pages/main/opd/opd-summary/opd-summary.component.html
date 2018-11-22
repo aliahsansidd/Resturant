@@ -1,0 +1,215 @@
+
+
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Patient Management</h3>
+    </div> 
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+      <script type="text/javascript">window.onload = date_time('date_time');</script>
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-sm-18 col-md-10">
+      <div class="card">
+        <div class="card-header" >
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <h5 class="card-title">Patient Details</h5>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="mr-number" align="center">MR#: <strong class="mr-number">00281-18</strong></div>
+          <br>
+          <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">Name</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.firstname}} {{patient.middlename}}
+              {{patient.lastname}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Family Head Name</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.familyheadname}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Tel Number</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.telnumber}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">land line Number</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.landlinenumber}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Emergency Number</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.emergencynumber}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Address </label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.address}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">CNIC</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.Cnic}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">City</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.City}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Date of Birth</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.DOB}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Age</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.Age}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Gender</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.Gender}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Religion</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.Religion}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Marital Status</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.MaritalStatus}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-14 col-md-6">
+      <div class="card">
+        <div class="card-header" >
+          <h5 class="card-title" >Smart card Preview</h5>
+        </div>
+
+        <div class="card-body">
+          <p align="right"><i> Default Size: 3.370" X 2.125" </i></p>
+          <input type="image" src="assets/img/SSH-MR-card-blank.png" alt="Smart card Preview" width="400" height="auto"
+            class="responsive-img" />
+
+
+          <label></label>
+
+          <p> Smart Card Charges 300 RS</p>
+
+          <div>
+            <label class="radio-inline">
+              <input type="radio" value="Print Blank" name="PrintBackground" id="PrintBackground"> Print Blank &nbsp;</label>
+            <label class="radio-inline">
+              <input type="radio" value="Print Background" name="PrintBackground" id="PrintBackground"> Print
+              Background &nbsp;</label>
+
+          </div>
+
+          <br> <br> <br> <br> <br>   
+
+        </div> 
+        <div class="card-footer">
+          <div class="col text-right ">
+            <button class="btn btn-info">Edit
+              <i class="fa fa-pencil"></i>
+            </button>&nbsp;
+            <button class="btn btn-primary">Print Duplicate
+              <i class="fa fa-save"></i>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-18 col-md-10">
+      <div class="card">
+        <div class="card-header" >
+          <div class="row">
+            <div class="col-lg-14 col-md-14">
+              <h5 class="card-title" >OPD Detail</h5>
+            </div>
+            <div class="col-lg-2 col-md-2"> 
+                <button class="btn btn-link btn-sm" title="Edit">Edit
+                    <i class="fa fa-pencil-square-o "></i>
+                </button> 
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+              <label class="col-4 col-form-label">OPD</label>
+              <label class="col-9 col-form-label">1008-2018</label>
+              <label class="col-2"></label>
+              <div class="col-1"></div>
+            </div>
+            <div class="row" style="margin-top: -10px;">
+              <label  class="col-4 col-form-label">Doctor Name</label>
+              <label  class="col-12 col-form-label">Nelson Mandela</label>
+            </div>
+            <div class="row">
+              <label  class="col-4 col-form-label">Day</label>
+              <label  class="col-12 col-form-label">Friday</label>
+            </div>
+            <div class="row">
+              <label  class="col-4 col-form-label">Date</label>
+              <label  class="col-12 col-form-label">12345678</label>
+            </div>
+            <div class="row">
+              <label  class="col-4 col-form-label">Time</label>
+              <label  class="col-12 col-form-label">Qayumabad road karachi ,Pakistan</label>
+            </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-14 col-md-6">
+      <div class="card">
+        <div class="card-header" >
+          <h5 class="card-title" >Smart card Preview</h5>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-16">
+
+              <div class="list-unstyled member-list col">
+                <div class="col-lg-16">
+                  <div class="media flex-column ">
+                    <figure class="background"><img alt="Generic user image" class="d-flex mr-3" src="assets/img/team.png"></figure><span
+                      class="message_userpic large"><img alt="Generic user image" class="d-flex mr-3" src="assets/img/team.png"><span
+                        class="user-status bg-success "></span></span>
+                    <div class="media-body">
+                      <h6 class="mt-0 mb-1">Astha Smith</h6> New Jersey, UK<br><br>
+                      <div class="row text-white followers">
+                        <div class="col">
+                          <h4>2.8 k <br><small>Followers</small></h4>
+                        </div>
+                        <div class="col">
+                          <h4>5.6 k <br><small>Tweets</small></h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="card-footer">
+            <div class="col text-right ">
+                <button class="btn btn-danger">Cancel
+                    <i class="fa fa-trash"></i>
+                  </button>&nbsp;
+                  <button class="btn btn-primary">Print OPD Slip
+                      <i class="fa fa-print"></i>
+                    </button>
+    
+              </div>
+        
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

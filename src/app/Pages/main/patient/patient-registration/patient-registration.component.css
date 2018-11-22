@@ -1,0 +1,57 @@
+.card-preview-details {
+    position: absolute;
+    bottom: 13%;
+    left: 13%;
+}
+.card-title {
+    color: black !important;
+}
+.image-box {
+    /* background-image: url('../../../assets/img/SSH-MR-card-blank.png'); */
+          height: 242px;
+    width: 492px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 50px;
+}
+
+img {
+    height: 65%;
+    width: 85%;
+}
+.patient-details {
+    line-height: 0.3px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 75%;
+}
+/* @font-face {
+    font-family: Consolas;
+    src: url("../../../assets/font/Consolas.ttf");
+} */
+.expiry-details {
+    position: relative;
+    bottom: 7px;
+    font-size: 75%;
+}
+.barcode-design {
+    transform: rotate(90deg);
+    position: absolute;
+    bottom: 16vh;
+    left: 51.4vh;
+}
+svg {
+    width: 20px !important;
+}
+.required {
+    border: 1px solid red;
+}
+.required-field {
+    color: red;
+}
+.disabled {
+    cursor: not-allowed;
+}
+form .text-right {
+    top: 30px;
+}

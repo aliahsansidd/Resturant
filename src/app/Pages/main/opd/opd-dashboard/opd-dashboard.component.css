@@ -1,0 +1,17 @@
+#carousel .flex-active-slide img {
+    width: 240px !important; 
+  }
+.selectedCard {
+  /* opacity: 0.6; */
+  background: linear-gradient(to right, #22bfed 0%, #6c8bef 100%);
+  
+}
+.selectedCard1 { 
+  background: linear-gradient(to right, #22bfed 0%, #6c8bef 100%) !important;
+}
+/* .member-list .media:hover {
+  background: #22bfed !important;
+  background: linear-gradient(to right, #22bfed 0%, #6c8bef 100%) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+} */

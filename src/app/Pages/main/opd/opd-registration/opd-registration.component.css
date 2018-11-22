@@ -1,0 +1,108 @@
+.btn block btn-success {
+    border-style: 47px;
+    width: 205px;
+}
+
+.doctor-name {
+    font-weight: 700;
+    margin-top: 3px;
+}
+
+.doctor-days {
+    font-style: italic;
+}
+
+.card-events {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4%;
+}
+
+.doctor-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 60px;
+}
+
+.card-data {
+    display: flex;
+    justify-content: center;
+}
+
+.printClass {
+    visibility: hidden;
+}
+
+.required-field {
+    color: red;
+}
+
+#textcenter {
+    text-align: center
+}
+
+.selectedCard {
+    /* opacity: 0.6; */
+    background: linear-gradient(to right, #22bfed 0%, #6c8bef 100%);
+}
+
+.label-value {
+    display: flex;
+    align-items: center;
+    line-height: 1px;
+    font-weight: 700;
+}
+
+.scroll {
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+.slot-div {
+    display: flex;
+    width: 200px;
+    justify-content: space-evenly;
+    padding: 4px;
+}
+
+.date-range {
+    background: #12eca6;
+    width: 115px;
+    text-align: center;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 21px;
+    font-family: monospace;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+#slot-number {
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+}
+
+.selected-date {
+    background: red;
+    width: 115px;
+    text-align: center;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 21px;
+    font-family: monospace;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+@media print {
+    .printClass {
+        visibility: visible
+    }
+}

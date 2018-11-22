@@ -1,0 +1,303 @@
+<div class="container">
+    <div class="row  align-items-center justify-content-between">
+      <div class="col-11 col-sm-12 page-title">
+        <h3>User Management</h3>
+        <!-- <p>Register New Patient</p> -->
+      </div>
+  
+      <!-- <div class="col text-right ">
+        <div id="date_time" class="dateTime"></div>
+        <script type="text/javascript">window.onload = date_time('date_time');</script>
+      </div> -->
+      <div style="display: flex;
+    justify-content: center;" class="col-5 col-sm-4">
+      <button style="cursor: pointer;" class="btn btn-success" (click)="goToAdd()">
+        Add New User
+      </button>
+    </div>
+    </div>
+    
+    
+    <div class="card">
+      <!-- <div class="card-header">
+        <h5 class="card-title">Patient List</h5>
+      </div> -->
+      <div class="card-header">
+        <div class="row">
+          <div class="col-lg-3 col-md-3">
+            <h5 class="pull-left mr-2">Manage Users</h5>
+          </div>  
+          <div class="col-lg-13 col-md-13">
+            <div class="row">  
+              <div class="col-lg-16">
+                <div class="input-daterange form-inline pull-right" id="destination">
+                  <div class="form-group row">
+                  <label style="color: black;">
+                    Choose Range &nbsp;
+                    <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                  <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue" (ngModelChange)="selectRange()">
+                </div>&nbsp;&nbsp;
+                  <button class="btn btn-outline-primary" type="reset" value="" name="brnReset">
+                      <span class="text">Reset</span>
+                      <i class="fa fa-refresh"></i>
+                    </button>  
+
+                </div>
+
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <!-- <a class=" btn btn-link btn-sm" title="View">
+                        <i (click)="showModal()"  class="fa fa-eye">
+                        </i>
+                      </a> -->
+      <!-- <button nz-button nzType="primary" (click)="showModal()">
+          <span>Show Modal</span>
+        </button> -->
+      <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+          <ng-template #modalTitle>
+            User Details
+          </ng-template>
+    
+          <ng-template #modalContent>
+            <label class="modal-labels">User Detail</label>
+            <label class="modal-labels">User Emergency Number</label>
+            <label class="modal-labels">User Age</label>
+            <label class="modal-labels">User DOB</label>
+            <label class="modal-labels">User Religion</label>
+            <label class="modal-labels">User Marital Status</label>
+          </ng-template>
+    
+          <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Close</button>
+            <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Edit Patient</button>
+          </ng-template>
+        </nz-modal>
+      <div class="card-body">
+
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item"> <button class="nav-link active" data-toggle="tab" href="#home" role="tab" (click)="ShowButton()">Grid View</button> </li>
+              <li class="nav-item"> <button class="nav-link" data-toggle="tab" href="#profile" role="tab" (click)="hideButton()">Tree View</button> </li>
+            </ul>
+         
+        <!-- Table Start -->
+        <div class="tab-content">
+        <div class="table-responsive tab-pane active" role="tabpanel" id="home" style="overflow: auto; padding-top: 2px;"  >
+          <table id="example" class="table dataTable no-footer dtr-inline">
+            <thead>
+              <tr>
+                <th >S.No# </th>
+                <th>Id#</th>
+                <th>Full Name</th>
+                <th>Role(s)</th>
+                <th>Email Address</th>
+                <th>Contact No#</th>
+                <th class="not-export-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="FontSizeTable">
+              <tr class="odd" role="row" *ngFor="let user of allUsers; let i = index;">
+                <td>{{i + 1}}</td> 
+                <td>{{user.id}}</td>
+                <td>{{user.fullName}}</td>
+                 <td><span *ngFor="let role of user.roles">{{role.name}}</span></td>
+                <td>{{user.email}}</td>
+                <td>{{user.cellNumber}}</td> 
+                <td >
+                  <a class=" btn btn-link btn-sm " title="Delete" [id]="user.id" (click)="$event.stopPropagation();modal.ShowModal(user.id)">
+                    <i class="fa fa-trash-o">
+                    </i>
+                  </a>
+                  <a class="btn btn-link btn-sm" title="Edit" (click)="editUser(i, user)">
+                    <i class="fa fa-pencil-square-o "></i>
+                  </a>
+                </td>
+                </tr>
+            </tbody>
+            <tfoot>
+              <tr> 
+                <th >SR# </th>
+                <th >MR#</th>
+                <th >First Name</th>
+                <th >Last Name</th>
+                <th >Guardian</th>
+                <th >Contact#</th>
+                <th ></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+            <nz-tree
+        [nzData]="nodes"
+        nzShowLine="true"
+        (nzClick)="nzEvent($event)">
+      </nz-tree>
+
+     
+          </div>
+      </div>
+        <!-- /.table-end -->
+      </div>
+  
+      
+    </div>
+  </div>
+  
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: 20vh !important;">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#BroughterDetails" role="tab">Patient
+                Details</a> </li>
+            <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#Ambulance" role="tab">Ambulance Details</a>
+            </li> -->
+          </ul>
+  
+        </div>
+        <div class="modal-body">
+  
+  
+          <div class="card-body">
+            <div class="justify-content-center container">
+              <div class="col-md-18 ">
+                <div class="tab-content">
+                  <!-- Broughter Detail -->
+                  <div class="tab-pane active" id="BroughterDetails" role="tabpanel">
+                    <div class="row ">
+                      <!-- <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>First Name</label>
+                          <label for="">{{patient.firstName}}</label>
+                        </div>
+                      </div> -->
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>CNIC</label>
+                          <input type="text" class="form-control abc" placeholder="Enter CNIC number">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Phone</label>
+                          <input type="tel" class="form-control" placeholder="Enter phone">
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Mode of arrival</label>
+                          <select class="form-control" style="color:#b2b2b2">
+                            <option value="">select</option>
+                            <!-- <option *ngFor="let a of ambulance" [value]="a.value" style="color:#000000">
+                              {{ a.text }}
+                            </option> -->
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-16 col-md-16">
+                        <div class="form-group ">
+                          <label>Address</label>
+                          <textarea type="text" class="form-control" placeholder="Enter Address"></textarea>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                  <!-- Ambulance form -->
+                  <div class="tab-pane" id="Ambulance" role="tabpanel">
+                    <div class="row ">
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Ambulance Name</label>
+                          <input type="text" class="form-control" placeholder="Enter Ambulance Name">
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Vehicle#</label>
+                          <input type="text" class="form-control" placeholder="Enter Vehicle Number">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Center#</label>
+                          <input type="text" class="form-control" placeholder="Enter Center Number">
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Location</label>
+                          <input type="text" class="form-control" placeholder="Enter Location">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Madadgar Name</label>
+                          <input type="text" class="form-control" placeholder="Enter Madadgar Name">
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8">
+                        <div class="form-group ">
+                          <label>Ambulance Details</label>
+                          <textarea class="form-control" type="text"></textarea>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning">Back <i class="fa fa-backward"></i></button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <!-- <div class="modal dark_bg fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="form-control-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="form-control-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <app-delete-modal #modal (IsDelete)="DeleteUser($event)"></app-delete-modal>
+    <!-- <button>click me<app-user-grid-view></app-user-grid-view></button> -->

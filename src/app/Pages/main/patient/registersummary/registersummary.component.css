@@ -1,0 +1,192 @@
+.mr-number {
+  color: #078fbc;
+  font-size: 30px;
+  font-family: Monotype Corsiva;
+  text-align: center
+}
+
+.image-card {
+  height: 200px;
+  width: 360px;
+}
+
+.input[type="radio"] {
+  box-sizing: border-box !important;
+  padding: 0 !important;
+}
+
+.barcode-design {
+  transform: rotate(90deg);
+  position: relative;
+  bottom: 29vh;
+  left: 33.4vh;
+}
+
+.card-preview-details {
+  position: relative;
+  bottom: 31%;
+  left: 14%;
+}
+
+.patient-details {
+  line-height: 0.3px;
+  font-weight: 600;
+  margin-bottom: 9%;
+  font-size: 8px;
+}
+
+.relative-div {
+  position: relative;
+  bottom: 15px;
+  right: 15px;
+}
+
+.expiry-details {
+  position: relative;
+  bottom: 7px;
+  font-size: 75%;
+}
+
+/* +=========================== */
+
+/* .image-box {
+    background-image: url('../../../assets/img/SSH-MR-card-blank.png');
+          height: 242px;
+    width: 492px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: 50px;
+} */
+
+.image-box {
+  height: 242px;
+  width: 492px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: 50px;
+}
+
+img {
+  height: 36%;
+  width: 70%;
+}
+
+.patient-details {
+  line-height: 0.3px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  font-size: 75%;
+}
+
+/* @font-face {
+    font-family: Consolas;
+    src: url("../../../assets/font/Consolas.ttf");
+} */
+
+.expiry-details {
+  position: relative;
+  bottom: 7px;
+  font-size: 75%;
+}
+
+.barcode-design {
+  transform: rotate(90deg);
+  position: absolute;
+  bottom: 16vh;
+  left: 51.4vh;
+}
+
+.hospital-card {
+  height: 140px;
+  width: 225.52px;
+  position: absolute;
+}
+
+.mrNumber {
+  left: 175px;
+  position: relative;
+  top: 92px;
+  font-size: 14px;
+  font-family: monotype corsiva;
+}
+
+.card-preview-details {
+  top: 84px;
+  left: -6px;
+}
+
+.card-preview-details #name {
+  margin-bottom: 9px;
+}
+
+.barcode-adjustment {
+  transform: rotate(90deg);
+  left: -77px;
+  top: 65px;
+  position: relative;
+}
+
+.blank {
+  display: none;
+}
+
+/* .hospital-card-hide {
+  height: 140px;
+  width: 225.52px;
+  position: absolute;
+} */
+
+/* .to-print {
+    visibility: hidden;
+} */
+
+@media print {
+  .hospital-card-hide {
+    display: none;
+  }
+  img {
+    height: 204px;
+    width: 323.52px;
+  }
+  /* .image-box {
+       display: none;
+   } */
+  /* .to-print {
+       visibility: visible;
+   } */
+}
+
+/* height: 144px;
+    width: 259.52px; */
+
+/* @media print {
+   .hospital-card {
+       display: none;
+   }
+   .mrNumber {
+    left: 112px;
+    position: relative;
+    top: 55px;
+    font-size: 13px;
+    font-family: monotype corsiva;
+}
+.card-preview-details {
+    top: 84px;
+    left: -6px;
+}
+.card-preview-details #name {
+    margin-bottom: 9px;
+}
+.barcode-adjustment {
+    transform: rotate(90deg);
+    left: -125px;
+    top: 31px;
+    position: relative;
+}
+  } */
+
+/* printed for card 3 */
+
+/* height: 150px;
+     width: 255px;
+     difference: 119.52 */

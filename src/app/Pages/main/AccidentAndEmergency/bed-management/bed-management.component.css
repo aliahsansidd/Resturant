@@ -1,0 +1,10 @@
+.selectedCard {
+    /* opacity: 0.6; */
+    background: linear-gradient(to right, #22bfed 0%, #6c8bef 100%);
+    
+  }
+  .logo p {
+    /* other styles goes here... */
+    display: inline-block;
+    vertical-align: top;
+}

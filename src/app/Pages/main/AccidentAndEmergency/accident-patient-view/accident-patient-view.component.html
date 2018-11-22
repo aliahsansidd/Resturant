@@ -1,0 +1,202 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Accident And Emergency Panel</h3>
+      <p>Edit/View Emergency</p>
+    </div>
+    <!--  -->
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+
+    </div>
+  </div>
+  <div class="card">
+    <!-- <div class="card-header">
+      <h5 class="card-title">Patient List</h5>
+    </div> -->
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-3">
+          <h5 class="pull-left mr-2">Manage Emergency Patients</h5>
+        </div>
+
+
+        <div class="col-lg-13">
+          <div class="row">
+
+
+            <div class="col-16">
+              <div class="input-daterange form-inline pull-right" id="destination">
+                <label style="color: black;">
+                  Choose Range &nbsp; <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                <input class="form-control CalenderWidth" (click)="selectRange(bsRangeValue)" (onkeypress)="selectRange(bsRangeValue)"
+                  (change)="selectRange(bsRangeValue)" bsDaterangepicker [(ngModel)]="bsRangeValue" type="text">
+                <button type="button" class="btn btn-outline-primary" (click)="reset()">Reset
+                  <i class="fa fa-refresh"></i>
+                </button>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-5">
+          
+        </div>
+        <div class="col-sm-2"></div> -->
+
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- <button nz-button nzType="primary" (click)="showModal()">
+            <span>Show Modal</span>
+          </button> -->
+      <!-- Table Start -->
+      <div class="table-responsive" style="overflow: auto; padding-top: 2px;">
+        <table id="example" class="table  dataTable no-footer dtr-inline">
+          <thead>
+            <tr>
+              <th >SR#</th>
+              <th >ER#</th>
+              <th >Age</th>
+              <th >Brought Death</th>
+              <th >Address</th>
+              <th >guardian</th>
+              <th >Gender</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd" role="row" *ngFor="let item of DisplayAccidentPatient| reverse; let i = index;">
+              <td>{{i + 1}}</td>
+              <td>{{item.erNo}}</td>
+              <td>{{item.age}}</td>
+              <td>{{item.broughtDeath}}</td>
+              <td>{{item.address}}</td>
+              <td>{{item.guardian}}</td>
+              <td>{{item.gender}}</td>
+              <td>
+                <a class=" btn btn-link btn-sm" title="View">
+                  <i data-toggle="modal" (click)="createTplModal(tplTitle, tplContent, tplFooter, item)" class="fa fa-eye">
+                  </i>
+                </a>
+                <a class=" btn btn-link btn-sm" (click)="deletePatient(item.id, i)" title="Delete">
+                  <i class="fa fa-trash-o">
+                  </i>
+                </a>
+                <a class="btn btn-link btn-sm" title="Edit" (click)="editPatient(item.id)">
+                  <i class="fa fa-pencil-square-o "></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #tplTitle>
+  <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#BroughterDetails" role="tab">Broughter
+          Details</a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#Ambulance" role="tab">Ambulance Details</a>
+      </li>
+    </ul>
+</ng-template>
+<ng-template #tplContent>
+    <div class="card-body">
+        <div class="justify-content-center container">
+          <div class="col-md-18 ">
+            <div class="tab-content">
+              <!-- Broughter Detail -->
+              <div class="tab-pane active" id="BroughterDetails" role="tabpanel">
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Name</label>
+                      <input type="text" class="form-control abc" disabled id="Broughtername" placeholder="Enter Broughter Name" [(ngModel)]="broughterDetails.name">
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>CNIC</label>
+                      <input type="text" class="form-control abc" disabled placeholder="Enter CNIC number" [(ngModel)]="broughterDetails.cnic">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Phone</label>
+                      <input type="tel" class="form-control" disabled placeholder="Enter phone" [(ngModel)]="broughterDetails.phone">
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Address</label>
+                      <textarea type="text" class="form-control" disabled rows="1" placeholder="Enter Address" [(ngModel)]="broughterDetails.address"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Ambulance form -->
+              <div class="tab-pane" id="Ambulance" role="tabpanel">
+                <div class="row ">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Ambulance Name</label>
+                      <input type="text" class="form-control" disabled placeholder="Enter Ambulance Name" [(ngModel)]="ambulanceDetails.name">
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Vehicle#</label>
+                      <input type="text" class="form-control" disabled [(ngModel)]="ambulanceDetails.vehicleNo" placeholder="Enter Vehicle Number">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Center#</label>
+                      <input type="text" class="form-control" disabled [(ngModel)]="ambulanceDetails.centerNo" placeholder="Enter Center Number">
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8">
+                    <div class="form-group ">
+                      <label>Madadgar Name</label>
+                      <input type="text" class="form-control" disabled [(ngModel)]="ambulanceDetails.madadgarName" placeholder="Enter Madadgar Name">
+                    </div>
+                  </div>
+                </div>
+         
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</ng-template>
+<ng-template #tplFooter>
+  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editPatientByModal()">Edit Accident Patient <i class="fa fa-edit"></i></button>
+  <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="destroyTplModal()">Done <i class="fa fa-backward"></i></button>
+  <!-- <button nz-button nzType="primary" (click)="destroyTplModal()" >Close after submit</button> -->
+</ng-template>
+<!-- <div style="width: 900px">
+  <textarea [froalaEditor]="options" [(froalaModel)]="editorContent"></textarea>
+</div> -->

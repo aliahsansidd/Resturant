@@ -1,0 +1,19 @@
+input {
+    width: 35%;
+    margin-left: 12px;
+    margin-top: -5px;
+}
+th {
+    font-size: 13px;
+}
+.heading {
+    display: flex;
+    border-bottom: 1px solid #d3d3d357;
+    width: 106%;
+    position: relative;
+    right: 3%;
+}
+.heading span {
+    margin-left: 2%;
+    margin-bottom: 2%;
+}

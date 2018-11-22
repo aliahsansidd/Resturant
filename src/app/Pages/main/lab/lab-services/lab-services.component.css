@@ -1,0 +1,5 @@
+.status-toggle {
+    display: flex;
+    align-items: center;
+    top: 7px;
+}

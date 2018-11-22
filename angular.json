@@ -1,0 +1,210 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "adminux-angular": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css",
+              "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+              "./node_modules/froala-editor/css/froala_style.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.css",
+              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/jstree/dist/themes/default/style.min.css",
+              "node_modules/swipebox/src/css/swipebox.min.css",
+              "node_modules/spinkit/scss/spinkit.scss",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/assets/vendors/bootstrap4beta/css/bootstrap.css",
+              "src/assets/vendors/flags/flags.min.css",
+              "src/assets/vendors/weather-icons-master/css/weather-icons.min.css",
+              "src/assets/vendors/weather-icons-master/css/weather-icons-wind.min.css",
+              "src/assets/vendors/themify-icons/themify-icons.css",
+              "src/assets/scss/light+blue_header_sidebar_adminux.scss",
+              "src/assets/vendors/DataTablesButton/Buttons-1.5.2/css/buttons.dataTables.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/moment/moment.js",
+              "node_modules/jquery-circle-progress/dist/circle-progress.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
+              "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+              "node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.js",
+              "node_modules/jvectormap/jquery-jvectormap.min.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-lcc-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-merc-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-aea-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-mill-en.js",
+              "node_modules/flexslider/jquery.flexslider-min.js",
+              "node_modules/fullcalendar/dist/fullcalendar.min.js",
+              "node_modules/highcharts/highcharts.js",
+              "src/assets/vendors/sparklines/jquery.sparkline.min.js",
+              "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
+              "node_modules/swipebox/src/js/jquery.swipebox.min.js",
+              "node_modules/jstree/dist/jstree.min.js",
+              "node_modules/rangeslider.js/dist/rangeslider.min.js",
+              "node_modules/footable/dist/footable.all.min.js",
+              "src/assets/vendors/DataTablesButton/Buttons-1.5.2/js/dataTables.buttons.min.js",
+              "src/assets/vendors/DataTablesButton/Buttons-1.5.2/js/buttons.flash.min.js",
+              "src/assets/vendors/DataTablesButton/JSZip-2.5.0/jszip.min.js",
+              "src/assets/vendors/DataTablesButton/pdfmake-0.1.36/pdfmake.min.js",
+              "src/assets/vendors/DataTablesButton/pdfmake-0.1.36/vfs_fonts.js",
+              "src/assets/vendors/DataTablesButton/Buttons-1.5.2/js/buttons.html5.min.js",
+              "src/assets/vendors/DataTablesButton/Buttons-1.5.2/js/buttons.print.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "adminux-angular:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "adminux-angular:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "adminux-angular:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/moment/moment.js",
+              "node_modules/jquery-circle-progress/dist/circle-progress.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
+              "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+              "node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.js",
+              "node_modules/jvectormap/jquery-jvectormap.min.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-lcc-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-merc-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-aea-en.js",
+              "node_modules/jvectormap/tests/assets/jquery-jvectormap-us-mill-en.js",
+              "node_modules/flexslider/jquery.flexslider-min.js",
+              "node_modules/fullcalendar/dist/fullcalendar.min.js",
+              "node_modules/highcharts/highcharts.js",
+              "src/assets/vendors/sparklines/jquery.sparkline.min.js",
+              "node_modules/masonry-layout/dist/masonry.pkgd.min.js",
+              "node_modules/swipebox/src/js/jquery.swipebox.min.js",
+              "node_modules/jstree/dist/jstree.min.js",
+              "node_modules/rangeslider.js/dist/rangeslider.min.js",
+              "node_modules/footable/dist/footable.all.min.js"
+            ],
+            "styles": [
+              "src/styles.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
+              "node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.css",
+              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/jstree/dist/themes/default/style.min.css",
+              "node_modules/swipebox/src/css/swipebox.min.css",
+              "node_modules/spinkit/scss/spinkit.scss",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/assets/vendors/bootstrap4beta/css/bootstrap.css",
+              "src/assets/vendors/flags/flags.min.css",
+              "src/assets/vendors/weather-icons-master/css/weather-icons.min.css",
+              "src/assets/vendors/weather-icons-master/css/weather-icons-wind.min.css",
+              "src/assets/vendors/themify-icons/themify-icons.css",
+              "src/assets/scss/dark_blue_adminux.scss"
+            ],
+            "assets": [
+              "src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [],
+            "exclude": []
+          }
+        }
+      }
+    },
+    "adminux-angular-e2e": {
+      "root": "e2e",
+      "sourceRoot": "e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "adminux-angular:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [],
+            "exclude": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "adminux-angular",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "css",
+      "spec": false
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  }
+}

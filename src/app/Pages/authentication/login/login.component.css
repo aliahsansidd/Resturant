@@ -1,0 +1,53 @@
+.sidePage {
+  position: absolute;
+  height: 87vh;
+  background: rgba(37, 45, 71, 0.59);
+  top: 0;
+  right: -13px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #d3d3d342;
+  opacity: 1; /* Firefox */
+}
+input {
+  color: white !important;
+}
+.side-signIn {
+  position: absolute;
+  height: 61.65em;
+  background: rgba(255, 255, 255, 0.6);
+  top: 0;
+  right: 0;
+  background: #252d4799;
+}
+.login-form {
+  max-width: 400px;
+    margin: 0 auto;
+    margin-top: 38%;
+    background: transparent;
+    margin-left: 0%;
+}
+
+.bluePulse-logo {
+  position: absolute;
+  left: 56%;
+  height: 20%;
+  width: 39%;
+  z-index: 2;
+  top: 10%;
+}
+.login-background {
+  top: 0;
+    /* position: absolute; */
+    z-index: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 61.65em;
+    overflow: hidden;
+    margin: 0;
+    background: #000;
+}
+.form-control {
+  border: 1px solid #d3d3d36b;
+}

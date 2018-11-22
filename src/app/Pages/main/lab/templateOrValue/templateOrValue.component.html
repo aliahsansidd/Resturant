@@ -1,0 +1,106 @@
+<div class="container content-width-100">
+    <div class="row  align-items-center justify-content-between">
+        <div class="col-11 col-sm-12 page-title">
+          <h3 #target>Lab Builder</h3>
+        </div>
+    
+    
+    
+    
+        <div class="col text-right ">
+    
+        </div>
+    
+      </div>
+  <div class="card">
+              
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-3">
+          <h5 class="pull-left mr-2">Manage Records</h5>
+        </div>
+
+
+        <div class="col-lg-13">
+          <div class="row">
+
+
+            <div class="col-16">
+              <div class="input-daterange form-inline pull-right" id="destination">
+                <label style="color: black;">
+                  Choose Range &nbsp; <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue" type="text">
+                <button type="button" class="btn btn-outline-primary" (click)="ResetTable()">Reset
+                  <i class="fa fa-refresh"></i>
+                </button>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-5">
+            
+          </div>
+          <div class="col-sm-2"></div> -->
+
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- Table Start -->
+      <div class="table-responsive" style="overflow: auto; padding-top: 2px;">
+        <table id="example" class="table table-hover dataTable no-footer dtr-inline">
+          <thead>
+            <tr>
+              <th>SNo.</th>
+              <th>Lab Test</th>
+              <th>Code</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="MousePointer" (click)="EditRecord(item.id,target)" *ngFor="let item of labTestBuilder | reverse;let i = index;">
+              <td>{{i+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.code}}</td>
+              <td>
+                <span [class]="item.status == 1? 'status success':'status danger'" style="width:60px !important">{{item.status
+                  == 1?
+                  "Active":"In-Active" }}</span>
+              </td>
+              <td>
+                <span style="display: inline">
+                  <a class=" btn btn-link btn-sm " title="Delete" [id]="item.id" (click)="$event.stopPropagation();modal.ShowModal(item.id)">
+                    <i class="fa fa-trash-o ">
+                    </i>
+                  </a>
+                  <a class="btn btn-link btn-sm" title="Edit" (click)="EditRecord(item.id)">
+                    <i class="fa fa-pencil-square-o "></i>
+                  </a>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+                <th>SNo.</th>
+                <th>Lab Test</th>
+                <th>Code</th>
+                <th></th>
+                <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.table-end -->
+
+
+    </div>
+  </div>
+</div>
+
+<app-delete-modal #modal (IsDelete)="DeleteData($event)"></app-delete-modal>

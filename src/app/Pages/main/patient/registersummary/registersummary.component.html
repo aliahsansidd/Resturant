@@ -1,0 +1,237 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Patient Registration</h3>
+      <p>Show Summary</p>
+    </div>
+    <span style="padding-right:20px">
+      <button type="button" class="btn btn-danger" style="text-align: right !important" data-toggle="modal" data-target="#exampleModalCenter"
+        (click)="openModal('true')">
+        <span class="text">Proceed to Payment</span>
+        <i class="fa fa-money"></i>
+      </button>
+    </span>
+
+  </div>
+  <div class="row">
+
+    <div class="col-sm-18 col-md-10">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-12">
+              <h5 class="card-title" style="color: #000;">Patient Details</h5>
+            </div>
+            <div class="col-lg-4 pull-right" style="font-style:italic; font-weight:normal; color: #000; text-align: right">
+              ER# NA
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="mr-number" align="center">
+            <strong class="mr-number">{{patient.displayId | uppercase}}</strong>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">First Name</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.firstName}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Last Name</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.lastName}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">S/O W/O D/O</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.familyHeadName}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Cell Number</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.cellNumber}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">land line Number</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.landLineNumber}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Emergency Number</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.emergencyNumber}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Address </label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.address}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">CNIC</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.cnic}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">City</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.city}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Date of Birth</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.dob}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Age</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{finalAge}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Gender</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.gender}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Religion</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.religion}}</label>
+
+            <label for="example-text-input" class="col-4 col-form-label">Marital Status</label>
+            <label for="example-text-input" class="col-12 col-form-label">{{patient.maritalStatus}}</label>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-14 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title" style="color: #000;">Smart Card Preview</h5>
+        </div>
+
+        <div class="card-body">
+          <p align="right">
+            <i>Default Size: 3.370" X 2.125" </i>
+          </p>
+          <!-- <div id="printable-card">
+          <img type="image" src="src/assets/img/SSH-MR-card-blank.png" alt="Smart card Preview" width="400" height="auto"
+            class="responsive-img" />
+          <div class="barcode-design">
+            <ngx-barcode [bc-value]="12345678" [bc-format]="CODE128" [bc-display-value]="true" [bc-height]="40"
+              [bc-font-size]="11" [bc-text-margin]="0" [bc-background]="transparent"></ngx-barcode>
+          </div>
+          <div class="relative-div">
+          <div class="card-preview-details">
+            <div class="patient-details">
+                    <p>{{patient.lastName | uppercase }}, {{patient.firstName | uppercase }}</p> 
+                     <p>M DOB: {{patient.dob}}</p>
+                    </div>
+                    <div class="expiry-details">
+                     <p>{{newDate}} - {{expiryDate}}</p>
+                    </div>
+                   </div>
+                   </div>
+        </div> -->
+          <!-- <div class="image-body">
+            <div id="printable-card" class="image-responsive">
+              <div class="row">
+                <img src="src/assets/img/SSH-MR-card-blank.png" alt="" style="height: 200px;
+            width: 360px;     margin: 16px;">
+                <div class="col-8" style="position: relative;
+    bottom: 105px;
+    left: 41px;">
+                  <div class="patient-details">
+                    <p>{{patient.lastName | uppercase }}, {{patient.firstName | uppercase }}</p>
+                    <p>M DOB: {{patient.dob}}</p>
+                  </div>
+                  <div class="expiry-details">
+                    <p>{{newDate}} - {{expiryDate}}</p>
+                  </div>
+                </div>
+                <div class="col-6" style="position: relative;
+                bottom: 196px;
+                left: 79px;
+                transform: rotate(90deg);">
+                  <ngx-barcode [bc-value]="12345678" [bc-format]="CODE128" [bc-display-value]="true" [bc-height]="40"
+                    [bc-font-size]="11" [bc-text-margin]="0" [bc-background]="transparent"></ngx-barcode>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div id="image-card">
+            <!-- <div class="image-box">
+              <img *ngIf="showCard === true"  class="hospital-card image-responsive" [src]="cardImage">
+              <img *ngIf="showCard === false" class="hospital-card-hide image-responsive" [src]="cardImage">
+              <div class="row">
+                <span class="mrNumber">{{patient.displayId}}</span>
+
+                <div class="col-8 card-preview-details">
+                  <div class="patient-details">
+                    <p id="name">{{patient.lastName | uppercase }}, {{patient.firstName | uppercase }}</p>
+                    <p>M DOB: {{patient.dob}}</p>
+                  </div>
+                  <div class="expiry-details">
+                    <p>{{newDate}} - {{expiryDate}}</p>
+                  </div>
+                </div>
+                <div class="col-6" class="barcode-adjustment">
+                  <ngx-barcode [bc-value]="patient.displayId" [bc-format]="CODE128" [bc-display-value]="true"
+                    [bc-height]="20" [bc-font-size]="10" [bc-text-margin]="0" [bc-width]="1" [bc-background]="transparent"></ngx-barcode>
+                </div>
+              </div>
+            </div> -->
+            <div class="image-box">
+              <img *ngIf="!showCardBackArea || showCard === false" [src]="cardImage" class="img-responsive hospital-card-hide" alt="" style="position: absolute; margin: 25px;">
+              <img *ngIf="showCardBackArea" [src]="cardImageBack" class="img-responsive" alt="" style="position: absolute; margin: 25px;">
+              <div *ngIf="!showCardBackArea" class="row">
+                  <span class="mrNumber">{{patient.displayId | uppercase }}</span>
+                <div class="col-8" style="top: 130px; 
+                left: 0px;">
+                <!-- top: 140px;
+                left: 60px; -->
+                  <div class="patient-details">
+                    <p style="position: relative; top: 4px;">{{patient.lastName | uppercase }}, {{patient.firstName | uppercase }}</p>
+                    <p><span *ngIf="patient.gender === 'Male'">M</span> <span *ngIf="patient.gender === 'Female'">F</span> DOB:
+                      {{patient.dob}}
+                    </p>
+                  </div>
+                  <div class="expiry-details">
+                    <p>{{newDate}} - {{expiryDate}}</p>
+                  </div>
+                </div>
+                <div class="col-6" class="barcode-adjustment">
+                  <ngx-barcode [bc-value]="patient.displayId" [bc-format]="CODE128" [bc-display-value]="true"
+                    [bc-height]="20" [bc-font-size]="10" [bc-text-margin]="0" [bc-width]="1" [bc-background]="transparent"></ngx-barcode>
+                </div>
+              </div>
+            </div> 
+            <!-- <div class="to-print">
+              <h2>THIS SHOULD BE PRINTED</h2>
+              <div class="expiry-details">
+                <p>{{newDate}} - {{expiryDate}}</p>
+              </div>
+            </div> -->
+          </div>
+          <p>
+            <i>Smart Card Charges Rs. {{cardPrice}}</i>
+          </p>
+          <div>
+            <!-- <label class="radio-inline">
+              <input type="radio"  name="PrintBackground"  [(ngModel)]="blank" value="blank" id="PrintBackground" (click)="printCard(blank)"> Print Blank &nbsp;</label> 
+           <label class="radio-inline">
+              <input type="radio" checked="checked" name="PrintBackground" [(ngModel)]="background" value="background" id="PrintBackground" (click)="printCard(background)"> Print Background &nbsp;</label> -->
+            <label class="radio-inline">
+              <input type="radio" checked="checked" value="background" [(ngModel)]="cardPrint.card" (change)="printCard(cardPrint.card)"
+                #bg="ngModel" name="background" id="background">
+              Print Background &nbsp;</label>
+            <label class="radio-inline">
+              <input type="radio" value="blank" [(ngModel)]="cardPrint.card" (change)="printCard(cardPrint.card)"
+                #blank="ngModel" name="blank" id="blank">
+              Print Blank &nbsp;</label>
+
+          </div>
+          <br>
+          <div class="card-footer">
+            <div class="col text-right ">
+              <button (click)="edit()" class="btn btn-info">Edit
+                <i class="fa fa-pencil"></i>
+              </button>&nbsp;
+              <button (click)="print()" class="btn btn-primary">Print Card
+                <i class="fa fa-save"></i>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+       <strong> Print Card Back </strong>
+       <!-- <strong *ngIf="showCardBackArea"> Print Card Front </strong> -->
+        <nz-switch [(ngModel)]="switchValue" (ngModelChange)="switched(switchValue)"></nz-switch>
+      </div>
+    </div>
+
+  </div>
+
+</div>

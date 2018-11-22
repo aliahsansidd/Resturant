@@ -1,0 +1,313 @@
+<div class="container">
+    <div class="row  align-items-center justify-content-between">
+      <div class="col-11 col-sm-12 page-title">
+        <h3>Patient Registration</h3>
+        <p>Register New Patient</p>
+      </div>
+      <div class="col text-right ">
+        <div id="date_time" class="dateTime"></div>
+      </div>
+  
+    </div>
+    <div class="row">
+  
+      <div class="col-sm-16 col-md-11">
+      
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-lg-8">
+                <h5 class="card-title">Add New Patient</h5>
+              </div>
+              <div class="col-lg-8">
+                <div class="text-right" style="font-style:italic; font-weight:normal;">
+                  <span style="color: black">ER# &nbsp;</span> <input type="checkbox" id="ERchk" (click)="ShowERInput =! ShowERInput">                &nbsp; <input type="text" id="text" [hidden]="!ShowERInput" style=" width: 60%;" class="small-form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                <form [formGroup]="patientForm" (ngSubmit)="onSubmit(patient)">
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                          <span class="required-field">*</span><label for="example-text-input">First Name</label>
+                        <input class="form-control" formControlName="FirstName" [ngClass]="{'required': patientForm.controls.FirstName.dirty&&patientForm.controls.FirstName.hasError('pattern') || isFieldValid('FirstName') && !patientForm.controls.FirstName.hasError('pattern')}"
+                          type="text" pattern="[a-zA-Z]*" [(ngModel)]="patient.firstName" placeholder="Enter First name" id="example-text-input"
+                          required>
+                        <div *ngIf="patientForm.controls.FirstName.dirty&&patientForm.controls.FirstName.hasError('pattern')" >
+                      
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">Invalid Name</div>
+                        </div>
+                        <div *ngIf="isFieldValid('FirstName') && !patientForm.controls.FirstName.hasError('pattern')" >
+                          <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">Last Name</label>
+                        <input class="form-control" formControlName="LastName" [ngClass]="{'required': patientForm.controls.LastName.dirty&&patientForm.controls.LastName.hasError('pattern') || isFieldValid('LastName') && !patientForm.controls.LastName.hasError('pattern')}"
+                          type="text" pattern="[a-zA-Z]*" [(ngModel)]="patient.lastName" placeholder="Enter Last name" id="example-text-input"
+                          required>
+                        <div *ngIf="patientForm.controls.LastName.dirty&&patientForm.controls.LastName.hasError('pattern')" >
+                      
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">Invalid Name</div>
+                        </div>
+                        <div *ngIf="isFieldValid('LastName') && !patientForm.controls.LastName.hasError('pattern')"> 
+                          <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">S/O W/O D/O</label>
+                        <input class="form-control" formControlName="Guardian" [ngClass]="{'required': patientForm.controls.Guardian.dirty&&patientForm.controls.Guardian.hasError('pattern') || isFieldValid('Guardian') && !patientForm.controls.Guardian.hasError('pattern')}"
+                          type="text" pattern="[a-zA-Z]*" [(ngModel)]="patient.familyHeadName" placeholder="Enter Guardian Name"
+                          id="example-text-input" required>
+                        <div *ngIf="patientForm.controls.Guardian.dirty && patientForm.controls.Guardian.hasError('pattern')">
+                      
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">Invalid Name</div>
+                        </div>
+                        <div *ngIf="isFieldValid('Guardian') && !patientForm.controls.Guardian.hasError('pattern')">
+                      
+                          <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">Cell Number</label>
+                        <input class="form-control" formControlName="CellNumber" minlength="11" maxlength="11" [ngClass]="{'required': patientForm.controls.CellNumber.dirty&&patientForm.controls.CellNumber.hasError('pattern') || isFieldValid('CellNumber') && !patientForm.controls.CellNumber.hasError('pattern')}"
+                          type="text" [(ngModel)]="patient.cellNumber" pattern="\d{11}" placeholder="Enter Cell Number" id="example-text-input"
+                          required>
+                        <div *ngIf="patientForm.controls.CellNumber.dirty&&patientForm.controls.CellNumber.hasError('pattern')">
+                      
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">Should be 11 digits</div>
+                        </div>
+                        <div *ngIf="isFieldValid('CellNumber') && !patientForm.controls.CellNumber.hasError('pattern')">
+                        <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">Emergency Number</label>
+                        <input class="form-control" pattern="\d{11}" type="text" minlength="11" maxlength="11" formControlName="Emergency" [ngClass]="{'required': patientForm.controls.Emergency.dirty&&patientForm.controls.Emergency.hasError('pattern') || isFieldValid('Emergency') && !patientForm.controls.Emergency.hasError('pattern')}"
+                          [(ngModel)]="patient.emergencyNumber" placeholder="Enter Emergency Number" id="example-text-input"
+                          required>
+                        <div *ngIf="patientForm.controls.Emergency.dirty&&patientForm.controls.Emergency.hasError('pattern')" >                     
+                          <div class="popover-body"[ngStyle] = "{'color': 'red'}">Should be 11 digits</div>
+                        </div>
+                        <div *ngIf="isFieldValid('Emergency') && !patientForm.controls.Emergency.hasError('pattern')" >
+                        <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <label for="example-text-input">LandLine Number</label>
+                        <input class="form-control" formControlName="LandLine" minlength="11" maxlength="11" [ngClass]="{'required': patientForm.controls.LandLine.dirty&&patientForm.controls.LandLine.hasError('pattern') || isFieldValid('LandLine') && !patientForm.controls.LandLine.hasError('pattern')}"
+                          type="text" [(ngModel)]="patient.landLineNumber" pattern="\d{11}" placeholder="Enter LandLine Number"
+                          id="example-text-input">
+                        <div *ngIf="patientForm.controls.LandLine.dirty&&patientForm.controls.LandLine.hasError('pattern')">                      
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">Should be 11 digits</div>
+                        </div>
+                        <div *ngIf="isFieldValid('LandLine') && !patientForm.controls.LandLine.hasError('pattern')">
+                      
+                        <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">Address</label>
+                        <input class="form-control" formControlName="Address" [ngClass]="{'required': isFieldValid('Address') && !patientForm.controls.Address.hasError('pattern')}"
+                          type="text" [(ngModel)]="patient.address" placeholder="Enter Address" id="example-text-input" required>
+  
+                        <!-- <div *ngIf="patientForm.controls.Address.dirty&&patientForm.controls.Address.hasError('pattern')" class="popover fade bs-popover-right show" role="tooltip" id="popover873989" x-placement="right" style="position: absolute; transform: translate3d(645px, -3px, 0px); top: 0px; left: 0px; will-change: transform;"><div class="arrow" style="top: 19px;"></div><div class="popover-body">This field is required</div></div> -->
+                        <div *ngIf="isFieldValid('Address')" >
+                        <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>  
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <label for="example-text-input">CNIC</label>
+                        <input class="form-control" formControlName="CNIC" [ngClass]="{'required': fname.invalid}" type="text" minlength="14" maxlength="14" [(ngModel)]="patient.cnic"
+                          id="example-text-input" placeholder="xxxxxxxxxxxxx without -" required>
+                        <div *ngIf="patientForm.controls.CNIC.dirty&&patientForm.controls.CNIC.hasError('pattern')" >
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">CNIC# Should be 14 digits</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">City</label>
+                        <input class="form-control" formControlName="City" [ngClass]="{'required': patientForm.controls.City.dirty&&patientForm.controls.City.hasError('pattern') || isFieldValid('City') && !patientForm.controls.City.hasError('pattern')}"
+                          type="text" pattern="[a-zA-Z]*" [(ngModel)]="patient.city" placeholder="Enter City" id="example-text-input"
+                          required>
+                         <div *ngIf="patientForm.controls.City.dirty&&patientForm.controls.City.hasError('pattern')" >
+                          <div class="popover-body" [ngStyle] = "{'color': 'red'}">Invalid Text</div>
+                        </div>
+                        <div *ngIf="isFieldValid('City') && !patientForm.controls.City.hasError('pattern')" > 
+                      
+                        <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <span class="required-field">*</span><label for="example-text-input">Date Of Birth</label>
+                        <input class="form-control" formControlName="DOB" type="date" [ngClass]="{'required': patientForm.controls.DOB.dirty&&patientForm.controls.DOB.hasError('pattern') || isFieldValid('DOB') && !patientForm.controls.DOB.hasError('pattern')}"
+                          [(ngModel)]="patient.dob" (change)="calculatePatientAge(patient.dob)">
+                          <div *ngIf="isFieldValid('DOB')" >
+                        <div [ngStyle] = "{'color': 'red'}">Required</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <label for="example-text-input">Age</label>
+                        <input disabled class="form-control" formControlName="Age" [ngClass]="{'required': fname.invalid}" type="text" [(ngModel)]="patient.age"
+                          placeholder="Select Date Of Birth above" id="example-text-input">
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <!-- <div class="form-group"> -->
+                        <!-- <label for="example-text-input">Gender</label>
+                        <div style="padding-top: 10px">
+                          <label class="radio-inline">
+                                                      <input type="radio" checked="checked" value="Male" [(ngModel)]="patient.gender" (change)="genderSet(patient.gender)" name="Male" id="Male">
+                                                      Male &nbsp;</label>
+                          <label class="radio-inline">
+                                                      <input type="radio" value="Female" [(ngModel)]="patient.gender" (change)="genderSet(patient.gender)"  name="Female" id="Female">
+                                                      Female &nbsp;</label>
+                        </div>  -->
+                        <div class="form-group">
+                          <label>Gender</label>
+                          <div style="padding-top: 10px">
+                            <nz-radio-group name="option" formControlName="Gender" [(ngModel)]="patient.gender">
+                                <label nz-radio formControlName="Gender"  (click)="setGender('Male')" [ngStyle]="style" nzValue="Male">
+                                  Male
+                                </label>
+                                <label nz-radio formControlName="Gender"  (click)="setGender('Female')" [ngStyle]="style" nzValue="Female">
+                                  Female
+                                </label>
+                              </nz-radio-group>
+                        </div>
+                      </div>
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group">
+                        <label for="example-text-input">Religion</label>
+                        <select formControlName="Religion" class="form-control" data-live-search="true" [(ngModel)]="patient.religion" tabindex="-1"
+                          aria-hidden="true">
+                                                    <option value="Muslim">Muslim</option>
+                                                    <option value="Hindu">Hindu</option>
+                                                    <option value="Catholic">Catholic</option>
+                                                    <option value="others">Others</option>
+                                                  </select> 
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <!-- <div class="form-group">
+                        <label for="example-text-input">Marital Status</label>
+                        <div style="padding-top: 10px">
+                          <label formControlName="MaritalStatus" class="radio-inline">
+                                                          <input type="radio" value="Married" [(ngModel)]="patient.maritalstatus"  name="Married" id="Married">
+                                                          Married &nbsp;</label>
+                          <label class="radio-inline">
+                                                          <input type="radio"  checked="checked" value="UnMarried" [(ngModel)]="patient.maritalstatus" name="UnMarried" id="UnMarried">
+                                                          UnMarried &nbsp;</label>
+                          <label class="radio-inline">
+                                                          <input type="radio"  value="Widow" [(ngModel)]="patient.maritalstatus" name="Widow" id="Widow">
+                                                          Widow</label>
+                        </div> 
+                      </div> -->
+                      <div class="form-group">
+                        <label>Marital Status</label>
+                        <div style="padding-top: 10px">
+                          <nz-radio-group style="display: flex;" name="option" formControlName="MaritalStatus" [(ngModel)]="patient.maritalStatus">
+                              <label nz-radio formControlName="MaritalStatus" (click)="setMaritalStatus('Married')" [ngStyle]="style" nzValue="Married">
+                                Married
+                              </label>
+                              <label nz-radio formControlName="MaritalStatus" (click)="setMaritalStatus('UnMarried')" [ngStyle]="style" nzValue="UnMarried">
+                                UnMarried
+                              </label>
+                              <label nz-radio formControlName="MaritalStatus"  (click)="setMaritalStatus('Widow')" [ngStyle]="style" nzValue="Widow">
+                                Widow
+                              </label>
+                            </nz-radio-group>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+  
+                  <div class="col text-right">
+                    <div class="btn-group pull-right">
+                      <button type="submit" class="btn btn-primary"><span class="text">Save&nbsp;</span> <i class="fa fa-save"></i></button>
+                      </div>
+                    <div class="btn-group pull-right">
+                      <pre> </pre>
+                    </div>
+                    <div class="btn-group pull-right">
+  
+                      <button class="btn btn-secondary" type="reset" (click)="resetFields()"><span class="text">Reset&nbsp;</span> <i class="fa fa-refresh"></i></button>
+                    </div>
+                  </div>
+                </form> 
+                <hr> 
+                <br><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="col-sm-8 col-md-5">
+        <div class="card">
+          <div class="card-header">
+            <h6 class="card-title">Smart Card View</h6>
+          </div> 
+          <div class="image-box">
+            <img [src]="cardImage" class="img-responsive" alt="" style="position: absolute; margin: 25px;">
+            <div class="row">
+              <div class="col-8" style="top: 140px; 
+              left: 60px;">
+                <div class="patient-details">
+                  <p style="position: relative; top: 4px;">{{patient.lastName | uppercase }}, {{patient.firstName | uppercase }}</p>
+                  <p><span *ngIf="patient.gender === 'Male'">M</span> <span *ngIf="patient.gender === 'Female'">F</span> DOB:
+                    {{cardDOB}}
+                  </p>
+                </div>
+                <div class="expiry-details">
+                  <p>{{newDate}} - {{expiryDate}}</p>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div> 
+    </div>
+  
+  </div>

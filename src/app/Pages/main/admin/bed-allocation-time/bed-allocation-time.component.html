@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Bed Allocation Time</h3>
+      <p>Bed Allocation Time</p>
+    </div>
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+    </div>
+  </div>
+  <div class="row align-items-center justify-content-between">
+    <div class="col-xl-16">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Bed Allocation Time</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group row ">
+            <div class="col-3"></div>
+          
+            <div class="col-5">
+                <label>MR#</label>
+              <input class="form-control" type="text" placeholder="MR#" id="example-text-input">
+            </div>   
+            <div class="col-5">
+                <label>CR#</label>
+              <input class="form-control" type="text" placeholder="CR#" id="example-text-input">
+            </div>
+            <div class="col-3"></div>
+
+          </div>
+          <div class="form-group row ">
+            <div class="col-3"></div>
+            <div class="col-5">
+                <label>Reference#</label>
+              <input class="form-control" type="text" placeholder="Reference No." id="example-text-input">
+            </div>
+            <div class="col-5">
+                <label>Ward Category</label>
+              <select class="form-control">
+                <option> Ward 1</option>
+                <option> Ward 2</option>
+              </select>
+            </div>
+            <div class="col-3"></div>
+
+          </div>
+          <div class="form-group row ">
+            <div class="col-3"></div>
+            <div class="col-5">
+                <label>Ward Name</label>
+              <select class="form-control">
+                <option> Ward 1</option>
+                <option> Ward 2</option>
+              </select>
+            </div>
+            <div class="col-5">
+                <label>Bed number</label>
+              <select class="form-control">
+                <option> Bed 1</option>
+                <option> Bed 2</option>
+              </select>
+            </div>
+            <div class="col-3"></div>
+          </div>
+          <div class="form-group row ">
+            <div class="col-3"></div>
+            <div class="col-5">
+                <label>Allocation Time</label>
+              <input class="form-control" type="time" value="09:00:00" id="example-text-input">
+            </div>
+            <div class="col-5">
+                <label>Allocation Date</label>
+              <input class="form-control" type="date" id="example-text-input" [(ngModel)]="dateNow">
+            </div>
+            <div class="col-3"></div>
+          </div>
+          <div class="form-group row ">
+            <div class="col-3"></div>
+            <div class="col-5">
+                <label>Discharge Time</label>
+              <input class="form-control" type="time" value="09:00:00" id="example-text-input">
+            </div>
+            <div class="col-5">
+                <label>Discharge Date</label>
+              <input class="form-control" type="date" id="example-text-input" [(ngModel)]="dateNow">
+            </div>
+            <div class="col-3"></div>
+          </div>
+          <div class="form-group row ">
+            <div class="col-3"></div>
+            <div class="col-5">
+                <label>Transfer Time</label>
+              <input class="form-control" type="time" value="09:00:00" id="example-text-input">
+            </div>
+            <div class="col-5">
+                <label>Transfer Date</label>
+              <input class="form-control" type="date"  id="example-text-input" [(ngModel)]="dateNow">
+            </div>
+            <div class="col-3"></div>
+          </div>
+          <div class="form-group row "> 
+            <div class="col-5">
+                <label>Reason</label>
+              <textarea class="form-control" rows="1" placeholder="Reason"></textarea>
+            </div>
+            <div class="col-5">
+                <label for="example-color-input" class="form-label">Status</label>
+                <div class="can-toggle can-toggle--size-small">
+                    
+                    <input id="b" type="checkbox" [(ngModel)]="Status">
+                    <label for="b">
+                        <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                    <div class="can-toggle__label-text">{{Status? "Active":"In-Active"}}</div>
+                    </label>
+                </div>
+  
+              </div>
+            <div class="col-3"></div>
+          </div>
+        </div>
+        <div class="card-footer">
+            <div class="col text-right">
+                <div class="btn-group pull-right">
+                  <button class="btn btn-primary"><span class="text">Save</span> <i class="fa fa-save"></i></button>
+                </div>
+                <div class="btn-group pull-right">
+                  <pre> </pre>
+                </div>
+                <div class="btn-group pull-right">
+    
+                  <button class="btn btn-secondary" type="reset" value="Reset" (click)="Reset()"><span class="text">Reset</span> <i class="fa fa-refresh"></i></button>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

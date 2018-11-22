@@ -1,0 +1,38 @@
+<div class="heading"> <span>Find Patient: </span>
+<div class="example-input">
+  <input style="width: 100%;" placeholder="Name, Mr# or CellNumber" nz-input [(ngModel)]="value" (input)="onInput(value)" [nzAutocomplete]="auto">
+  <nz-autocomplete [nzDataSource]="searchItem.value" #auto>
+  </nz-autocomplete>
+</div>
+</div>
+<div style="margin-top: 20px;" class="col-lg-16 col-md-16">
+    <div class="col-lg-16 col-md-16">
+        <div style="height: 275px; overflow: auto;">
+          <table id="example" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>S.No#</th>
+                <th>MR#</th>
+                <th>Full Name</th>
+                <th>S/O ,W/O, D/O</th>
+                <th>Contact No#</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of searchItem;let i = index" style="cursor: pointer;" (click)="SelectedRecord(item.id)">
+                <td>{{i + 1}}</td>
+                <td>{{item.displayId}}</td>
+                <td>{{item.firstName}} {{item.lastName}}</td>
+                <td>{{item.familyHeadName}}</td>
+                <td>{{item.cellNumber}}</td>
+                <td>{{item.gender}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  <br />
+  <br />
+</div>
+

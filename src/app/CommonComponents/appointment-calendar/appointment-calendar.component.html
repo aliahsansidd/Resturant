@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="col-sm-16">
+      <dp-date-picker [(ngModel)]="selectedDates" (click)="onSelect($event)" theme="dp-material" attachTo=".mat-input-wrapper" style="width:250px"  [config]="datePickerConfig"  (ngModelChange)="validatorsChanged($event)"></dp-date-picker>  
+  </div>
+</div>
+
+<!-- {{selectedDates}} -->

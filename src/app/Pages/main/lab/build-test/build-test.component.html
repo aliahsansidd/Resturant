@@ -1,0 +1,635 @@
+<div class="container content-width-100">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3 #target>Lab Builder</h3>
+      <h5 #target>Define New Lab List</h5>
+    </div>
+
+    <div class="col text-right ">
+
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-xl-16">
+
+
+      <div class="card">
+        <form #f="ngForm">
+          <div class="card-header">
+            <h5 class="card-title">New Lab</h5>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-lg-16 col-md-16">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Lab Test Name</label>
+                      <input id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Unit Name"
+                        id="example-text-input" #OpdType="ngModel" name="name" [(ngModel)]="test.name" required>
+                      <!-- <div [hidden]="OpdType.valid || (OpdType.pristine && !f.submitted) && (OpdType.errors && (OpdType.dirty || OpdType.touched )) == false"
+                      class="form-control-feedback">
+                      Error: Please Enter End Time
+                    </div> -->
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Short Code</label>
+                      <input id="OpdType" name="code" #opdType name="OpdType" class="form-control" type="text"
+                        placeholder="cc, mm, ps" id="example-text-input" #OpdType="ngModel" [(ngModel)]="test.code"
+                        required>
+                      <!-- <div [hidden]="OpdType.valid || (OpdType.pristine && !f.submitted) && (OpdType.errors && (OpdType.dirty || OpdType.touched )) == false"
+                          class="form-control-feedback">
+                          Error: Please Enter End Time
+                        </div> -->
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Department</label>
+                      <select class="form-control" id="doctors" placeholder="Doctors Name" name="department" (change)="selectedDepartment(test.department)"
+                        [(ngModel)]="test.department">
+                        <option value="" *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Department Service</label>
+                      <select class="form-control" id="doctors" placeholder="Doctors Name" name="labDepartmentServicesId"
+                        [(ngModel)]="test.labDepartmentServicesId">
+                        <option *ngFor="let service of filteredServices" [value]="service.id">
+                          {{ service.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Dependency List</label>
+                      <ng-select [items]="dependencyList" [multiple]="true" [closeOnSelect]="false" [searchable]="false" bindLabel="name"
+                      placeholder="Select Dependency" [(ngModel)]="dependency" name="DaysControl" required #DaysControl="ngModel">
+                    </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Set Charges</label>
+                      <input id="OpdType" #opdType name="charges" class="form-control" type="number" placeholder="Unit Name"
+                        id="example-text-input" #OpdType="ngModel" [(ngModel)]="test.price" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Remarks</label>
+                      <textarea class="form-control" name="remarks" id="" [(ngModel)]="test.remarks" rows="1"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Status</label>
+                      <div class="can-toggle can-toggle--size-small">
+
+                        <input id="b" type="checkbox" name="status" [(ngModel)]="test.status">
+                        <label for="b">
+                          <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                          <div class="can-toggle__label-text">{{status? "Active":"In-Active"}}</div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <form #f="ngForm">
+          <div class="card-header" style="display: flex;justify-content: space-between;">
+            <h5 class="card-title margin-left-10" >Conduction Details</h5>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-16">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <input type="checkbox"  name="sampleNeeded" [(ngModel)]="test.isSampleNeeded"  />
+                      <label class="space">Sample Needed</label>
+                    </div>
+                    <div *ngIf="test.isSampleNeeded" class="form-group ">
+                      <label >Sample Type</label>
+                      <ng-select [items]="labSample" [multiple]="true" [closeOnSelect]="false" [searchable]="false" bindLabel="sampleName"
+                      placeholder="Select Days" [(ngModel)]="test.sampleType" name="DaysControl" required #DaysControl="ngModel">
+                    </ng-select>
+                    </div>
+                    <div class="form-group">
+                      <input type="checkbox" [(ngModel)]="test.isResultEntry" />
+                      <label class="space">Result Entry</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <input type="checkbox" [(ngModel)]="test.isConductionRequired" />
+                      <label class="space">Conduction required</label>
+                    </div>
+                    <div class="form-group">
+                      <input type="checkbox" [(ngModel)]="test.isConductByDoctor" />
+                      <label class="space">Conduction Doctor required</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                      <label>Sample Instructions</label>
+                      <textarea class="form-control" name="sampleInstructions" [(ngModel)]="test.sampleInstructions"
+                        name="" id="" cols="30" rows="5"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4">
+                    <div class="form-group ">
+                      <label>Conducting Instructions</label>
+                      <textarea name="testInformation" [(ngModel)]="test.testInformation" class="form-control" name=""
+                        id="" cols="30" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+  <nz-modal [nzWidth]="800" class="build-test" [(nzVisible)]="isValue" [nzClosable]="false" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+      <div style="color: white;">
+      Result Master
+    </div>
+    </ng-template>
+    <ng-template #modalContent>
+      <div class="row justify-content-center">
+        <div class="col-md-16">
+          <div class="row justify-content-rigth">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                <label>Result Label <span *ngIf="labTestByValue.resultLabel=== ''" style="color: red">*</span></label>
+                <input id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Result Label" id="example-text-input"
+                  #OpdType="ngModel" [(ngModel)]="labTestByValue.resultLabel" required>
+                <!-- <div [hidden]="OpdType.valid || (OpdType.pristine && !f.submitted) && (OpdType.errors && (OpdType.dirty || OpdType.touched )) == false"
+                    class="form-control-feedback">
+                    Error: Please Enter End Time
+                  </div> -->
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 justify-content-center">
+              <div class="form-group">
+                <label style="padding-right : 32px">Unit</label>
+                  <select style="width: 238px" (change)="setUnit(labTestByValue.labTestingUnitId)" [(ngModel)]="labTestByValue.labTestingUnitId" class="form-control">
+                    <option *ngFor="let ltu of labTestUnit"  [value]="ltu.id">
+                      {{ltu.code}}
+                    </option>
+                  </select>
+                <!-- <label nz-checkbox [(ngModel)]="labTestByValue.isApplicableForAll">Applicable For All</label> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-16">
+          <div class="row justify-content-right">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                <label style="padding-right: 15px" >Male Range</label><br>
+                <div style="display: flex" >
+                  <label style="margin-top: 6px" nz-checkbox [(ngModel)]="ageInDaysForMale">Age</label>
+                  <label style="padding-right: 10px; margin-top : 6px">Min</label>
+                  <input [disabled]="!ageInDaysForMale" style="height: max-content; width: 173px" id="OpdType" #opdType name="OpdType" class="form-control" type="number" placeholder="Age min" id="example-text-input"
+                  #OpdType="ngModel" [(ngModel)]="labTestByValue.maleAgeMin" required>
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                
+                <label  nz-checkbox (click)="checkbox(labTestByValue.isApplicableForAll)" [(ngModel)]="labTestByValue.isApplicableForAll">Applicable For All</label>
+                <div  style="display: flex;margin-top: 5px;">
+                  
+                  <label style="padding-right: 10px;width: 61px;margin-top: 10px;">to Max</label>
+                  <input [disabled]="!ageInDaysForMale" style="height: max-content; width: 235px" id="OpdType" #opdType name="OpdType" class="form-control" type="number" placeholder="Age max"
+                  id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleAgeMax" required>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group">
+                  <nz-radio-group name="option">
+                      <label nz-radio (click)="setMaleAge('D')" [ngStyle]="style" nzValue="A">
+                          Days
+                      </label>
+                      <label nz-radio (click)="setMaleAge('M')" [ngStyle]="style" nzValue="B">
+                          Month
+                      </label>
+                      <label nz-radio (click)="setMaleAge('Y')" [ngStyle]="style" nzValue="C">
+                          Year
+                      </label>
+                    </nz-radio-group>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-16">
+          <div class="row justify-content-right">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                <label>Normal Range</label>
+                <div style="display: flex">
+                <label style="padding-right: 10px; margin-top : auto">Min</label>
+                <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Normal Range Min" id="example-text-input"
+                  #OpdType="ngModel" [(ngModel)]="labTestByValue.maleNormalRangeMin" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-10 col-md-10">
+              <div class="form-group ">
+                <br>
+                <div style="display: flex;margin-top: 9px;">
+                <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Normal Range Value"
+                  id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleNormalRangeMax" required>
+                 <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-16">
+          <div class="row justify-content-right">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                <label>Abnormal Range</label>
+                <div style="display: flex">
+                  <label style="padding-right: 10px; margin-top : auto">Min</label>
+                  <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Abnormal Range Min" id="example-text-input"
+                  #OpdType="ngModel" [(ngModel)]="labTestByValue.maleAbnormalRangeMin" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-10 col-md-10">
+              <div class="form-group">
+                <div style="display: flex;margin-top: 27px;">
+                  <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                  <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Abnormal Range Max"
+                  id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleAbnormalRangeMax" required>
+                  <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-16">
+          <div class="row justify-content-right">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Critical Range</label>
+                <div style="display: flex">
+                <label style="padding-right: 10px; margin-top : auto">Min</label>
+                <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Critical Range Min" id="example-text-input"
+                  #OpdType="ngModel" [(ngModel)]="labTestByValue.maleCriticalRangeMin" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-10 col-md-10">
+              <div class="form-group ">
+                <div style="display: flex;margin-top: 27px;">
+                <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Critical Range Max"
+                  id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleCriticalRangeMax" required>
+                  <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-16">
+          <div class="row justify-content-right">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                <label style="padding-right: 15px" >Female Range</label><br>
+                <div style="display: flex" >
+                  <label style="margin-top: 6px" nz-checkbox [(ngModel)]="ageInDaysForFemale">Age</label>
+                  <label style="padding-right: 10px; margin-top : 6px">Min</label>
+                  <input [disabled]="!ageInDaysForFemale" style="height: max-content; width: 173px" id="OpdType" #opdType name="OpdType" class="form-control" type="number" placeholder="Age min" id="example-text-input"
+                  #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleAgeMin" required>
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group ">
+                <br><br>
+                <div  style="display: flex;margin-top: -16px;">
+                  
+                  <label style="padding-right: 10px;width: 61px;margin-top: 10px;">to Max</label>
+                  <input [disabled]="!ageInDaysForFemale" style="height: max-content; width: 235px" id="OpdType" #opdType name="OpdType" class="form-control" type="number" placeholder="Age max"
+                  id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleAgeMax" required>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                    <nz-radio-group name="option">
+                        <label nz-radio (click)="setFemaleAge('D')" [ngStyle]="style" nzValue="A">
+                            Days
+                        </label>
+                        <label nz-radio (click)="setFemaleAge('M')" [ngStyle]="style" nzValue="B">
+                            Month
+                        </label>
+                        <label nz-radio (click)="setFemaleAge('Y')" [ngStyle]="style" nzValue="C">
+                            Year
+                        </label>
+                      </nz-radio-group>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!labTestByValue.isApplicableForAll" class="row justify-content-center">
+          <div class="col-md-16">
+            <div class="row justify-content-right">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group ">
+                  <label>Normal Range</label>
+                  <div style="display: flex">
+                  <label style="padding-right: 10px; margin-top : auto">Min</label>
+                  <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Normal Range Min" id="example-text-input"
+                    #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleNormalRangeMin" required>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-10 col-md-10">
+                <div class="form-group ">
+                  <br>
+                  <div style="display: flex;margin-top: 9px;">
+                  <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                  <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Normal Range Value"
+                    id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleNormalRangeMax" required>
+                   <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+        <div *ngIf="labTestByValue.isApplicableForAll" class="row justify-content-center">
+            <div class="col-md-16">
+              <div class="row justify-content-right">
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group ">
+                    <label>Normal Range</label>
+                    <div style="display: flex">
+                    <label style="padding-right: 10px; margin-top : auto">Min</label>
+                    <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Normal Range Min" id="example-text-input"
+                      #OpdType="ngModel" [(ngModel)]="labTestByValue.maleNormalRangeMin" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-10 col-md-10">
+                  <div class="form-group ">
+                    <br>
+                    <div style="display: flex;margin-top: 9px;">
+                    <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                    <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Normal Range Value"
+                      id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleNormalRangeMax" required>
+                     <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!labTestByValue.isApplicableForAll" class="row justify-content-center">
+            <div class="col-md-16">
+              <div class="row justify-content-right">
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group ">
+                    <label>Abnormal Range</label>
+                    <div style="display: flex">
+                      <label style="padding-right: 10px; margin-top : auto">Min</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Abnormal Range Min" id="example-text-input"
+                      #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleAbnormalRangeMin" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-10 col-md-10">
+                  <div class="form-group ">
+                    <div style="display: flex;margin-top: 27px;">
+                      <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Abnormal Range Max"
+                      id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleAbnormalRangeMax" required>
+                      <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div *ngIf="labTestByValue.isApplicableForAll" class="row justify-content-center">
+            <div class="col-md-16">
+              <div class="row justify-content-right">
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group ">
+                    <label>Abnormal Range</label>
+                    <div style="display: flex">
+                      <label style="padding-right: 10px; margin-top : auto">Min</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Abnormal Range Min" id="example-text-input"
+                      #OpdType="ngModel" [(ngModel)]="labTestByValue.maleAbnormalRangeMin" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-10 col-md-10">
+                  <div class="form-group ">
+                    <div style="display: flex;margin-top: 27px;">
+                      <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Abnormal Range Max"
+                      id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleAbnormalRangeMax" required>
+                      <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!labTestByValue.isApplicableForAll" class="row justify-content-center">
+              <div class="col-md-16">
+                <div class="row justify-content-right">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Critical Range</label>
+                      <div style="display: flex">
+                      <label style="padding-right: 10px; margin-top : auto">Min</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Critical Range Min" id="example-text-input"
+                        #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleCriticalRangeMin" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-10">
+                    <div class="form-group ">
+                      <div style="display: flex;margin-top: 27px;">
+                      <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Critical Range Max"
+                        id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.femaleCriticalRangeMax" required>
+                        <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div *ngIf="labTestByValue.isApplicableForAll" class="row justify-content-center">
+              <div class="col-md-16">
+                <div class="row justify-content-right">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Critical Range</label>
+                      <div style="display: flex">
+                      <label style="padding-right: 10px; margin-top : auto">Min</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Critical Range Min" id="example-text-input"
+                        #OpdType="ngModel" [(ngModel)]="labTestByValue.maleCriticalRangeMin" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-10">
+                    <div class="form-group ">
+                      <div style="display: flex;margin-top: 27px;">
+                      <label style="padding-right: 10px;width: 100px;margin-top: 10px;">to Max</label>
+                      <input style="height: max-content" id="OpdType" #opdType name="OpdType" class="form-control" type="text" placeholder="Critical Range Max"
+                        id="example-text-input" #OpdType="ngModel" [(ngModel)]="labTestByValue.maleCriticalRangeMax" required>
+                        <label style="text-align : center">(Outside Range - Improbable Low/ Improbable High)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+    </ng-template>
+    <ng-template #modalFooter>
+      <!-- <button nz-button nzType="default" (click)="Print(modalContent.value)">Print</button> -->
+      <button class="button-color" nz-button nzType="default"  (click)="handleCancel('value')">Close</button>
+      <button class="button-color" nz-button nzType="default" [disabled]="labTestByValue.resultLabel=== ''" (click)="handleOk()">Save</button>
+      <!-- <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Edit Patient</button> -->
+    </ng-template>
+  </nz-modal>
+  <div class="row">
+      <div class="col-xl-16">
+        <div class="card" >
+          <div class="card-header" >
+              <h5 class="card-title margin-left-10" >Set Template Value</h5>
+          </div>
+          <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-md-16">
+                    <div class="col-lg-16 col-md-16" style="display: flex; justify-content: center">
+                      <div class="col-lg-8 col-md-8">  
+                      <table>
+                            <thead>
+                              <th></th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let lbtest of tamplateValue; let j = index;">
+                                <div *ngIf="lbtest.id <= 0">
+                                <td><label> <strong>{{lbtest.resultLabel}}</strong></label></td>
+                                <td>
+                                    <label style="margin-left: 100px">{{unit}} </label> <strong> (</strong><label   [hidden]="lbtest.isApplicableForAll" class="gap">Male</label><label class="gap">{{lbtest.maleAgeMin}}<strong>-</strong> {{lbtest.maleAgeMax}}</label>
+                                    <label [hidden]="lbtest.isApplicableForAll" class="gap">Female</label> <label class="gap">{{lbtest.femaleAgeMin}} <strong>-</strong> {{lbtest.femaleAgeMax}} </label>
+                                    <strong class="gap">)</strong> 
+                                </td>
+                                <td>
+                                  <span *ngIf="LabTestTemplate.labTestByValuedto.length > 0"  style="display: inline">
+                                    <a class="btn btn-link btn-sm" title="Edit" >
+                                      <i style="margin-bottom: 10px; width: 30px" class="fa fa-pencil-square-o " (click)="editByValue(j,lbtest);conductionFormat('value')"></i>
+                                    </a>
+                                    <a class=" btn btn-link btn-sm " title="Delete" [id]="lbtest.id" (click)="$event.stopPropagation();deleteByValue.ShowModal(lbtest)">
+                                      <i style="margin-bottom: 10px" class="fa fa-trash-o ">
+                                      </i>
+                                    </a>
+                                  </span>
+                                </td>
+                              </div>
+                              <div *ngIf="lbtest.id == undefined" >
+                                <td>
+                                    <div *ngIf="showTemplate">
+                                        <textarea  [froalaEditor]="options" id="fro" #froala [(froalaModel)]="tamplateValue[j]" ></textarea>
+                                      </div>
+                                </td>
+                              </div>
+                              
+                              </tr>
+                            </tbody>
+                          </table>
+                          
+                        </div>
+                    </div>
+                  <div class="col-lg-16 col-md-16" style="display: flex; justify-content: flex-end">
+                      <span nz-tooltip nzTitle="Set Lab Test Parameter">
+                        <i style="width: 40px; color: #6c8bef" class="fa fa-list" (click)="conductionFormat('value')">
+                        </i>
+                      </span>
+                      <span nz-tooltip nzTitle="Set Lab Test Template">
+                        <i style="color: #6c8bef" class="fa fa-trello" (click)="conductionFormat('template')">
+                        </i>
+                      </span>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+                <div class="col text-right">
+                  <div class="btn-group pull-right">
+                    <button (click)="save()" class="btn btn-primary">
+                      <span class="text">Save</span>
+                      <i class="fa fa-save"></i>
+                    </button>
+                  </div>
+                  <div class="btn-group pull-right">
+                    <pre> </pre>
+                  </div>
+                  <div class="btn-group pull-right">
+                    <button class="btn btn-secondary" type="reset" (click)="Reset()">
+                      <span class="text">Reset</span>
+                      <i class="fa fa-refresh"></i>
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+        </div>
+      </div>
+    </div>
+</div>
+      
+
+<app-delete-modal #deleteByValue (IsDelete)="deleteByValueRow($event)"></app-delete-modal>
+<app-delete-modal #modal (IsDelete)="DeleteData($event)"></app-delete-modal>

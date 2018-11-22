@@ -1,0 +1,207 @@
+ <div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3 #target>OPD Settings</h3>
+      <p>Add and View OPD Timmings</p>
+    </div>
+    <!-- <div class="col text-right ">
+          <div class="btn-group pull-right">
+            <button class="btn btn-success btn-round " data-toggle="modal" data-target="#themepicker" ><span class="text">Customize</span> <i class="fa fa-cogs ml-2"></i></button>
+          </div>
+        </div> -->
+  </div>
+
+  <div class="row">
+    <div class="col-sm-16">
+        <form #f="ngForm">
+      <div class="card">
+          <div class="card-header">
+            <h5 class="card-title" >Set OPD Timings</h5>
+          </div>
+          <div class="card-body">
+             <div class="row justify-content-center">
+             <div class="col-md-10">
+            <div class="row"> 
+              <div class=" col-lg-8 col-md-8">
+                  <div class="form-group" [class.has-error]="!(NameControl.valid || (NameControl.pristine && !f.submitted)) || (NameControl.errors && (NameControl.dirty || NameControl.touched ))"> 
+                  <label for="Name" class="control-label">Name</label>
+                  <input class="form-control" [pattern]="pattern"  placeholder="Enter OPD Time Name" id="Name" name="Name" type="text" [(ngModel)]="OPDTimings.name" required
+                    #NameControl="ngModel" #OPDName>
+                  <!-- <div *ngIf="NameControl.invalid && NameControl.touched " style="color: red">*Required</div> -->
+                  <div [hidden]="NameControl.valid || (NameControl.pristine && !f.submitted) && ((NameControl.errors && (NameControl.dirty || NameControl.touched )) == false)" class="form-control-feedback">
+                      <div [hidden]="!NameControl.errors?.required" class="form-control-feedback">
+                        Error:  Please Enter Timming Name
+                       </div>
+                      <div [hidden]="!NameControl.errors?.pattern" class="form-control-feedback">
+                        Error: Alphabets Only
+                       </div>
+                    </div> 
+                </div> 
+              </div> 
+              <div class=" col-lg-8 col-md-8">
+                  <label>Status</label>
+                <div class="can-toggle can-toggle--size-small">
+                  <input id="c" type="checkbox" name="status" [(ngModel)]="OPDTimings.status">
+                  <label for="c">
+                    <div class="can-toggle__switch" data-checked="✔" data-unchecked="x"></div>
+                    <div class="can-toggle__label-text">{{OPDTimings.status? "Active":"In-Active"}}</div>
+                  </label>
+                </div>
+              </div> 
+            </div> 
+            <div class="row">  
+              <div class="col-lg-8 col-md-8">
+                  <div class="form-group" [class.has-error]="!(StartTime.valid || (StartTime.pristine && !f.submitted)) || (StartTime.errors && (StartTime.dirty || StartTime.touched ))"> 
+                <label for="example-text-input" class=" col-form-label">Start Timings</label>
+                <input class="form-control" name="StartTime" type="time" id="example-time-input" [(ngModel)]="startTime"
+                  required #StartTime="ngModel">
+                  <div [hidden]="StartTime.valid || (StartTime.pristine && !f.submitted) && (StartTime.errors && (StartTime.dirty || StartTime.touched )) == false" class="form-control-feedback">
+                      Error: Please Enter Start Time
+                    </div>
+                </div>
+              </div>
+
+              <div class=" col-lg-8 col-md-8">
+                <div class="form-group" [class.has-error]="!(EndTime.valid || (EndTime.pristine && !f.submitted)) || (EndTime.errors && (EndTime.dirty || EndTime.touched ))"> 
+                <label for="example-text-input" class="col-form-label" >End Timings</label>
+                <input class="form-control form-control-danger" type="time" name="EndTime" id="example-time-input" #EndTime="ngModel"
+                  required [(ngModel)]="endTime">
+                <div [hidden]="EndTime.valid || (EndTime.pristine && !f.submitted) && (EndTime.errors && (EndTime.dirty || EndTime.touched )) == false" class="form-control-feedback">
+                  Error: Please Enter End Time
+                </div>
+              </div>
+              </div> 
+            </div>
+            <div class="row"> 
+              <div class=" col-lg-8 col-md-8">
+                  <div class="form-group" [class.has-error]="!(DaysControl.valid || (DaysControl.pristine && !f.submitted)) || (DaysControl.errors && (DaysControl.dirty || DaysControl.touched ))"> 
+                <label for="example-text-input" class=" col-form-label">Days</label>
+                <ng-select [items]="Days" [multiple]="true" [closeOnSelect]="false" [searchable]="false" bindLabel="name"
+                  placeholder="Select Days" [(ngModel)]="selectedPeople1" name="DaysControl" required #DaysControl="ngModel">
+                </ng-select>
+                <div [hidden]="DaysControl.valid || (DaysControl.pristine && !f.submitted) && (DaysControl.errors && (DaysControl.dirty || DaysControl.touched )) == false" class="form-control-feedback">
+                    Error: Please Select Days
+                  </div>
+                  
+              </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+            <div class="col text-right">
+              <div class="btn-group pull-right">
+                <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                  <span class="text">Save</span>
+                  <i class="fa fa-save"></i>
+                </button>
+              </div>
+              <div class="btn-group pull-right">
+                <pre> </pre>
+              </div>
+              <div class="btn-group pull-right">
+
+                <button class="btn btn-secondary" type="reset" value="Reset" (click)="Reset()" name="brnReset">
+                  <span class="text">Reset</span>
+                  <i class="fa fa-refresh"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </form>
+  
+    <div class="card"> 
+      <div class="card-header">
+        <div class="row">
+          <div class="col-lg-3 col-md-3">
+            <h5 class="pull-left mr-2">Manage Records</h5>
+          </div>  
+          <div class="col-lg-13 col-md-13">
+            <div class="row">  
+              <div class="col-lg-16">
+                <div class="input-daterange form-inline pull-right" id="destination">
+                  <div class="form-group row">
+                  <label style="color: black;">
+                    Choose Range &nbsp;
+                    <i class="fa fa-calendar"></i> &nbsp;</label>
+
+                  <input class="form-control CalenderWidth" bsDaterangepicker [(ngModel)]="bsRangeValue" type="text">
+                </div>&nbsp;&nbsp;
+                  <button class="btn btn-outline-primary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                      <span class="text">Reset</span>
+                      <i class="fa fa-refresh"></i>
+                    </button>  
+
+                </div>
+
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!-- Table Start -->
+        <div class="table-responsive" style="overflow: auto; padding-top: 2px;">
+          <table id="example" class="table table-hover dataTable no-footer dtr-inline">
+            <thead>
+              <tr>
+                <th>SNo.</th>
+                <th>Name </th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Days</th>
+                <th>status</th>
+                <th class="not-export-col">Action</th> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="MousePointer" (click)="EditRecord(item.id, target)" *ngFor="let item of OPDCollection | reverse;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.startTime | date:'shortTime'}}</td>
+                <td>{{item.endTime | date:'shortTime'}}</td>
+                <td>{{item.days}}</td>
+                <td>
+                  <span [class]="item.status == 1? 'status success':'status danger'" style="width:60px !important">{{item.status == 1?
+                    "Active":"In-Active" }}</span>
+                </td>
+                <td>
+                  <span style="display: inline">
+                    <a  class=" btn btn-link btn-sm " title="Delete" [id]="item.id" (click)="$event.stopPropagation();modal.ShowModal(item.id)">
+                      <i class="fa fa-trash-o ">
+                      </i>
+                    </a>
+                    <a  class="btn btn-link btn-sm" title="Edit" (click)="$event.stopPropagation();EditRecord(item.id, target)">
+                      <i class="fa fa-pencil-square-o "></i>
+                    </a>
+                  </span>
+                </td> 
+              </tr> 
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>SNo</th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Project</th>
+                <th>status</th>
+                <th></th>
+
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.table-end -->
+      
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<app-delete-modal #modal (IsDelete)="DeleteData($event)"></app-delete-modal>

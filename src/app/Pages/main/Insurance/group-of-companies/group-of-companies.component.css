@@ -1,0 +1,5 @@
+table.dataTable tbody td:nth-last-child(2) {
+    width:     300px;
+    max-width: 300px;
+    min-width: 300px;
+  }

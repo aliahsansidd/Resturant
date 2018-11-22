@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="page-title">
+      <h3>Supplier</h3>
+    </div>
+    <div class="col text-right ">
+      <div id="date_time" class="dateTime"></div>
+    </div>
+  
+    <div class="row align-items-center justify-content-between">
+      <div class="col-sm-16">
+          <form #f="ngForm">
+        <div class="card"> 
+            <div class="card-header">
+              <h5 class="card-title">Supplier Payment Report</h5>
+            </div>
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-md-10">
+                  <div class="row ">
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(SupplierCode.valid || (SupplierCode.pristine && !f.submitted)) || (SupplierCode.errors && (SupplierCode.dirty || SupplierCode.touched ))">
+                        <label>Supplier Code</label>
+                        <input class="form-control" required #SupplierCode="ngModel" name="SupplierCode" type="text" [(ngModel)]="AddServices.Name">
+                        <div [hidden]="SupplierCode.valid || (SupplierCode.pristine && !f.submitted) && ((SupplierCode.errors && (SupplierCode.dirty || SupplierCode.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!SupplierCode.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Supplier Code
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                      <div class="form-group" [class.has-error]="!(Name.valid || (Name.pristine && !f.submitted)) || (Name.errors && (Name.dirty || Name.touched ))">
+                        <label>Name</label>
+                        <input class="form-control" name="Name" #Name="ngModel" type="text" [(ngModel)]="AddServices.Name"
+                          placeholder="Enter Name" id="example-text-input" required>
+                        <div [hidden]="Name.valid || (Name.pristine && !f.submitted) && ((Name.errors && (Name.dirty || Name.touched )) == false)"
+                          class="form-control-feedback">
+                          <div [hidden]="!Name.errors?.required" class="form-control-feedback">
+                            Error: Please Enter Name
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="form-group" [class.has-error]="!(TotalAmount.valid || (TotalAmount.pristine && !f.submitted)) || (TotalAmount.errors && (TotalAmount.dirty || TotalAmount.touched ))">
+                          <label>Total Amount</label>
+                          <input class="form-control" name="TotalAmount" #TotalAmount="ngModel" type="text" [(ngModel)]="AddServices.Name"
+                            placeholder="Enter Total Amount" id="example-text-input" required>
+                          <div [hidden]="TotalAmount.valid || (TotalAmount.pristine && !f.submitted) && ((TotalAmount.errors && (TotalAmount.dirty || TotalAmount.touched )) == false)"
+                            class="form-control-feedback">
+                            <div [hidden]="!TotalAmount.errors?.required" class="form-control-feedback">
+                              Error: Please Enter Total Amount
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8">
+                          <div class="form-group" [class.has-error]="!(PaidAmount.valid || (PaidAmount.pristine && !f.submitted)) || (PaidAmount.errors && (PaidAmount.dirty || PaidAmount.touched ))">
+                            <label>Paid Amount</label>
+                            <input class="form-control" name="PaidAmount" #PaidAmount="ngModel" type="text" [(ngModel)]="AddServices.Name"
+                              placeholder="Enter Paid Amount" id="example-text-input" required>
+                            <div [hidden]="PaidAmount.valid || (PaidAmount.pristine && !f.submitted) && ((PaidAmount.errors && (PaidAmount.dirty || PaidAmount.touched )) == false)"
+                              class="form-control-feedback">
+                              <div [hidden]="!PaidAmount.errors?.required" class="form-control-feedback">
+                                Error: Please Enter Paid Amount
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8">
+                            <div class="form-group" [class.has-error]="!(RemainingAmount.valid || (RemainingAmount.pristine && !f.submitted)) || (RemainingAmount.errors && (RemainingAmount.dirty || RemainingAmount.touched ))">
+                              <label>Remaining Amount</label>
+                              <input class="form-control" name="RemainingAmount" #RemainingAmount="ngModel" type="text" [(ngModel)]="AddServices.Name"
+                                placeholder="Enter Paid Amount" id="example-text-input" required>
+                              <div [hidden]="RemainingAmount.valid || (RemainingAmount.pristine && !f.submitted) && ((RemainingAmount.errors && (RemainingAmount.dirty || RemainingAmount.touched )) == false)"
+                                class="form-control-feedback">
+                                <div [hidden]="!RemainingAmount.errors?.required" class="form-control-feedback">
+                                  Error: Please Enter Paid Amount
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 col-md-8">
+                              <div class="form-group" [class.has-error]="!(PaymentStatus.valid || (PaymentStatus.pristine && !f.submitted)) || (PaymentStatus.errors && (PaymentStatus.dirty || PaymentStatus.touched ))">
+                                <label>Payment Status</label>
+                                <input class="form-control" name="PaymentStatus" #PaymentStatus="ngModel" type="text" [(ngModel)]="AddServices.Name"
+                                  placeholder="Enter Paid Amount" id="example-text-input" required>
+                                <div [hidden]="PaymentStatus.valid || (PaymentStatus.pristine && !f.submitted) && ((PaymentStatus.errors && (PaymentStatus.dirty || PaymentStatus.touched )) == false)"
+                                  class="form-control-feedback">
+                                  <div [hidden]="!PaymentStatus.errors?.required" class="form-control-feedback">
+                                    Error: Please Enter Payment Status
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                  </div> 
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div class="col text-right">
+                    <div class="btn-group pull-right">
+                      <button class="btn btn-primary" name="btnsave" (click)="Save()">
+                        <span class="text">Save</span>
+                        <i class="fa fa-save"></i>
+                      </button>
+                    </div>
+                    <div class="btn-group pull-right">
+                      <pre> </pre>
+                    </div>
+                    <div class="btn-group pull-right">
+    
+                      <button class="btn btn-secondary" type="reset" value="Reset" name="brnReset" (click)="Reset()">
+                        <span class="text">Reset</span>
+                        <i class="fa fa-refresh"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div> 
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

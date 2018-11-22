@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row  align-items-center justify-content-between">
+    <div class="col-11 col-sm-12 page-title">
+      <h3>Patient Dashboard</h3>
+      
+    </div>
+    <div class="col text-right ">
+      <div class="btn-group pull-right">
+        <button class="btn btn-success btn-round " data-toggle="modal" data-target="#themepicker">
+          <span class="text">Customize</span>
+          <i class="fa fa-cogs ml-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-lg-8 col-xl-4" (click)='navigateTo("Admin/PatientList")'>
+      <div class="activity-block success">
+        <div class="media">
+          <div class="media-body">
+            <h5><span class="spincreament">Total Patient</span></h5>
+            <h3>
+              <span *ngIf="!totalPatientLoader" class="spincreament">{{totalPatient}}</span>
+              <img *ngIf="totalPatientLoader" src="src/assets/img/Rolling-1s-200px.svg" alt="">
+            </h3> 
+          </div>
+          <i class="fa fa-wheelchair"></i>
+        </div> 
+        <div class="row">
+          <div class="media">
+            <div class="media-body">
+                 <a (click)='navigateTo("Admin/PatientList")' style="margin-left: 166px">View Details</a>
+            </div>
+          </div> 
+        </div>
+        <i class="bg-icon text-center fa fa-wheelchair"></i>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-8 col-xl-4">
+      <div class="activity-block danger">
+        <div class="media">
+          <div class="media-body">
+              <h5><span class="spincreament">Registered Today</span></h5>
+            <h3>
+              <span class="spincreament">{{registeredToday || 'None'}}</span>
+              <!-- <img *ngIf="registeredLoader" src="src/assets/img/Rolling-1s-200px.svg" alt=""> -->
+            </h3> 
+          </div>
+          <i class="fa fa-users"></i>
+        </div>
+        <div class="row"> 
+          <div class="media">
+            <div class="media-body">
+                <a (click)='navigateTo("Admin/PatientList")' title="Details" style="margin-left: 166px">View Details</a>
+              </div>
+            </div>
+          </div>
+        <i class="bg-icon text-center fa fa-users"></i>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-8 col-xl-4">
+      <div class="activity-block warning">
+        <div class="media">
+          <div class="media-body">
+              <h5><span class="spincreament">Smart Card Price</span></h5>
+              <div class="row">
+                  <div class="col-lg-8">
+                    <h3>{{originalCardPrice}}</h3>
+                    <!-- <img *ngIf="cardLoader" src="src/assets/img/Rolling-1s-200px.svg" alt=""> -->
+                    <small>Original Price</small>
+                  </div>
+                  <div class="col-lg-8">
+                    <h3>{{dupCardPrice}}</h3>
+                    <small>Duplicate Price</small>
+                  </div>
+              </div> 
+          </div>
+          <i class="fa fa-money"></i>
+        </div> 
+        <i class="bg-icon text-center fa fa-money"></i>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-8 col-xl-4">
+      <div class="activity-block primary">
+        <div class="media">
+          <div class="media-body">
+            <h5>
+              <span class="spincreament">Total Income</span>
+            </h5>
+            <h3>
+                <span class="spincreament">5000</span>
+              </h3>
+          </div>
+          <i class="fa fa-money"></i>
+        </div>
+        <div class="row">
+            <div class="media">
+              <div class="media-body">
+                   <a href="#"style="margin-left: 166px">View Details</a>
+              </div>
+            </div> 
+          </div>
+        <i class="bg-icon text-center  fa fa-money"></i>
+      </div>
+    </div>
+  </div>
+</div>
